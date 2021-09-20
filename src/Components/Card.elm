@@ -15,6 +15,7 @@ type alias Props =
   , coverSrc: String
   , css: List Css.Style
   , to: String
+  , model: Model
   }
 
 cover : Props -> Html message
@@ -28,13 +29,13 @@ cover props =
         []
     ]
 
-footer : Model -> Props -> Html message
-footer model props =
+footer : Props -> Html message
+footer props =
   div
     [ css [ Css.flexBasis <| Css.pct 25, Css.padding (Css.px 10) ] ]
     [ p
         [ css
-            [ Css.color model.theme.textSecondary
+            [ Css.color props.model.theme.textSecondary
             , Css.marginTop (Css.px 5)
             , Css.fontSize (Css.rem 1)
             ]
@@ -43,13 +44,13 @@ footer model props =
     , h3 [ css [ Css.margin (Css.px 0) ] ] [ text props.title ]
     ]
 
-getCardCss : Model -> Props -> List Css.Style
-getCardCss model props =
+getCardCss : Props -> List Css.Style
+getCardCss props =
   mixCss
     [ Css.display Css.block
     , Css.flexBasis <| Css.pct 31.5
     , Css.cursor Css.pointer
-    , Css.hover [ Css.backgroundColor model.theme.primary ]
+    , Css.hover [ Css.backgroundColor props.model.theme.primary ]
     , Css.Transitions.transition [ Css.Transitions.backgroundColor 200 ]
     , Css.Media.withMedia
       [ Css.Media.only Css.Media.screen [ Css.Media.maxWidth (Css.px 400) ] ]
@@ -60,14 +61,14 @@ getCardCss model props =
     ]
     props.css
 
-card : Model -> Props -> Html message
-card model props =
+card : Props -> Html message
+card props =
   case props.to of
     "" ->
       div
-        [ css (getCardCss model props) ]
-        [ cover props, footer model props ]
+        [ css (getCardCss props) ]
+        [ cover props, footer props ]
     _ ->
       a
-        [ css (getCardCss model props), href props.to ]
-        [ cover props, footer model props ]
+        [ css (getCardCss props), href props.to ]
+        [ cover props, footer props ]

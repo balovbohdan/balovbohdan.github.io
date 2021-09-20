@@ -8,16 +8,19 @@ import Html.Styled.Attributes exposing (css)
 import Utils.Css exposing (mixCss)
 import Core.Model exposing (Model)
 
-type alias Props = { css: List Css.Style }
+type alias Props =
+  { css: List Css.Style
+  , model: Model
+  }
 
-avatar : Model -> Html message
-avatar model =
+avatar : Props -> Html message
+avatar props =
   div
     [ css
         [ Css.width (Css.px 100)
         , Css.height (Css.px 100)
         , Css.borderRadius (Css.pct 50)
-        , Css.backgroundColor model.theme.secondary
+        , Css.backgroundColor props.model.theme.secondary
         , Css.backgroundImage (Css.url "assets/avatar.jpg")
         , Css.backgroundSize Css.cover
         , Css.backgroundPosition Css.center
@@ -36,8 +39,8 @@ sign =
     , p [] [ text "By Bohdan Balov" ]
     ]
 
-author : Model -> Props -> Html message
-author model props =
+author : Props -> Html message
+author props =
   div
     [ css
         (mixCss
@@ -47,4 +50,4 @@ author model props =
           ]
           props.css)
     ]
-    [ avatar model, sign ]
+    [ avatar props, sign ]

@@ -47,12 +47,12 @@ state =
 renderPost : Model -> Post -> Html message
 renderPost model data =
   card
-    model
     { title = data.title
     , description = data.description
     , coverSrc = data.coverSrc
     , css = [ Css.marginBottom (Css.px 30) ]
     , to = "/post/" ++ data.id
+    , model = model
     }
 
 renderPosts : Model -> List Post -> List (Html message)
@@ -80,7 +80,7 @@ header model =
         , Css.margin2 (Css.px 50) Css.zero
         ]
     ]
-    [ author model { css = [] } ]
+    [ author { model = model, css = [] } ]
 
 home : Model -> Html message
 home model =
