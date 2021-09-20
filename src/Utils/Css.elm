@@ -1,4 +1,4 @@
-module Shared.Utils.Css exposing (mixCss)
+module Utils.Css exposing (mixCss)
 
 import Css
 

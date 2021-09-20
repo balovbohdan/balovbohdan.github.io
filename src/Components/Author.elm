@@ -5,7 +5,7 @@ import Css.Media
 import Html.Styled exposing (div, p, text, Html)
 import Html.Styled.Attributes exposing (css)
 
-import Shared.Utils.Css exposing (mixCss)
+import Utils.Css exposing (mixCss)
 import Core.Model exposing (Model)
 
 type alias Props = { css: List Css.Style }

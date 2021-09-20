@@ -6,7 +6,7 @@ import Css.Transitions
 import Html.Styled exposing (a, div, h3, p, text, img, Html)
 import Html.Styled.Attributes exposing (css, src, href)
 
-import Shared.Utils.Css exposing (mixCss)
+import Utils.Css exposing (mixCss)
 import Core.Model exposing (Model)
 
 type alias Props =
