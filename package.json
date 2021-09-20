@@ -4,7 +4,8 @@
   "description": "",
   "main": "elm.js",
   "scripts": {
-    "start": "elm-live src/Main.elm --open -- --output=elm.js"
+    "start": "elm-live src/Main.elm --dir=dist --open -- --output=dist/index.js",
+    "build": "elm make src/Main.elm --output=dist/index.js"
   },
   "author": "",
   "license": "ISC",
