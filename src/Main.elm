@@ -21,7 +21,7 @@ getInitialModel key url colorSchema =
   }
 
 init : () -> Url.Url -> Browser.Navigation.Key -> (Model, Cmd Message)
-init flags url key = ( getInitialModel key url "light", Cmd.none )
+init flags url key = (getInitialModel key url "light", Cmd.none)
 
 subscriptions : Model -> Sub Message
 subscriptions _ = Sub.none
