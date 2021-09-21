@@ -6,7 +6,9 @@ import Html.Styled.Attributes exposing (css)
 
 import Components.Author exposing (author)
 import Components.Card exposing (card)
+import Components.Header exposing (header)
 import Core.Model exposing (Model)
+import Core.Message exposing (Message)
 
 type alias Post =
   { id: String
@@ -44,8 +46,8 @@ state =
       ]
   }
 
-renderPost : Model -> Post -> Html message
-renderPost model data =
+post : Model -> Post -> Html Message
+post model data =
   card
     { title = data.title
     , description = data.description
@@ -55,10 +57,7 @@ renderPost model data =
     , model = model
     }
 
-renderPosts : Model -> List Post -> List (Html message)
-renderPosts model data = List.map (renderPost model) data
-
-posts : Model -> Html message
+posts : Model -> Html Message
 posts model =
   div
     [ css
@@ -69,10 +68,10 @@ posts model =
         , Css.maxWidth (Css.px 1000)
         ]
     ]
-    (renderPosts model state.posts)
+    (List.map (post model) state.posts)
 
-header : Model -> Html message
-header model =
+about : Model -> Html Message
+about model =
   div
     [ css
         [ Css.displayFlex
@@ -82,8 +81,8 @@ header model =
     ]
     [ author { model = model, css = [] } ]
 
-home : Model -> Html message
+home : Model -> Html Message
 home model =
   div
     [ css [ Css.margin2 Css.zero (Css.px 10) ] ]
-    [ header model, posts model ]
+    [ header { model = model }, about model, posts model ]

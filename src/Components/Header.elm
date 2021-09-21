@@ -1,24 +1,26 @@
 module Components.Header exposing (header)
 
-import Html.Styled exposing (div, text, Html)
+import Css
+import Css.Media
+import Html.Styled exposing (div, Html)
+import Html.Styled.Attributes exposing (css)
 
-type alias Props = { kind: String }
+import Core.Message exposing (Message)
+import Core.Model exposing (Model)
+import Components.ThemeToggler exposing (themeToggler)
 
-primaryHeader : Html message
-primaryHeader =
-  div
-    []
-    [ text "primary" ]
+type alias Props = { model: Model }
 
-secondaryHeader : Html message
-secondaryHeader =
-  div
-    []
-    [ text "secondary" ]
-
-header : Props -> Html message
+header : Props -> Html Message
 header props =
-  case props.kind of
-    "primary" -> primaryHeader
-    "secondary" -> secondaryHeader
-    _ -> primaryHeader
+  div
+    [ css
+        [ Css.displayFlex
+        , Css.justifyContent Css.end
+        , Css.padding2 (Css.px 10) Css.zero
+        , Css.Media.withMedia
+            [ Css.Media.only Css.Media.screen [ Css.Media.maxWidth <| Css.px 400 ] ]
+            [ Css.justifyContent Css.center ]
+        ]
+    ]
+    [ themeToggler { model = props.model } ]

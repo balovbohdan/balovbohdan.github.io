@@ -8,6 +8,7 @@ import Html.Styled.Attributes exposing (css, src, href)
 
 import Utils.Css exposing (mixCss)
 import Core.Model exposing (Model)
+import Core.Message exposing (Message)
 
 type alias Props =
   { title: String
@@ -18,7 +19,7 @@ type alias Props =
   , model: Model
   }
 
-cover : Props -> Html message
+cover : Props -> Html Message
 cover props =
   div
     [ css [ Css.width (Css.pct 100) ] ]
@@ -29,7 +30,7 @@ cover props =
         []
     ]
 
-footer : Props -> Html message
+footer : Props -> Html Message
 footer props =
   div
     [ css [ Css.flexBasis <| Css.pct 25, Css.padding (Css.px 10) ] ]
@@ -53,15 +54,15 @@ getCardCss props =
     , Css.hover [ Css.backgroundColor props.model.theme.primary ]
     , Css.Transitions.transition [ Css.Transitions.backgroundColor 200 ]
     , Css.Media.withMedia
-      [ Css.Media.only Css.Media.screen [ Css.Media.maxWidth (Css.px 400) ] ]
-      [ Css.flexBasis <| Css.pct 100 ]
+        [ Css.Media.only Css.Media.screen [ Css.Media.maxWidth (Css.px 400) ] ]
+        [ Css.flexBasis <| Css.pct 100 ]
     , Css.Media.withMedia
-      [ Css.Media.only Css.Media.screen [ Css.Media.maxWidth (Css.px 900) ] ]
-      [ Css.flexBasis <| Css.pct 49 ]
+        [ Css.Media.only Css.Media.screen [ Css.Media.maxWidth (Css.px 900) ] ]
+        [ Css.flexBasis <| Css.pct 49 ]
     ]
     props.css
 
-card : Props -> Html message
+card : Props -> Html Message
 card props =
   case props.to of
     "" ->

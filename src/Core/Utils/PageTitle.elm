@@ -1,4 +1,4 @@
-module Core.Utils exposing (getPageTitle)
+module Core.Utils.PageTitle exposing (getPageTitle)
 
 import Core.Model exposing (Model)
 

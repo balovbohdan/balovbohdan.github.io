@@ -7,13 +7,14 @@ import Html.Styled.Attributes exposing (css)
 
 import Utils.Css exposing (mixCss)
 import Core.Model exposing (Model)
+import Core.Message exposing (Message)
 
 type alias Props =
   { css: List Css.Style
   , model: Model
   }
 
-avatar : Props -> Html message
+avatar : Props -> Html Message
 avatar props =
   div
     [ css
@@ -31,7 +32,7 @@ avatar props =
     ]
     []
 
-sign : Html message
+sign : Html Message
 sign =
   div
     [ css [ Css.marginLeft (Css.px 20) ] ]
@@ -39,7 +40,7 @@ sign =
     , p [] [ text "By Bohdan Balov" ]
     ]
 
-author : Props -> Html message
+author : Props -> Html Message
 author props =
   div
     [ css
