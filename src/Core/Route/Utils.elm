@@ -1,23 +1,20 @@
-module Core.Utils.Route exposing (getFeature)
+module Core.Route.Utils exposing (getFeature)
 
 import Url
 import Html.Styled exposing (Html)
-import Url.Parser exposing ((</>), parse, string, map, oneOf, s, top, Parser)
+import Url.Parser exposing ((</>), parse, map, oneOf, top, Parser)
 
 import Features.Home exposing (home)
 import Features.NotFound exposing (notFound)
 import Features.Post exposing (post)
 import Core.Message exposing (Message)
 import Core.Model exposing (Model)
+import Core.Route.Parsers exposing (postUrlParser)
 
 type Route = Home | Post String | NotFound
 
 parseUrl : Parser (Route -> a) a
-parseUrl =
-  oneOf
-    [ map Home top
-    , map Post (s "post" </> string)
-    ]
+parseUrl = oneOf [ map Home top, map Post postUrlParser ]
 
 getRoute : String -> Route
 getRoute path =

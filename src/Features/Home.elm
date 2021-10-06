@@ -4,9 +4,7 @@ import Css
 import Html.Styled exposing (div, Html)
 import Html.Styled.Attributes exposing (css)
 
-import Components.Author exposing (author)
 import Components.Card exposing (card)
-import Components.Header exposing (header)
 import Core.Model exposing (Model)
 import Core.Message exposing (Message)
 
@@ -70,19 +68,5 @@ posts model =
     ]
     (List.map (post model) state.posts)
 
-about : Model -> Html Message
-about model =
-  div
-    [ css
-        [ Css.displayFlex
-        , Css.justifyContent Css.center
-        , Css.margin2 (Css.px 50) Css.zero
-        ]
-    ]
-    [ author { model = model, css = [] } ]
-
 home : Model -> Html Message
-home model =
-  div
-    [ css [ Css.margin2 Css.zero (Css.px 10) ] ]
-    [ header { model = model }, about model, posts model ]
+home model = posts model

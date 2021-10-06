@@ -2,8 +2,8 @@ module Components.Author exposing (author)
 
 import Css
 import Css.Media
-import Html.Styled exposing (div, p, text, Html)
-import Html.Styled.Attributes exposing (css)
+import Html.Styled exposing (div, a, p, text, Html)
+import Html.Styled.Attributes exposing (css, href)
 
 import Utils.Css exposing (mixCss)
 import Core.Model exposing (Model)
@@ -12,17 +12,19 @@ import Core.Message exposing (Message)
 type alias Props =
   { css: List Css.Style
   , model: Model
+  , avatarHref: String
   }
 
 avatar : Props -> Html Message
 avatar props =
-  div
-    [ css
+  a
+    [ href props.avatarHref
+    , css
         [ Css.width (Css.px 100)
         , Css.height (Css.px 100)
         , Css.borderRadius (Css.pct 50)
         , Css.backgroundColor props.model.theme.secondary
-        , Css.backgroundImage (Css.url "assets/avatar.jpg")
+        , Css.backgroundImage (Css.url "/assets/avatar.jpg")
         , Css.backgroundSize Css.cover
         , Css.backgroundPosition Css.center
         , Css.Media.withMedia
@@ -40,15 +42,17 @@ sign =
     , p [] [ text "By Bohdan Balov" ]
     ]
 
+getAuthorCss : Props -> List Css.Style
+getAuthorCss props =
+  mixCss
+    [ Css.displayFlex
+    , Css.flexDirection Css.row
+    , Css.alignItems Css.center
+    ]
+    props.css
+
 author : Props -> Html Message
 author props =
   div
-    [ css
-        (mixCss
-          [ Css.displayFlex
-          , Css.flexDirection Css.row
-          , Css.alignItems Css.center
-          ]
-          props.css)
-    ]
+    [ css (getAuthorCss props) ]
     [ avatar props, sign ]

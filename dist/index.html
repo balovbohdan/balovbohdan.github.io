@@ -2,19 +2,46 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Blog!</title>
+    <title>Bohdan Balov | Personal Blog</title>
+
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="/reset.css">
     <script type="text/javascript" src="/index.js"></script>
   </head>
   <body>
     <div id="app"></div>
     <script type="text/javascript">
-      Elm.Main.init({ node: document.getElementById("app") });
+      const app = Elm.Main.init({
+        node: document.getElementById('app'),
+        flags: {
+          colorSchema: window.localStorage.getItem('colorSchema') || 'light',
+        },
+      });
+
+      app.ports.localStorageOutcomePort.subscribe((event) => {
+        try {
+          const { action, key, value } = JSON.parse(event);
+
+          switch (action) {
+            case 'set':
+              window.localStorage.setItem(key, JSON.stringify(value));
+              break;
+            case 'delete':
+              delete window.localStorage[key];
+              break;
+            default:
+              console.warn('Cannot find localStorage action: ' + action);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      });
     </script>
   </body>
 </html>

@@ -17,4 +17,3 @@ onCheck isChecked =
 
 themeToggler : Props -> Html Message
 themeToggler props = toggler { model = props.model, onCheck = onCheck }
-
