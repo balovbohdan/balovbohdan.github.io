@@ -12,36 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/reset.css">
-    <script type="text/javascript" src="/index.js"></script>
+    <script type="text/javascript" src="/index.js" defer></script>
+    <script type="text/javascript" src="/app.js" defer></script>
   </head>
   <body>
     <div id="app"></div>
-    <script type="text/javascript">
-      const app = Elm.Main.init({
-        node: document.getElementById('app'),
-        flags: {
-          colorSchema: window.localStorage.getItem('colorSchema') || 'light',
-        },
-      });
-
-      app.ports.localStorageOutcomePort.subscribe((event) => {
-        try {
-          const { action, key, value } = JSON.parse(event);
-
-          switch (action) {
-            case 'set':
-              window.localStorage.setItem(key, JSON.stringify(value));
-              break;
-            case 'delete':
-              delete window.localStorage[key];
-              break;
-            default:
-              console.warn('Cannot find localStorage action: ' + action);
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      });
-    </script>
   </body>
 </html>

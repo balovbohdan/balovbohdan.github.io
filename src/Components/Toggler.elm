@@ -4,7 +4,7 @@ import Css
 import Css.Transitions
 import Css.Global
 import Html.Styled.Events exposing (onCheck)
-import Html.Styled.Attributes exposing (type_)
+import Html.Styled.Attributes exposing (type_, checked)
 import Html.Styled exposing (label, input, span, Html)
 import Html.Styled.Attributes exposing (css)
 
@@ -14,6 +14,7 @@ import Core.Model exposing (Model)
 type alias Props =
   { model: Model
   , onCheck: Bool -> Message
+  , checked: Bool
   }
 
 constants : { width: Float, height: Float }
@@ -24,6 +25,7 @@ checkboxInput props =
   input
     [ type_ "checkbox"
     , onCheck props.onCheck
+    , checked props.checked
     , css
         [ Css.opacity Css.zero
         , Css.width Css.zero

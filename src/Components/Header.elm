@@ -30,6 +30,13 @@ header : Props -> Html Message
 header props =
   div
     [ css (getHeaderCss props) ]
-    [ author { model = props.model, avatarHref = props.avatarHref, css = [] }
-    , themeToggler { model = props.model }
+    [ author
+        { model = props.model
+        , avatarHref = props.avatarHref
+        , css = []
+        }
+    , themeToggler
+        { model = props.model
+        , checked = props.model.colorSchema == "dark"
+        }
     ]

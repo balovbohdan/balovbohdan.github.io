@@ -6,7 +6,7 @@ import Core.Model exposing (Model)
 import Core.Message exposing (Message(..))
 import Components.Toggler exposing (toggler)
 
-type alias Props = { model: Model }
+type alias Props = { model: Model, checked: Bool }
 
 onCheck : Bool -> Message
 onCheck isChecked =
@@ -16,4 +16,9 @@ onCheck isChecked =
     (MessageColorSchemaToggled "light")
 
 themeToggler : Props -> Html Message
-themeToggler props = toggler { model = props.model, onCheck = onCheck }
+themeToggler props =
+  toggler
+    { model = props.model
+    , onCheck = onCheck
+    , checked = props.checked
+    }
