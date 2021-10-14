@@ -12,7 +12,7 @@ import Core.Model exposing (Model)
 import Core.Message exposing (Message(..))
 import Core.Theme exposing (getTheme)
 import Core.Utils.PageTitle exposing (getPageTitle)
-import Core.Route.Utils exposing (queryFeatureData)
+import Core.FeatureData.Utils exposing (queryFeatureContent)
 import Ports exposing (localStorageOutcomePort)
 
 type alias Flags = { colorSchema: String }
@@ -23,11 +23,11 @@ getInitialModel flags key url =
   , url = url
   , colorSchema = flags.colorSchema
   , theme = getTheme flags.colorSchema
-  , posts = { content = [], loading = False }
+  , featureData = { content = "{}", loading = False }
   }
 
 init : Flags -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Message )
-init flags url key = ( getInitialModel flags key url, queryFeatureData (Url.toString url) )
+init flags url key = ( getInitialModel flags key url, queryFeatureContent (Url.toString url) )
 
 subscriptions : Model -> Sub Message
 subscriptions _ = Sub.none
@@ -52,17 +52,17 @@ update message model =
           ( model, Browser.Navigation.load href )
 
     MessageUrlChanged url ->
-      ( { model | url = url }, queryFeatureData (Url.toString url) )
+      ( { model | url = url }, queryFeatureContent (Url.toString url) )
 
     MessageColorSchemaToggled colorSchema ->
       ( { model | colorSchema = colorSchema, theme = getTheme colorSchema }
       , localStorageOutcomePort (getColorSchemaToggledPortEvent colorSchema)
       )
 
-    MessagePostsReceived result ->
+    MessageFeatureContentReceived result ->
       case result of
-        Ok posts ->
-          ( { model | posts = { loading = False, content = [posts] } }, Cmd.none )
+        Ok featureContent ->
+          ( { model | featureData = { loading = False, content = featureContent } }, Cmd.none )
         Err _ ->
           ( model, Cmd.none )
 

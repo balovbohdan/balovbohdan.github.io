@@ -1,21 +1,15 @@
-module Core.Model exposing (Model, PostPreview)
+module Core.Model exposing (Model)
 
 import Url
 import Browser.Navigation
 
 import Core.Theme exposing (Theme)
-
-type alias PostPreview = String
-
-type alias Posts =
-  { content: List PostPreview
-  , loading: Bool
-  }
+import Core.FeatureData.FeatureData exposing (FeatureData)
 
 type alias Model =
   { key : Browser.Navigation.Key
   , url : Url.Url
   , colorSchema: String
   , theme: Theme
-  , posts: Posts
+  , featureData: FeatureData
   }
