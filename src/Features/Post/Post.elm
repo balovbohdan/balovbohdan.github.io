@@ -1,4 +1,4 @@
-module Features.Post exposing (post)
+module Features.Post.Post exposing (post)
 
 import Html.Styled exposing (div, text, Html)
 import Url.Parser exposing ((</>), parse)

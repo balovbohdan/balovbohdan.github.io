@@ -1,4 +1,4 @@
-module Features.Home exposing (home)
+module Features.Home.Home exposing (home)
 
 import Css
 import Html.Styled exposing (div, Html)

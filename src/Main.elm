@@ -12,6 +12,7 @@ import Core.Model exposing (Model)
 import Core.Message exposing (Message(..))
 import Core.Theme exposing (getTheme)
 import Core.Utils.PageTitle exposing (getPageTitle)
+import Core.Route.Utils exposing (queryFeatureData)
 import Ports exposing (localStorageOutcomePort)
 
 type alias Flags = { colorSchema: String }
@@ -22,10 +23,11 @@ getInitialModel flags key url =
   , url = url
   , colorSchema = flags.colorSchema
   , theme = getTheme flags.colorSchema
+  , posts = { content = [], loading = False }
   }
 
 init : Flags -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Message )
-init flags url key = ( getInitialModel flags key url, Cmd.none )
+init flags url key = ( getInitialModel flags key url, queryFeatureData (Url.toString url) )
 
 subscriptions : Model -> Sub Message
 subscriptions _ = Sub.none
@@ -50,12 +52,19 @@ update message model =
           ( model, Browser.Navigation.load href )
 
     MessageUrlChanged url ->
-      ( { model | url = url }, Cmd.none )
+      ( { model | url = url }, queryFeatureData (Url.toString url) )
 
     MessageColorSchemaToggled colorSchema ->
       ( { model | colorSchema = colorSchema, theme = getTheme colorSchema }
       , localStorageOutcomePort (getColorSchemaToggledPortEvent colorSchema)
       )
+
+    MessagePostsReceived result ->
+      case result of
+        Ok posts ->
+          ( { model | posts = { loading = False, content = [posts] } }, Cmd.none )
+        Err _ ->
+          ( model, Cmd.none )
 
 view : Model -> Browser.Document Message
 view model =

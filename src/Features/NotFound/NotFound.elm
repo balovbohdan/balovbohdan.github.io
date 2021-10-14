@@ -1,4 +1,4 @@
-module Features.NotFound exposing (notFound)
+module Features.NotFound.NotFound exposing (notFound)
 
 import Html.Styled exposing (div, text, Html)
 

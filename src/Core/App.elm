@@ -1,7 +1,7 @@
 module Core.App exposing (app)
 
 import Url
-import Html.Styled exposing (div, Html)
+import Html.Styled exposing (Html)
 
 import Core.Model exposing (Model)
 import Core.Message exposing (Message)
