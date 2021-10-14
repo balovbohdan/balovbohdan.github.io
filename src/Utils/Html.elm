@@ -1,12 +1,9 @@
-module Utils.Html exposing (parseHtmlString)
+module Utils.Html exposing (parseMarkdown)
 
-import Html.Parser
-import Html.Parser.Util
+import Markdown
 import Html.Styled exposing (fromUnstyled, Html)
 import Core.Message exposing (Message)
 
-parseHtmlString : String -> List (Html Message)
-parseHtmlString content =
-  case Html.Parser.run content of
-    Ok nodes -> List.map fromUnstyled (Html.Parser.Util.toVirtualDom nodes)
-    Err _ -> []
+parseMarkdown : String -> List (Html Message)
+parseMarkdown markdown =
+  List.map fromUnstyled (Markdown.toHtml Nothing markdown)

@@ -2,19 +2,14 @@ module Components.Article exposing (article)
 
 import Css
 import Css.Global
-import Markdown
 import Html.Styled exposing (div, fromUnstyled, Html)
 import Html.Styled.Attributes exposing (css)
 
 import Core.Model exposing (Model)
 import Core.Message exposing (Message)
-import Utils.Html exposing (parseHtmlString)
+import Utils.Html exposing (parseMarkdown)
 
 type alias Props = { model: Model, content: String }
-
-parseMarkdown : String -> List (Html Message)
-parseMarkdown markdown =
-  List.map fromUnstyled (Markdown.toHtml Nothing markdown)
 
 article : Props -> Html Message
 article props =
