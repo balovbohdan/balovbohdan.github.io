@@ -6651,7 +6651,7 @@ var $elm$http$Http$get = function (r) {
 var $author$project$Features$Home$Model$queryHomeFeatureContent = $elm$http$Http$get(
 	{
 		expect: $elm$http$Http$expectString($author$project$Core$Message$MessageFeatureContentReceived),
-		url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/dist/content/blog'
+		url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog'
 	});
 var $author$project$Features$Post$Model$queryPostFeatureContent = function (id) {
 	return $elm$http$Http$get(
