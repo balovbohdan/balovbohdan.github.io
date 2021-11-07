@@ -23,8 +23,8 @@ jobs:
 
       - name: Publish
         run: |
-          git config --global user.name "balovbohdan"
-          git config --global user.email "balovbohdan@gmail.com"
+          git config --global user.name 'balovbohdan'
+          git config --global user.email 'balovbohdan@gmail.com'
           git add .
           git commit -am "publish"
           git push
