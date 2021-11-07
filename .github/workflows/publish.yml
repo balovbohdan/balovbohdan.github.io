@@ -13,7 +13,8 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
         with:
-          persist-credentials: false
+          # persist-credentials: false
+          token: ${{ secrets.PAT }}
         
       - name: Install 🔧
         run: npm install
