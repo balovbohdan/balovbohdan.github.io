@@ -11,7 +11,7 @@ type alias PostFeatureContent = { name: String, content: String }
 queryPostFeatureContent : String -> Cmd Message
 queryPostFeatureContent id =
   Http.get
-    { url = "https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/dist/content/blog/" ++ id ++ ".md"
+    { url = "https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/" ++ id ++ ".md"
     , expect = Http.expectString MessageFeatureContentReceived
     }
 

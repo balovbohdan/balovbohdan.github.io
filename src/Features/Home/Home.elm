@@ -14,7 +14,7 @@ post model content =
   card
     { title = content.name
     , description = "gag description"
-    , coverSrc = "https://raw.githubusercontent.com/balovbohdan/mr-balov-blog/main/dist/assets/post-cover.jpg?raw=true"
+    , coverSrc = "https://raw.githubusercontent.com/balovbohdan/mr-balov-blog/main/docs/assets/post-cover.jpg?raw=true"
     , css = [ Css.marginBottom (Css.px 30) ]
     , to = "/post/" ++ (String.replace ".md" "" content.name)
     , theme = model.theme
