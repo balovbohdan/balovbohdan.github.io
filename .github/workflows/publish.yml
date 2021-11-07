@@ -22,4 +22,9 @@ jobs:
         run: npm run build
 
       - name: Publish
-        run: git add . && git commit -m "publish" && git push
+        run: |
+          git config --global user.name "balovbohdan"
+          git config --global user.email "balovbohdan@gmail.com"
+          git add .
+          git commit -am "publish"
+          git push
