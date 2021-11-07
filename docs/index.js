@@ -13897,7 +13897,7 @@ var $author$project$Components$Author$sign = A2(
 			_List_Nil,
 			_List_fromArray(
 				[
-					$rtfeldman$elm_css$Html$Styled$text('By Bohdan Balov')
+					$rtfeldman$elm_css$Html$Styled$text('By Mr. Balov')
 				]))
 		]));
 var $author$project$Components$Author$author = function (props) {

@@ -39,7 +39,7 @@ sign =
   div
     [ css [ Css.marginLeft (Css.px 20) ] ]
     [ p [] [ text "Software Development Blog" ]
-    , p [] [ text "By Bohdan Balov" ]
+    , p [] [ text "By Mr. Balov" ]
     ]
 
 getAuthorCss : Props -> List Css.Style
