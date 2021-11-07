@@ -9,48 +9,21 @@ import Core.Model exposing (Model)
 import Core.Message exposing (Message)
 import Features.Home.Model exposing (parseHomeFeatureContent, Post)
 
--- state : State
--- state =
---   { posts =
---       [
---         { id = "1"
---         , title = "Why I decided to learn Elm and drop React"
---         , description = "About Ramda, Haskell, TypeScript, and Elm"
---         , coverSrc = "assets/avatar.jpg"
---         }
---       , { id = "2"
---         , title = "Why I decided to learn Elm and drop React"
---         , description = "About Ramda, Haskell, TypeScript, and Elm"
---         , coverSrc = "assets/avatar.jpg"
---         }
---       , { id = "3"
---         , title = "Why I decided to learn Elm and drop React"
---         , description = "About Ramda, Haskell, TypeScript, and Elm"
---         , coverSrc = "assets/avatar.jpg"
---         }
---       , { id = "4"
---         , title = "Why I decided to learn Elm and drop React"
---         , description = "About Ramda, Haskell, TypeScript, and Elm"
---         , coverSrc = "assets/avatar.jpg"
---         }
---       ]
---   }
-
 post : Model -> Post -> Html Message
-post model data =
+post model content =
   card
-    { title = data.name
+    { title = content.name
     , description = "gag description"
     , coverSrc = "https://raw.githubusercontent.com/balovbohdan/mr-balov-blog/main/dist/assets/post-cover.jpg?raw=true"
     , css = [ Css.marginBottom (Css.px 30) ]
-    , to = "/post/" ++ data.name
+    , to = "/post/" ++ (String.replace ".md" "" content.name)
     , theme = model.theme
     }
 
 posts : Model -> Html Message
 posts model =
   let
-    postPreviews = parseHomeFeatureContent model.featureData.content
+    content = parseHomeFeatureContent model.featureData.content
   in
     div
       [ css
@@ -61,7 +34,7 @@ posts model =
           , Css.maxWidth (Css.px 1000)
           ]
       ]
-      ( List.map (post model) postPreviews )
+      ( List.map (post model) content )
 
 home : Model -> Html Message
 home model = posts model
