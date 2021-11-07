@@ -8,7 +8,7 @@
 
 # Why I decided to learn Elm and drop React
 
-## About Ramda, Haskell, TypeScript, and Elm
+### About Ramda, Haskell, TypeScript, and Elm
 
 ![Tux, the Linux mascot](https://github.com/balovbohdan/personal-blog/blob/main/docs/assets/post-cover.jpg?raw=true)
 <center>[Unsplash](https://unsplash.com/photos/5Fxuo7x-eyg)</center>
