@@ -40,8 +40,8 @@ post : Model -> Post -> Html Message
 post model data =
   card
     { title = data.name
-    , description = ""
-    , coverSrc = ""
+    , description = "gag description"
+    , coverSrc = "https://raw.githubusercontent.com/balovbohdan/mr-balov-blog/main/dist/assets/post-cover.jpg?raw=true"
     , css = [ Css.marginBottom (Css.px 30) ]
     , to = "/post/" ++ data.name
     , theme = model.theme

@@ -2,7 +2,7 @@ module Components.Article exposing (article)
 
 import Css
 import Css.Global
-import Html.Styled exposing (div, fromUnstyled, Html)
+import Html.Styled exposing (div, Html)
 import Html.Styled.Attributes exposing (css)
 
 import Core.Model exposing (Model)
