@@ -23,11 +23,17 @@ getInitialModel flags key url =
   , url = url
   , colorSchema = flags.colorSchema
   , theme = getTheme flags.colorSchema
-  , featureData = { content = "{}", loading = False }
+  , featureData = { content = "{}", loading = False, isCompleteData = True, step = 0, stepAccumulator = [] }
   }
 
 init : Flags -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Message )
-init flags url key = ( getInitialModel flags key url, queryFeatureContent (Url.toString url) )
+init flags url key =
+  let
+    initialModel = getInitialModel flags key url
+  in
+    ( initialModel
+    , queryFeatureContent initialModel (Url.toString url)
+    )
 
 subscriptions : Model -> Sub Message
 subscriptions _ = Sub.none
@@ -52,17 +58,44 @@ update message model =
           ( model, Browser.Navigation.load href )
 
     MessageUrlChanged url ->
-      ( { model | url = url }, queryFeatureContent (Url.toString url) )
+      ( { model | url = url }
+      , queryFeatureContent model (Url.toString url)
+      )
 
     MessageColorSchemaToggled colorSchema ->
       ( { model | colorSchema = colorSchema, theme = getTheme colorSchema }
       , localStorageOutcomePort (getColorSchemaToggledPortEvent colorSchema)
       )
 
+    MessageFeatureContentPartReceived step result ->
+      case result of
+        Ok partialFeatureContent ->
+          ( { model | featureData =
+              { loading = True
+              , content = "{}"
+              , isCompleteData = False
+              , step = step
+              , stepAccumulator = List.append model.featureData.stepAccumulator [partialFeatureContent]
+              }
+            }
+          , queryFeatureContent model (Url.toString model.url)
+          )
+        Err _ ->
+          ( model, Cmd.none )
+
     MessageFeatureContentReceived result ->
       case result of
         Ok featureContent ->
-          ( { model | featureData = { loading = False, content = featureContent } }, Cmd.none )
+          ( { model | featureData =
+              { loading = False
+              , content = featureContent
+              , isCompleteData = True
+              , step = 1
+              , stepAccumulator = []
+              }
+            }
+          , Cmd.none
+          )
         Err _ ->
           ( model, Cmd.none )
 

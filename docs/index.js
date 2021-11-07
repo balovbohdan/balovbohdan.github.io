@@ -4375,6 +4375,43 @@ function _Url_percentDecode(string)
 }
 
 
+var _Bitwise_and = F2(function(a, b)
+{
+	return a & b;
+});
+
+var _Bitwise_or = F2(function(a, b)
+{
+	return a | b;
+});
+
+var _Bitwise_xor = F2(function(a, b)
+{
+	return a ^ b;
+});
+
+function _Bitwise_complement(a)
+{
+	return ~a;
+};
+
+var _Bitwise_shiftLeftBy = F2(function(offset, a)
+{
+	return a << offset;
+});
+
+var _Bitwise_shiftRightBy = F2(function(offset, a)
+{
+	return a >> offset;
+});
+
+var _Bitwise_shiftRightZfBy = F2(function(offset, a)
+{
+	return a >>> offset;
+});
+
+
+
 // SEND REQUEST
 
 var _Http_toTask = F3(function(router, toTask, request)
@@ -4548,43 +4585,6 @@ function _Http_track(router, xhr, tracker)
 		}))));
 	});
 }
-
-
-var _Bitwise_and = F2(function(a, b)
-{
-	return a & b;
-});
-
-var _Bitwise_or = F2(function(a, b)
-{
-	return a | b;
-});
-
-var _Bitwise_xor = F2(function(a, b)
-{
-	return a ^ b;
-});
-
-function _Bitwise_complement(a)
-{
-	return ~a;
-};
-
-var _Bitwise_shiftLeftBy = F2(function(offset, a)
-{
-	return a << offset;
-});
-
-var _Bitwise_shiftRightBy = F2(function(offset, a)
-{
-	return a >> offset;
-});
-
-var _Bitwise_shiftRightZfBy = F2(function(offset, a)
-{
-	return a >>> offset;
-});
-
 
 // CREATE
 
@@ -5563,7 +5563,7 @@ var $author$project$Main$getInitialModel = F3(
 	function (flags, key, url) {
 		return {
 			colorSchema: flags.colorSchema,
-			featureData: {content: '{}', loading: false},
+			featureData: {content: '{}', isCompleteData: true, loading: false, step: 0, stepAccumulator: _List_Nil},
 			key: key,
 			theme: $author$project$Core$Theme$getTheme(flags.colorSchema),
 			url: url
@@ -6381,9 +6381,117 @@ var $author$project$Core$Route$Utils$getRoute = function (path) {
 };
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
-var $author$project$Core$Message$MessageFeatureContentReceived = function (a) {
-	return {$: 'MessageFeatureContentReceived', a: a};
+var $elm$core$Array$fromListHelp = F3(
+	function (list, nodeList, nodeListSize) {
+		fromListHelp:
+		while (true) {
+			var _v0 = A2($elm$core$Elm$JsArray$initializeFromList, $elm$core$Array$branchFactor, list);
+			var jsArray = _v0.a;
+			var remainingItems = _v0.b;
+			if (_Utils_cmp(
+				$elm$core$Elm$JsArray$length(jsArray),
+				$elm$core$Array$branchFactor) < 0) {
+				return A2(
+					$elm$core$Array$builderToArray,
+					true,
+					{nodeList: nodeList, nodeListSize: nodeListSize, tail: jsArray});
+			} else {
+				var $temp$list = remainingItems,
+					$temp$nodeList = A2(
+					$elm$core$List$cons,
+					$elm$core$Array$Leaf(jsArray),
+					nodeList),
+					$temp$nodeListSize = nodeListSize + 1;
+				list = $temp$list;
+				nodeList = $temp$nodeList;
+				nodeListSize = $temp$nodeListSize;
+				continue fromListHelp;
+			}
+		}
+	});
+var $elm$core$Array$fromList = function (list) {
+	if (!list.b) {
+		return $elm$core$Array$empty;
+	} else {
+		return A3($elm$core$Array$fromListHelp, list, _List_Nil, 0);
+	}
 };
+var $elm$core$Basics$ge = _Utils_ge;
+var $elm$core$Bitwise$and = _Bitwise_and;
+var $elm$core$Bitwise$shiftRightZfBy = _Bitwise_shiftRightZfBy;
+var $elm$core$Array$bitMask = 4294967295 >>> (32 - $elm$core$Array$shiftStep);
+var $elm$core$Elm$JsArray$unsafeGet = _JsArray_unsafeGet;
+var $elm$core$Array$getHelp = F3(
+	function (shift, index, tree) {
+		getHelp:
+		while (true) {
+			var pos = $elm$core$Array$bitMask & (index >>> shift);
+			var _v0 = A2($elm$core$Elm$JsArray$unsafeGet, pos, tree);
+			if (_v0.$ === 'SubTree') {
+				var subTree = _v0.a;
+				var $temp$shift = shift - $elm$core$Array$shiftStep,
+					$temp$index = index,
+					$temp$tree = subTree;
+				shift = $temp$shift;
+				index = $temp$index;
+				tree = $temp$tree;
+				continue getHelp;
+			} else {
+				var values = _v0.a;
+				return A2($elm$core$Elm$JsArray$unsafeGet, $elm$core$Array$bitMask & index, values);
+			}
+		}
+	});
+var $elm$core$Bitwise$shiftLeftBy = _Bitwise_shiftLeftBy;
+var $elm$core$Array$tailIndex = function (len) {
+	return (len >>> 5) << 5;
+};
+var $elm$core$Array$get = F2(
+	function (index, _v0) {
+		var len = _v0.a;
+		var startShift = _v0.b;
+		var tree = _v0.c;
+		var tail = _v0.d;
+		return ((index < 0) || (_Utils_cmp(index, len) > -1)) ? $elm$core$Maybe$Nothing : ((_Utils_cmp(
+			index,
+			$elm$core$Array$tailIndex(len)) > -1) ? $elm$core$Maybe$Just(
+			A2($elm$core$Elm$JsArray$unsafeGet, $elm$core$Array$bitMask & index, tail)) : $elm$core$Maybe$Just(
+			A3($elm$core$Array$getHelp, startShift, index, tree)));
+	});
+var $elm$json$Json$Decode$decodeString = _Json_runOnString;
+var $elm$json$Json$Decode$list = _Json_decodeList;
+var $author$project$Features$Home$Model$MetaListItem = function (name) {
+	return {name: name};
+};
+var $elm$json$Json$Decode$string = _Json_decodeString;
+var $author$project$Features$Home$Model$metaListItemDecoder = A2(
+	$elm$json$Json$Decode$map,
+	$author$project$Features$Home$Model$MetaListItem,
+	A2($elm$json$Json$Decode$field, 'name', $elm$json$Json$Decode$string));
+var $author$project$Features$Home$Model$decodeMetasList = function (input) {
+	return A2(
+		$elm$json$Json$Decode$decodeString,
+		$elm$json$Json$Decode$list($author$project$Features$Home$Model$metaListItemDecoder),
+		input);
+};
+var $author$project$Features$Home$Model$getMetasList = function (input) {
+	if (input.$ === 'Nothing') {
+		return _List_Nil;
+	} else {
+		var value = input.a;
+		var _v1 = $author$project$Features$Home$Model$decodeMetasList(value);
+		if (_v1.$ === 'Ok') {
+			var result = _v1.a;
+			return result;
+		} else {
+			return _List_Nil;
+		}
+	}
+};
+var $author$project$Core$Message$MessageFeatureContentPartReceived = F2(
+	function (a, b) {
+		return {$: 'MessageFeatureContentPartReceived', a: a, b: b};
+	});
 var $elm$http$Http$BadStatus_ = F2(
 	function (a, b) {
 		return {$: 'BadStatus_', a: a, b: b};
@@ -6648,11 +6756,44 @@ var $elm$http$Http$get = function (r) {
 	return $elm$http$Http$request(
 		{body: $elm$http$Http$emptyBody, expect: r.expect, headers: _List_Nil, method: 'GET', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
 };
-var $author$project$Features$Home$Model$queryHomeFeatureContent = $elm$http$Http$get(
+var $elm$core$Debug$log = _Debug_log;
+var $author$project$Features$Home$Model$queryMeta = function (metaItem) {
+	return $elm$http$Http$get(
+		{
+			expect: $elm$http$Http$expectString(
+				$author$project$Core$Message$MessageFeatureContentPartReceived(1)),
+			url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/metas/' + A2($elm$core$Debug$log, 'q', metaItem.name)
+		});
+};
+var $author$project$Features$Home$Model$queryMetasList = $elm$http$Http$get(
 	{
-		expect: $elm$http$Http$expectString($author$project$Core$Message$MessageFeatureContentReceived),
+		expect: $elm$http$Http$expectString(
+			$author$project$Core$Message$MessageFeatureContentPartReceived(1)),
 		url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/metas'
 	});
+var $author$project$Features$Home$Model$queryHomeFeatureContent = function (model) {
+	var _v0 = model.featureData.step;
+	switch (_v0) {
+		case 0:
+			return $author$project$Features$Home$Model$queryMetasList;
+		case 1:
+			var metasList = $author$project$Features$Home$Model$getMetasList(
+				A2(
+					$elm$core$Array$get,
+					0,
+					$elm$core$Array$fromList(model.featureData.stepAccumulator)));
+			var messages = A2($elm$core$List$map, $author$project$Features$Home$Model$queryMeta, metasList);
+			var areAllMetasQueried = _Utils_cmp(
+				$elm$core$List$length(model.featureData.stepAccumulator),
+				$elm$core$List$length(metasList)) > -1;
+			return areAllMetasQueried ? $elm$core$Platform$Cmd$none : $elm$core$Platform$Cmd$batch(messages);
+		default:
+			return $elm$core$Platform$Cmd$none;
+	}
+};
+var $author$project$Core$Message$MessageFeatureContentReceived = function (a) {
+	return {$: 'MessageFeatureContentReceived', a: a};
+};
 var $author$project$Features$Post$Model$queryPostFeatureContent = function (id) {
 	return $elm$http$Http$get(
 		{
@@ -6660,18 +6801,19 @@ var $author$project$Features$Post$Model$queryPostFeatureContent = function (id) 
 			url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/' + (id + '.md')
 		});
 };
-var $author$project$Core$FeatureData$Utils$queryFeatureContent = function (path) {
-	var _v0 = $author$project$Core$Route$Utils$getRoute(path);
-	switch (_v0.$) {
-		case 'RouteNotFound':
-			return $elm$core$Platform$Cmd$none;
-		case 'RouteHome':
-			return $author$project$Features$Home$Model$queryHomeFeatureContent;
-		default:
-			var id = _v0.a;
-			return $author$project$Features$Post$Model$queryPostFeatureContent(id);
-	}
-};
+var $author$project$Core$FeatureData$Utils$queryFeatureContent = F2(
+	function (model, path) {
+		var _v0 = $author$project$Core$Route$Utils$getRoute(path);
+		switch (_v0.$) {
+			case 'RouteNotFound':
+				return $elm$core$Platform$Cmd$none;
+			case 'RouteHome':
+				return $author$project$Features$Home$Model$queryHomeFeatureContent(model);
+			default:
+				var id = _v0.a;
+				return $author$project$Features$Post$Model$queryPostFeatureContent(id);
+		}
+	});
 var $elm$url$Url$addPort = F2(
 	function (maybePort, starter) {
 		if (maybePort.$ === 'Nothing') {
@@ -6718,12 +6860,14 @@ var $elm$url$Url$toString = function (url) {
 };
 var $author$project$Main$init = F3(
 	function (flags, url, key) {
+		var initialModel = A3($author$project$Main$getInitialModel, flags, key, url);
 		return _Utils_Tuple2(
-			A3($author$project$Main$getInitialModel, flags, key, url),
-			$author$project$Core$FeatureData$Utils$queryFeatureContent(
+			initialModel,
+			A2(
+				$author$project$Core$FeatureData$Utils$queryFeatureContent,
+				initialModel,
 				$elm$url$Url$toString(url)));
 	});
-var $elm$json$Json$Decode$string = _Json_decodeString;
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
 var $author$project$Main$subscriptions = function (_v0) {
@@ -6789,7 +6933,9 @@ var $author$project$Main$update = F2(
 					_Utils_update(
 						model,
 						{url: url}),
-					$author$project$Core$FeatureData$Utils$queryFeatureContent(
+					A2(
+						$author$project$Core$FeatureData$Utils$queryFeatureContent,
+						model,
 						$elm$url$Url$toString(url)));
 			case 'MessageColorSchemaToggled':
 				var colorSchema = message.a;
@@ -6802,6 +6948,34 @@ var $author$project$Main$update = F2(
 						}),
 					$author$project$Ports$localStorageOutcomePort(
 						$author$project$Main$getColorSchemaToggledPortEvent(colorSchema)));
+			case 'MessageFeatureContentPartReceived':
+				var step = message.a;
+				var result = message.b;
+				if (result.$ === 'Ok') {
+					var partialFeatureContent = result.a;
+					return _Utils_Tuple2(
+						_Utils_update(
+							model,
+							{
+								featureData: {
+									content: '{}',
+									isCompleteData: false,
+									loading: true,
+									step: step,
+									stepAccumulator: A2(
+										$elm$core$List$append,
+										model.featureData.stepAccumulator,
+										_List_fromArray(
+											[partialFeatureContent]))
+								}
+							}),
+						A2(
+							$author$project$Core$FeatureData$Utils$queryFeatureContent,
+							model,
+							$elm$url$Url$toString(model.url)));
+				} else {
+					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+				}
 			default:
 				var result = message.a;
 				if (result.$ === 'Ok') {
@@ -6810,7 +6984,7 @@ var $author$project$Main$update = F2(
 						_Utils_update(
 							model,
 							{
-								featureData: {content: featureContent, loading: false}
+								featureData: {content: featureContent, isCompleteData: true, loading: false, step: 1, stepAccumulator: _List_Nil}
 							}),
 						$elm$core$Platform$Cmd$none);
 				} else {
@@ -7677,9 +7851,6 @@ var $rtfeldman$elm_css$ElmCssVendor$Murmur3$HashData = F4(
 	});
 var $rtfeldman$elm_css$ElmCssVendor$Murmur3$c1 = 3432918353;
 var $rtfeldman$elm_css$ElmCssVendor$Murmur3$c2 = 461845907;
-var $elm$core$Bitwise$and = _Bitwise_and;
-var $elm$core$Bitwise$shiftLeftBy = _Bitwise_shiftLeftBy;
-var $elm$core$Bitwise$shiftRightZfBy = _Bitwise_shiftRightZfBy;
 var $rtfeldman$elm_css$ElmCssVendor$Murmur3$multiplyBy = F2(
 	function (b, a) {
 		return ((a & 65535) * b) + ((((a >>> 16) * b) & 65535) << 16);
@@ -8692,7 +8863,6 @@ var $rtfeldman$elm_css$Css$prop2 = F3(
 	});
 var $rtfeldman$elm_css$Css$margin2 = $rtfeldman$elm_css$Css$prop2('margin');
 var $rtfeldman$elm_css$Css$maxWidth = $rtfeldman$elm_css$Css$prop1('max-width');
-var $elm$json$Json$Decode$decodeString = _Json_runOnString;
 var $author$project$Features$Home$Model$Post = function (name) {
 	return {name: name};
 };
@@ -8700,7 +8870,6 @@ var $author$project$Features$Home$Model$homeFeatureContentDecoder = A2(
 	$elm$json$Json$Decode$map,
 	$author$project$Features$Home$Model$Post,
 	A2($elm$json$Json$Decode$field, 'name', $elm$json$Json$Decode$string));
-var $elm$json$Json$Decode$list = _Json_decodeList;
 var $author$project$Features$Home$Model$decodeHomeFeatureContent = function (content) {
 	return A2(
 		$elm$json$Json$Decode$decodeString,
@@ -9370,7 +9539,6 @@ var $pablohirafuji$elm_markdown$Markdown$Block$blankLineRegex = A2(
 	$elm$regex$Regex$never,
 	$elm$regex$Regex$fromString('^\\s*$'));
 var $elm$regex$Regex$contains = _Regex_contains;
-var $elm$core$Basics$ge = _Utils_ge;
 var $pablohirafuji$elm_markdown$Markdown$Block$calcListIndentLength = function (_v0) {
 	var listBlock = _v0.a;
 	var indentSpace = _v0.b;

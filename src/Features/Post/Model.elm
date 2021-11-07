@@ -1,11 +1,11 @@
 module Features.Post.Model exposing (decodePostMeta, queryPostFeatureContent, parsePostFeatureContent)
 
 import Http
+import Array
 import Base64
 import Json.Decode
 
 import Core.Message exposing (Message(..))
-import Array
 
 type alias PostFeatureContent = { name: String, content: String }
 
