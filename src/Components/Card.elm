@@ -7,7 +7,6 @@ import Html.Styled exposing (a, div, h3, p, text, img, Html)
 import Html.Styled.Attributes exposing (css, src, href)
 
 import Utils.Css exposing (mixCss)
-import Core.Model exposing (Model)
 import Core.Message exposing (Message)
 import Core.Theme exposing (Theme)
 
