@@ -12,7 +12,7 @@ type alias HomeFeatureContent = List Post
 queryHomeFeatureContent : Cmd Message
 queryHomeFeatureContent =
   Http.get
-    { url = "https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog"
+    { url = "https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/metas"
     , expect = Http.expectString MessageFeatureContentReceived
     }
 
