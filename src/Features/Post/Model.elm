@@ -28,7 +28,7 @@ decodePostText text =
   in
     case (Base64.decode formattedText) of
       Ok result -> result
-      Err _ -> "Oops! Error happened..."
+      Err _ -> ""
 
 decodePostFeatureContent : String -> Result Json.Decode.Error PostFeatureContent
 decodePostFeatureContent content =
