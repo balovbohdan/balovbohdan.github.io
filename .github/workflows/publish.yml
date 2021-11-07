@@ -21,7 +21,7 @@ jobs:
       - name: Build 🏗️
         run: npm run build
 
-      - name: Publish
+      - name: Publish 📨
         run: |
           git config --global user.name 'balovbohdan'
           git config --global user.email 'balovbohdan@users.noreply.github.com'
