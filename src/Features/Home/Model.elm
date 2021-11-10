@@ -1,31 +1,45 @@
-module Features.Home.Model exposing (queryHomeFeatureContent, parseHomeFeatureContent, Post, HomeFeatureContent)
+module Features.Home.Model exposing (queryHomeFeatureContent, parseHomeFeatureContent)
 
 import Http
-import Json.Decode
+import Array exposing (Array)
 
+import Core.Model exposing (Model)
 import Core.Message exposing (Message(..))
+import Features.Home.Config exposing (config)
 
-type alias Post = { name: String }
+import Features.Home.Post exposing (decodePost)
+import Features.Home.PostMetasList exposing (getMetasList)
+import Features.Home.Types exposing (PostMetaListItem, HomeFeatureContent)
 
-type alias HomeFeatureContent = List Post
-
-queryHomeFeatureContent : Cmd Message
-queryHomeFeatureContent =
+queryMetasList : Cmd Message
+queryMetasList =
   Http.get
-    { url = "https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/metas"
-    , expect = Http.expectString MessageFeatureContentReceived
+    { url = config.metas.url
+    , expect = Http.expectString (MessageFeatureContentReceived config.metas.step config.steps)
     }
 
-homeFeatureContentDecoder : Json.Decode.Decoder Post
-homeFeatureContentDecoder =
-  Json.Decode.map Post (Json.Decode.field "name" Json.Decode.string)
+queryMeta : PostMetaListItem -> Cmd Message
+queryMeta metaItem =
+  Http.get
+    { url = config.meta.url ++ metaItem.name
+    , expect = Http.expectString (MessageFeatureContentReceived config.meta.step config.steps)
+    }
 
-decodeHomeFeatureContent : String -> Result Json.Decode.Error HomeFeatureContent
-decodeHomeFeatureContent content =
-  Json.Decode.decodeString (Json.Decode.list homeFeatureContentDecoder) content
+queryHomeFeatureContent : Model -> Cmd Message
+queryHomeFeatureContent model =
+  case (model.featureData.step) of
+    0 -> queryMetasList
+    1 ->
+      let
+        metasList = getMetasList model
+        messages = List.map queryMeta metasList
+      in
+        Cmd.batch messages
+    _ -> Cmd.none
 
-parseHomeFeatureContent : String -> HomeFeatureContent
+parseHomeFeatureContent : Array String -> HomeFeatureContent
 parseHomeFeatureContent content =
-  case (decodeHomeFeatureContent content) of
-    Ok result -> result
-    Err _ -> []
+  let
+    posts = List.drop 1 (Array.toList content)
+  in
+    List.map decodePost posts
