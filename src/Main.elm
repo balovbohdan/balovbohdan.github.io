@@ -4,6 +4,7 @@ import Browser
 import Browser.Navigation
 import Url
 import Json.Encode
+import Array exposing (Array)
 import Html.Styled exposing (toUnstyled)
 import Html.Styled.Attributes exposing (href)
 
@@ -23,7 +24,7 @@ getInitialModel flags key url =
   , url = url
   , colorSchema = flags.colorSchema
   , theme = getTheme flags.colorSchema
-  , featureData = { content = "{}", loading = False, isCompleteData = True, step = 0, stepAccumulator = [] }
+  , featureData = { content = Array.empty, loading = False, step = 0 }
   }
 
 init : Flags -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Message )
@@ -67,37 +68,30 @@ update message model =
       , localStorageOutcomePort (getColorSchemaToggledPortEvent colorSchema)
       )
 
-    MessageFeatureContentPartReceived step result ->
-      case result of
-        Ok partialFeatureContent ->
-          ( { model | featureData =
-              { loading = True
-              , content = "{}"
-              , isCompleteData = False
-              , step = step
-              , stepAccumulator = List.append model.featureData.stepAccumulator [partialFeatureContent]
-              }
-            }
-          , queryFeatureContent model (Url.toString model.url)
-          )
-        Err _ ->
-          ( model, Cmd.none )
-
-    MessageFeatureContentReceived result ->
-      case result of
-        Ok featureContent ->
-          ( { model | featureData =
-              { loading = False
-              , content = featureContent
-              , isCompleteData = True
-              , step = 1
-              , stepAccumulator = []
-              }
-            }
-          , Cmd.none
-          )
-        Err _ ->
-          ( model, Cmd.none )
+    MessageFeatureContentReceived step steps result ->
+      let
+        lastStep = steps - 1
+        hasNextStep = step < lastStep
+      in
+        case result of
+          Ok featureContent ->
+            let
+              updatedModel =
+                { model | featureData =
+                  { loading = hasNextStep
+                  , step = step + 1
+                  , content = Array.push featureContent model.featureData.content
+                  }
+                }
+            in
+              ( updatedModel
+              , if (hasNextStep) then
+                  queryFeatureContent updatedModel (Url.toString model.url)
+                else
+                  Cmd.none
+              )
+          Err _ ->
+            ( model, Cmd.none )
 
 view : Model -> Browser.Document Message
 view model =

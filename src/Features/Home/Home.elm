@@ -7,14 +7,16 @@ import Html.Styled.Attributes exposing (css)
 import Components.Card exposing (card)
 import Core.Model exposing (Model)
 import Core.Message exposing (Message)
-import Features.Home.Model exposing (parseHomeFeatureContent, Post)
+import Features.Home.Model exposing (parseHomeFeatureContent)
+
+import Features.Home.Types exposing (Post)
 
 post : Model -> Post -> Html Message
 post model content =
   card
-    { title = content.name
-    , description = "gag description"
-    , coverSrc = "https://raw.githubusercontent.com/balovbohdan/mr-balov-blog/main/docs/assets/post-cover.jpg?raw=true"
+    { title = content.meta.title
+    , description = content.meta.description
+    , coverSrc = content.meta.cover
     , css = [ Css.marginBottom (Css.px 30) ]
     , to = "/post/" ++ (String.replace ".md" "" content.name)
     , theme = model.theme
