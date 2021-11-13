@@ -15,16 +15,13 @@ jobs:
         with:
           persist-credentials: true
         
-      - name: Install 🔧
+      - name: Install Dependencies 🔧
         run: npm install
 
-      - name: Build Env Variables
+      - name: Build Env Variables 🔧
         env:
           TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
         run: npm run build-env-variables
-
-      - name: Save Env Variables
-        run: echo SUPER_SECRET=${{ secrets.SuperSecret }} >> .enver
 
       - name: Build 🏗️
         run: npm run build
