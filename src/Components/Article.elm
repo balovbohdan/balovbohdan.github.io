@@ -20,6 +20,7 @@ article props =
         , Css.Global.children
             [ Css.Global.typeSelector "p a" [ Css.color props.model.theme.accent ]
             , Css.Global.typeSelector "pre" [ Css.width <| Css.pct 100 ]
+            , Css.Global.typeSelector "p strong" [ Css.color props.model.theme.textPrimary ]
             , Css.Global.typeSelector "p code"
               [ Css.color props.model.theme.codeColor
               , Css.backgroundColor props.model.theme.codeBackground

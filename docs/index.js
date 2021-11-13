@@ -14082,6 +14082,13 @@ var $author$project$Components$Article$article = function (props) {
 									])),
 								A2(
 								$rtfeldman$elm_css$Css$Global$typeSelector,
+								'p strong',
+								_List_fromArray(
+									[
+										$rtfeldman$elm_css$Css$color(props.model.theme.textPrimary)
+									])),
+								A2(
+								$rtfeldman$elm_css$Css$Global$typeSelector,
 								'p code',
 								_List_fromArray(
 									[
