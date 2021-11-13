@@ -6,4 +6,4 @@ Recently I decided to deepen my knowledge of Functional Programming (next: FP). 
 
 ## What is purity?
 
-Coming soon...
+Pure function is a function that returns the same output for the same given input, and has no “side effects”.
