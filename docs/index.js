@@ -6739,7 +6739,7 @@ var $elm$http$Http$request = function (r) {
 		$elm$http$Http$Request(
 			{allowCookiesFromOtherDomains: false, body: r.body, expect: r.expect, headers: r.headers, method: r.method, timeout: r.timeout, tracker: r.tracker, url: r.url}));
 };
-var $author$project$Env$tokenGithub = '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';
+var $author$project$Env$tokenGithub = 'e14b0e683e8003419eb1ca746a495662fe411227';
 var $author$project$Model$PostMeta$Query$queryPostMeta = F3(
 	function (step, steps, name) {
 		return $elm$http$Http$request(
