@@ -5533,6 +5533,8 @@ var $rtfeldman$elm_css$Css$rgba = F4(
 var $author$project$Core$Theme$themeDark = {
 	accent: A3($rtfeldman$elm_css$Css$rgb, 255, 51, 102),
 	background: A3($rtfeldman$elm_css$Css$rgb, 33, 34, 39),
+	codeBackground: A3($rtfeldman$elm_css$Css$rgb, 4, 21, 31),
+	codeColor: A3($rtfeldman$elm_css$Css$rgb, 7, 160, 195),
 	primary: A3($rtfeldman$elm_css$Css$rgb, 97, 112, 189),
 	secondary: A3($rtfeldman$elm_css$Css$rgb, 249, 249, 249),
 	secondaryStrong: A3($rtfeldman$elm_css$Css$rgb, 216, 212, 213),
@@ -5543,6 +5545,8 @@ var $author$project$Core$Theme$themeDark = {
 var $author$project$Core$Theme$themeLight = {
 	accent: A3($rtfeldman$elm_css$Css$rgb, 255, 51, 102),
 	background: A3($rtfeldman$elm_css$Css$rgb, 255, 255, 255),
+	codeBackground: A3($rtfeldman$elm_css$Css$rgb, 33, 34, 39),
+	codeColor: A4($rtfeldman$elm_css$Css$rgba, 255, 255, 255, 0.8),
 	primary: A3($rtfeldman$elm_css$Css$rgb, 97, 112, 189),
 	secondary: A3($rtfeldman$elm_css$Css$rgb, 249, 249, 249),
 	secondaryStrong: A3($rtfeldman$elm_css$Css$rgb, 216, 212, 213),
@@ -6735,7 +6739,7 @@ var $elm$http$Http$request = function (r) {
 		$elm$http$Http$Request(
 			{allowCookiesFromOtherDomains: false, body: r.body, expect: r.expect, headers: r.headers, method: r.method, timeout: r.timeout, tracker: r.tracker, url: r.url}));
 };
-var $author$project$Env$tokenGithub = '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';
+var $author$project$Env$tokenGithub = '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';
 var $author$project$Model$PostMeta$Query$queryPostMeta = F3(
 	function (step, steps, name) {
 		return $elm$http$Http$request(
@@ -10018,6 +10022,7 @@ var $rtfeldman$elm_css$Css$Preprocess$NestSnippet = F2(
 	});
 var $rtfeldman$elm_css$Css$Global$children = $rtfeldman$elm_css$Css$Preprocess$NestSnippet($rtfeldman$elm_css$Css$Structure$Child);
 var $rtfeldman$elm_css$Css$height = $rtfeldman$elm_css$Css$prop1('height');
+var $rtfeldman$elm_css$Css$padding2 = $rtfeldman$elm_css$Css$prop2('padding');
 var $rtfeldman$elm_css$VirtualDom$Styled$unstyledNode = $rtfeldman$elm_css$VirtualDom$Styled$Unstyled;
 var $rtfeldman$elm_css$Html$Styled$fromUnstyled = $rtfeldman$elm_css$VirtualDom$Styled$unstyledNode;
 var $pablohirafuji$elm_markdown$Markdown$Block$BlockQuote = function (a) {
@@ -14069,6 +14074,38 @@ var $author$project$Components$Article$article = function (props) {
 									])),
 								A2(
 								$rtfeldman$elm_css$Css$Global$typeSelector,
+								'pre',
+								_List_fromArray(
+									[
+										$rtfeldman$elm_css$Css$width(
+										$rtfeldman$elm_css$Css$pct(100))
+									])),
+								A2(
+								$rtfeldman$elm_css$Css$Global$typeSelector,
+								'p code',
+								_List_fromArray(
+									[
+										$rtfeldman$elm_css$Css$color(props.model.theme.codeColor),
+										$rtfeldman$elm_css$Css$backgroundColor(props.model.theme.codeBackground),
+										A2(
+										$rtfeldman$elm_css$Css$padding2,
+										$rtfeldman$elm_css$Css$zero,
+										$rtfeldman$elm_css$Css$px(5))
+									])),
+								A2(
+								$rtfeldman$elm_css$Css$Global$typeSelector,
+								'pre code',
+								_List_fromArray(
+									[
+										$rtfeldman$elm_css$Css$color(props.model.theme.codeColor),
+										$rtfeldman$elm_css$Css$backgroundColor(props.model.theme.codeBackground),
+										$rtfeldman$elm_css$Css$padding(
+										$rtfeldman$elm_css$Css$px(15)),
+										$rtfeldman$elm_css$Css$width(
+										$rtfeldman$elm_css$Css$pct(100))
+									])),
+								A2(
+								$rtfeldman$elm_css$Css$Global$typeSelector,
 								'p img',
 								_List_fromArray(
 									[
@@ -14291,7 +14328,6 @@ var $author$project$Components$Author$author = function (props) {
 				$author$project$Components$Author$sign
 			]));
 };
-var $rtfeldman$elm_css$Css$padding2 = $rtfeldman$elm_css$Css$prop2('padding');
 var $author$project$Components$Header$getHeaderCss = function (props) {
 	return A2(
 		$author$project$Utils$Css$mixCss,

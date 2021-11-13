@@ -19,6 +19,18 @@ article props =
         , Css.margin2 Css.zero Css.auto
         , Css.Global.children
             [ Css.Global.typeSelector "p a" [ Css.color props.model.theme.accent ]
+            , Css.Global.typeSelector "pre" [ Css.width <| Css.pct 100 ]
+            , Css.Global.typeSelector "p code"
+              [ Css.color props.model.theme.codeColor
+              , Css.backgroundColor props.model.theme.codeBackground
+              , Css.padding2 Css.zero (Css.px <| 5)
+              ]
+            , Css.Global.typeSelector "pre code"
+              [ Css.color props.model.theme.codeColor
+              , Css.backgroundColor props.model.theme.codeBackground
+              , Css.padding <| Css.px 15
+              , Css.width <| Css.pct 100
+              ]
             , Css.Global.typeSelector "p img"
               [ Css.margin2 Css.zero Css.auto
               , Css.maxWidth <| Css.pct 100

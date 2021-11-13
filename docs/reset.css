@@ -32,6 +32,15 @@ body {
 	overflow-x: hidden;
 }
 
+strong {
+	font-weight: bold;
+	display: inline-block;
+}
+
+pre, code {
+	display: inline-block;
+}
+
 ol, ul, li {
 	font-family: "Ubuntu", sans-serif;
 	font-weight: 300;
