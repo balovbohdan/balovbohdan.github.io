@@ -17,10 +17,7 @@ const getColorSchema = () => {
 
 const app = Elm.Main.init({
   node: document.getElementById('app'),
-  flags: {
-    colorSchema: getColorSchema(),
-    env: { gitHub: { token: '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' } },
-  },
+  flags: { colorSchema: getColorSchema() },
 });
 
 app.ports.localStorageOutcomePort.subscribe((event) => {
