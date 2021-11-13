@@ -6745,7 +6745,7 @@ var $author$project$Model$PostMeta$Query$queryPostMeta = F3(
 					A2($author$project$Core$Message$MessageFeatureContentReceived, step, steps)),
 				headers: _List_fromArray(
 					[
-						A2($elm$http$Http$header, 'Authorization', 'token ' + $author$project$Env$tokenGithub)
+						A2($elm$http$Http$header, 'Authorization', $author$project$Env$tokenGithub)
 					]),
 				method: 'GET',
 				timeout: $elm$core$Maybe$Nothing,
@@ -7123,7 +7123,7 @@ var $author$project$Model$Post$Query$queryPost = F3(
 					A2($author$project$Core$Message$MessageFeatureContentReceived, step, steps)),
 				headers: _List_fromArray(
 					[
-						A2($elm$http$Http$header, 'Authorization', 'token ' + $author$project$Env$tokenGithub)
+						A2($elm$http$Http$header, 'Authorization', $author$project$Env$tokenGithub)
 					]),
 				method: 'GET',
 				timeout: $elm$core$Maybe$Nothing,
