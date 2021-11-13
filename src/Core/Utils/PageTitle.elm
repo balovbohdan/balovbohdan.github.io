@@ -1,6 +1,6 @@
 module Core.Utils.PageTitle exposing (getPageTitle)
 
-import Core.Model exposing (Model)
+import Core.Model.Types exposing (Model)
 
 getPageTitle : Model -> String
 getPageTitle model =

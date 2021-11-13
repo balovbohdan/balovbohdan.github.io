@@ -7,7 +7,7 @@ import Html.Styled.Attributes exposing (css)
 
 import Utils.Css exposing (mixCss)
 import Core.Message exposing (Message)
-import Core.Model exposing (Model)
+import Core.Model.Types exposing (Model)
 import Components.Author exposing (author)
 import Components.ThemeToggler exposing (themeToggler)
 

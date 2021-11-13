@@ -5482,6 +5482,7 @@ var $elm$core$Task$perform = F2(
 	});
 var $elm$browser$Browser$application = _Browser_application;
 var $elm$json$Json$Decode$field = _Json_decodeField;
+var $author$project$Core$FeatureData$FeatureData$defaultFeatureData = {content: $elm$core$Array$empty, loading: false, step: 0};
 var $rtfeldman$elm_css$Css$Structure$Compatible = {$: 'Compatible'};
 var $rtfeldman$elm_css$Css$cssFunction = F2(
 	function (funcName, args) {
@@ -5559,11 +5560,11 @@ var $author$project$Core$Theme$getTheme = function (colorShema) {
 			return $author$project$Core$Theme$themeLight;
 	}
 };
-var $author$project$Main$getInitialModel = F3(
+var $author$project$Core$Model$Utils$getInitialModel = F3(
 	function (flags, key, url) {
 		return {
 			colorSchema: flags.colorSchema,
-			featureData: {content: $elm$core$Array$empty, loading: false, step: 0},
+			featureData: $author$project$Core$FeatureData$FeatureData$defaultFeatureData,
 			key: key,
 			theme: $author$project$Core$Theme$getTheme(flags.colorSchema),
 			url: url
@@ -6381,20 +6382,25 @@ var $author$project$Core$Route$Utils$getRoute = function (path) {
 };
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
+var $author$project$Features$Home$Model$Config$config = {
+	meta: {step: 1},
+	metaNames: {step: 0},
+	steps: 2
+};
 var $elm$json$Json$Decode$decodeString = _Json_runOnString;
 var $elm$json$Json$Decode$list = _Json_decodeList;
-var $author$project$Features$Home$Types$PostMetaListItem = function (name) {
+var $author$project$Model$PostMetaItems$Types$PostMetaItem = function (name) {
 	return {name: name};
 };
 var $elm$json$Json$Decode$string = _Json_decodeString;
-var $author$project$Features$Home$PostMetasList$metaDecoder = A2(
+var $author$project$Model$PostMetaItems$Decoder$postMetaItemDecoder = A2(
 	$elm$json$Json$Decode$map,
-	$author$project$Features$Home$Types$PostMetaListItem,
+	$author$project$Model$PostMetaItems$Types$PostMetaItem,
 	A2($elm$json$Json$Decode$field, 'name', $elm$json$Json$Decode$string));
-var $author$project$Features$Home$PostMetasList$decodeMetas = function (input) {
+var $author$project$Model$PostMetaItems$Decoder$decodePostMetaItems = function (input) {
 	return A2(
 		$elm$json$Json$Decode$decodeString,
-		$elm$json$Json$Decode$list($author$project$Features$Home$PostMetasList$metaDecoder),
+		$elm$json$Json$Decode$list($author$project$Model$PostMetaItems$Decoder$postMetaItemDecoder),
 		input);
 };
 var $elm$core$Bitwise$and = _Bitwise_and;
@@ -6439,16 +6445,21 @@ var $elm$core$Array$get = F2(
 			A2($elm$core$Elm$JsArray$unsafeGet, $elm$core$Array$bitMask & index, tail)) : $elm$core$Maybe$Just(
 			A3($elm$core$Array$getHelp, startShift, index, tree)));
 	});
-var $author$project$Features$Home$PostMetasList$getMetasList = function (model) {
+var $author$project$Features$Home$Model$Query$getPostMetaItemNames = function (model) {
 	var data = A2($elm$core$Array$get, 0, model.featureData.content);
 	if (data.$ === 'Nothing') {
 		return _List_Nil;
 	} else {
-		var value = data.a;
-		var _v1 = $author$project$Features$Home$PostMetasList$decodeMetas(value);
+		var result = data.a;
+		var _v1 = $author$project$Model$PostMetaItems$Decoder$decodePostMetaItems(result);
 		if (_v1.$ === 'Ok') {
-			var result = _v1.a;
-			return result;
+			var metaItems = _v1.a;
+			return A2(
+				$elm$core$List$map,
+				function (metaItem) {
+					return metaItem.name;
+				},
+				metaItems);
 		} else {
 			return _List_Nil;
 		}
@@ -6458,11 +6469,7 @@ var $author$project$Core$Message$MessageFeatureContentReceived = F3(
 	function (a, b, c) {
 		return {$: 'MessageFeatureContentReceived', a: a, b: b, c: c};
 	});
-var $author$project$Features$Home$Config$config = {
-	meta: {step: 1, url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/metas/'},
-	metas: {step: 0, url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/metas'},
-	steps: 2
-};
+var $author$project$Model$PostMeta$Config$config = {url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/metas/'};
 var $elm$http$Http$BadStatus_ = F2(
 	function (a, b) {
 		return {$: 'BadStatus_', a: a, b: b};
@@ -6727,41 +6734,399 @@ var $elm$http$Http$get = function (r) {
 	return $elm$http$Http$request(
 		{body: $elm$http$Http$emptyBody, expect: r.expect, headers: _List_Nil, method: 'GET', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
 };
-var $author$project$Features$Home$Model$queryMeta = function (metaItem) {
-	return $elm$http$Http$get(
-		{
-			expect: $elm$http$Http$expectString(
-				A2($author$project$Core$Message$MessageFeatureContentReceived, $author$project$Features$Home$Config$config.meta.step, $author$project$Features$Home$Config$config.steps)),
-			url: _Utils_ap($author$project$Features$Home$Config$config.meta.url, metaItem.name)
-		});
-};
-var $author$project$Features$Home$Model$queryMetasList = $elm$http$Http$get(
-	{
-		expect: $elm$http$Http$expectString(
-			A2($author$project$Core$Message$MessageFeatureContentReceived, $author$project$Features$Home$Config$config.metas.step, $author$project$Features$Home$Config$config.steps)),
-		url: $author$project$Features$Home$Config$config.metas.url
+var $author$project$Model$PostMeta$Query$queryPostMeta = F3(
+	function (step, steps, name) {
+		return $elm$http$Http$get(
+			{
+				expect: $elm$http$Http$expectString(
+					A2($author$project$Core$Message$MessageFeatureContentReceived, step, steps)),
+				url: _Utils_ap($author$project$Model$PostMeta$Config$config.url, name)
+			});
 	});
-var $author$project$Features$Home$Model$queryHomeFeatureContent = function (model) {
+var $author$project$Model$PostMetaItems$Config$config = {url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/metas'};
+var $author$project$Model$PostMetaItems$Query$queryPostMetaItems = F2(
+	function (step, steps) {
+		return $elm$http$Http$get(
+			{
+				expect: $elm$http$Http$expectString(
+					A2($author$project$Core$Message$MessageFeatureContentReceived, step, steps)),
+				url: $author$project$Model$PostMetaItems$Config$config.url
+			});
+	});
+var $author$project$Features$Home$Model$Query$queryHomeFeatureContent = function (model) {
 	var _v0 = model.featureData.step;
 	switch (_v0) {
 		case 0:
-			return $author$project$Features$Home$Model$queryMetasList;
+			return A2($author$project$Model$PostMetaItems$Query$queryPostMetaItems, $author$project$Features$Home$Model$Config$config.metaNames.step, $author$project$Features$Home$Model$Config$config.steps);
 		case 1:
-			var metasList = $author$project$Features$Home$PostMetasList$getMetasList(model);
-			var messages = A2($elm$core$List$map, $author$project$Features$Home$Model$queryMeta, metasList);
+			var metaItemNames = $author$project$Features$Home$Model$Query$getPostMetaItemNames(model);
+			var messages = A2(
+				$elm$core$List$map,
+				A2($author$project$Model$PostMeta$Query$queryPostMeta, $author$project$Features$Home$Model$Config$config.meta.step, $author$project$Features$Home$Model$Config$config.steps),
+				metaItemNames);
 			return $elm$core$Platform$Cmd$batch(messages);
 		default:
 			return $elm$core$Platform$Cmd$none;
 	}
 };
-var $author$project$Features$Post$Model$queryPostFeatureContent = function (id) {
-	return $elm$http$Http$get(
-		{
-			expect: $elm$http$Http$expectString(
-				A2($author$project$Core$Message$MessageFeatureContentReceived, 0, 1)),
-			url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/' + (id + '.md')
-		});
+var $author$project$Features$Post$Model$Config$config = {
+	post: {step: 0},
+	postMeta: {step: 1},
+	steps: 2
 };
+var $elm$core$String$concat = function (strings) {
+	return A2($elm$core$String$join, '', strings);
+};
+var $truqu$elm_base64$Base64$Decode$pad = function (input) {
+	var _v0 = $elm$core$String$length(input) % 4;
+	switch (_v0) {
+		case 3:
+			return input + '=';
+		case 2:
+			return input + '==';
+		default:
+			return input;
+	}
+};
+var $elm$core$Result$andThen = F2(
+	function (callback, result) {
+		if (result.$ === 'Ok') {
+			var value = result.a;
+			return callback(value);
+		} else {
+			var msg = result.a;
+			return $elm$core$Result$Err(msg);
+		}
+	});
+var $truqu$elm_base64$Base64$Decode$charToInt = function (_char) {
+	switch (_char.valueOf()) {
+		case 'A':
+			return 0;
+		case 'B':
+			return 1;
+		case 'C':
+			return 2;
+		case 'D':
+			return 3;
+		case 'E':
+			return 4;
+		case 'F':
+			return 5;
+		case 'G':
+			return 6;
+		case 'H':
+			return 7;
+		case 'I':
+			return 8;
+		case 'J':
+			return 9;
+		case 'K':
+			return 10;
+		case 'L':
+			return 11;
+		case 'M':
+			return 12;
+		case 'N':
+			return 13;
+		case 'O':
+			return 14;
+		case 'P':
+			return 15;
+		case 'Q':
+			return 16;
+		case 'R':
+			return 17;
+		case 'S':
+			return 18;
+		case 'T':
+			return 19;
+		case 'U':
+			return 20;
+		case 'V':
+			return 21;
+		case 'W':
+			return 22;
+		case 'X':
+			return 23;
+		case 'Y':
+			return 24;
+		case 'Z':
+			return 25;
+		case 'a':
+			return 26;
+		case 'b':
+			return 27;
+		case 'c':
+			return 28;
+		case 'd':
+			return 29;
+		case 'e':
+			return 30;
+		case 'f':
+			return 31;
+		case 'g':
+			return 32;
+		case 'h':
+			return 33;
+		case 'i':
+			return 34;
+		case 'j':
+			return 35;
+		case 'k':
+			return 36;
+		case 'l':
+			return 37;
+		case 'm':
+			return 38;
+		case 'n':
+			return 39;
+		case 'o':
+			return 40;
+		case 'p':
+			return 41;
+		case 'q':
+			return 42;
+		case 'r':
+			return 43;
+		case 's':
+			return 44;
+		case 't':
+			return 45;
+		case 'u':
+			return 46;
+		case 'v':
+			return 47;
+		case 'w':
+			return 48;
+		case 'x':
+			return 49;
+		case 'y':
+			return 50;
+		case 'z':
+			return 51;
+		case '0':
+			return 52;
+		case '1':
+			return 53;
+		case '2':
+			return 54;
+		case '3':
+			return 55;
+		case '4':
+			return 56;
+		case '5':
+			return 57;
+		case '6':
+			return 58;
+		case '7':
+			return 59;
+		case '8':
+			return 60;
+		case '9':
+			return 61;
+		case '+':
+			return 62;
+		case '/':
+			return 63;
+		default:
+			return 0;
+	}
+};
+var $elm$core$Bitwise$or = _Bitwise_or;
+var $elm$core$String$cons = _String_cons;
+var $elm$core$String$fromChar = function (_char) {
+	return A2($elm$core$String$cons, _char, '');
+};
+var $elm$core$Char$fromCode = _Char_fromCode;
+var $truqu$elm_base64$Base64$Decode$intToString = A2($elm$core$Basics$composeR, $elm$core$Char$fromCode, $elm$core$String$fromChar);
+var $truqu$elm_base64$Base64$Decode$add = F2(
+	function (_char, _v0) {
+		var curr = _v0.a;
+		var need = _v0.b;
+		var res = _v0.c;
+		var shiftAndAdd = function (_int) {
+			return (63 & _int) | (curr << 6);
+		};
+		return (!need) ? ((!(128 & _char)) ? _Utils_Tuple3(
+			0,
+			0,
+			_Utils_ap(
+				res,
+				$truqu$elm_base64$Base64$Decode$intToString(_char))) : (((224 & _char) === 192) ? _Utils_Tuple3(31 & _char, 1, res) : (((240 & _char) === 224) ? _Utils_Tuple3(15 & _char, 2, res) : _Utils_Tuple3(7 & _char, 3, res)))) : ((need === 1) ? _Utils_Tuple3(
+			0,
+			0,
+			_Utils_ap(
+				res,
+				$truqu$elm_base64$Base64$Decode$intToString(
+					shiftAndAdd(_char)))) : _Utils_Tuple3(
+			shiftAndAdd(_char),
+			need - 1,
+			res));
+	});
+var $truqu$elm_base64$Base64$Decode$toUTF16 = F2(
+	function (_char, acc) {
+		return _Utils_Tuple3(
+			0,
+			0,
+			A2(
+				$truqu$elm_base64$Base64$Decode$add,
+				255 & (_char >>> 0),
+				A2(
+					$truqu$elm_base64$Base64$Decode$add,
+					255 & (_char >>> 8),
+					A2($truqu$elm_base64$Base64$Decode$add, 255 & (_char >>> 16), acc))));
+	});
+var $truqu$elm_base64$Base64$Decode$chomp = F2(
+	function (char_, _v0) {
+		var curr = _v0.a;
+		var cnt = _v0.b;
+		var utf8ToUtf16 = _v0.c;
+		var _char = $truqu$elm_base64$Base64$Decode$charToInt(char_);
+		if (cnt === 3) {
+			return A2($truqu$elm_base64$Base64$Decode$toUTF16, curr | _char, utf8ToUtf16);
+		} else {
+			return _Utils_Tuple3((_char << ((3 - cnt) * 6)) | curr, cnt + 1, utf8ToUtf16);
+		}
+	});
+var $elm$core$String$foldl = _String_foldl;
+var $truqu$elm_base64$Base64$Decode$initial = _Utils_Tuple3(
+	0,
+	0,
+	_Utils_Tuple3(0, 0, ''));
+var $elm$core$Result$map = F2(
+	function (func, ra) {
+		if (ra.$ === 'Ok') {
+			var a = ra.a;
+			return $elm$core$Result$Ok(
+				func(a));
+		} else {
+			var e = ra.a;
+			return $elm$core$Result$Err(e);
+		}
+	});
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var $elm$core$String$dropRight = F2(
+	function (n, string) {
+		return (n < 1) ? string : A3($elm$core$String$slice, 0, -n, string);
+	});
+var $elm$core$String$endsWith = _String_endsWith;
+var $truqu$elm_base64$Base64$Decode$stripNulls = F2(
+	function (input, output) {
+		return A2($elm$core$String$endsWith, '==', input) ? A2($elm$core$String$dropRight, 2, output) : (A2($elm$core$String$endsWith, '=', input) ? A2($elm$core$String$dropRight, 1, output) : output);
+	});
+var $elm$regex$Regex$Match = F4(
+	function (match, index, number, submatches) {
+		return {index: index, match: match, number: number, submatches: submatches};
+	});
+var $elm$regex$Regex$contains = _Regex_contains;
+var $elm$regex$Regex$fromStringWith = _Regex_fromStringWith;
+var $elm$regex$Regex$fromString = function (string) {
+	return A2(
+		$elm$regex$Regex$fromStringWith,
+		{caseInsensitive: false, multiline: false},
+		string);
+};
+var $elm$regex$Regex$never = _Regex_never;
+var $truqu$elm_base64$Base64$Decode$validBase64Regex = A2(
+	$elm$core$Maybe$withDefault,
+	$elm$regex$Regex$never,
+	$elm$regex$Regex$fromString('^([A-Za-z0-9\\/+]{4})*([A-Za-z0-9\\/+]{2}[A-Za-z0-9\\/+=]{2})?$'));
+var $truqu$elm_base64$Base64$Decode$validate = function (input) {
+	return A2($elm$regex$Regex$contains, $truqu$elm_base64$Base64$Decode$validBase64Regex, input) ? $elm$core$Result$Ok(input) : $elm$core$Result$Err('Invalid base64');
+};
+var $truqu$elm_base64$Base64$Decode$wrapUp = function (_v0) {
+	var _v1 = _v0.c;
+	var need = _v1.b;
+	var res = _v1.c;
+	return (need > 0) ? $elm$core$Result$Err('Invalid UTF-16') : $elm$core$Result$Ok(res);
+};
+var $truqu$elm_base64$Base64$Decode$validateAndDecode = function (input) {
+	return A2(
+		$elm$core$Result$map,
+		$truqu$elm_base64$Base64$Decode$stripNulls(input),
+		A2(
+			$elm$core$Result$andThen,
+			A2(
+				$elm$core$Basics$composeR,
+				A2($elm$core$String$foldl, $truqu$elm_base64$Base64$Decode$chomp, $truqu$elm_base64$Base64$Decode$initial),
+				$truqu$elm_base64$Base64$Decode$wrapUp),
+			$truqu$elm_base64$Base64$Decode$validate(input)));
+};
+var $truqu$elm_base64$Base64$Decode$decode = A2($elm$core$Basics$composeR, $truqu$elm_base64$Base64$Decode$pad, $truqu$elm_base64$Base64$Decode$validateAndDecode);
+var $truqu$elm_base64$Base64$decode = $truqu$elm_base64$Base64$Decode$decode;
+var $author$project$Model$Post$Decoder$defaultPost = {name: '', text: ''};
+var $elm$core$String$lines = _String_lines;
+var $author$project$Model$Post$Decoder$decodePostText = function (input) {
+	var formattedText = $elm$core$String$concat(
+		$elm$core$String$lines(input));
+	var _v0 = $truqu$elm_base64$Base64$decode(formattedText);
+	if (_v0.$ === 'Ok') {
+		var result = _v0.a;
+		return result;
+	} else {
+		return $author$project$Model$Post$Decoder$defaultPost.text;
+	}
+};
+var $author$project$Model$Post$Types$PostRaw = F2(
+	function (name, content) {
+		return {content: content, name: name};
+	});
+var $author$project$Model$Post$Decoder$postDecoder = A3(
+	$elm$json$Json$Decode$map2,
+	$author$project$Model$Post$Types$PostRaw,
+	A2($elm$json$Json$Decode$field, 'name', $elm$json$Json$Decode$string),
+	A2($elm$json$Json$Decode$field, 'content', $elm$json$Json$Decode$string));
+var $author$project$Model$Post$Decoder$decodePost = function (input) {
+	if (input.$ === 'Nothing') {
+		return $author$project$Model$Post$Decoder$defaultPost;
+	} else {
+		var value = input.a;
+		var _v1 = A2($elm$json$Json$Decode$decodeString, $author$project$Model$Post$Decoder$postDecoder, value);
+		if (_v1.$ === 'Err') {
+			return $author$project$Model$Post$Decoder$defaultPost;
+		} else {
+			var post = _v1.a;
+			return {
+				name: post.name,
+				text: $author$project$Model$Post$Decoder$decodePostText(post.content)
+			};
+		}
+	}
+};
+var $author$project$Model$Post$Config$config = {extension: '.md', url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/posts/'};
+var $author$project$Model$Post$Query$queryPost = F3(
+	function (step, steps, id) {
+		return $elm$http$Http$get(
+			{
+				expect: $elm$http$Http$expectString(
+					A2($author$project$Core$Message$MessageFeatureContentReceived, step, steps)),
+				url: _Utils_ap(
+					$author$project$Model$Post$Config$config.url,
+					_Utils_ap(id, $author$project$Model$Post$Config$config.extension))
+			});
+	});
+var $author$project$Features$Post$Model$Query$queryPostFeatureContent = F2(
+	function (model, id) {
+		var _v0 = model.featureData.step;
+		switch (_v0) {
+			case 0:
+				return A3($author$project$Model$Post$Query$queryPost, $author$project$Features$Post$Model$Config$config.post.step, $author$project$Features$Post$Model$Config$config.steps, id);
+			case 1:
+				var _v1 = A2($elm$core$Array$get, 0, model.featureData.content);
+				if (_v1.$ === 'Nothing') {
+					return $elm$core$Platform$Cmd$none;
+				} else {
+					var content = _v1.a;
+					var post = $author$project$Model$Post$Decoder$decodePost(
+						$elm$core$Maybe$Just(content));
+					return A3($author$project$Model$PostMeta$Query$queryPostMeta, $author$project$Features$Post$Model$Config$config.postMeta.step, $author$project$Features$Post$Model$Config$config.steps, post.name);
+				}
+			default:
+				return $elm$core$Platform$Cmd$none;
+		}
+	});
 var $author$project$Core$FeatureData$Utils$queryFeatureContent = F2(
 	function (model, path) {
 		var _v0 = $author$project$Core$Route$Utils$getRoute(path);
@@ -6769,10 +7134,10 @@ var $author$project$Core$FeatureData$Utils$queryFeatureContent = F2(
 			case 'RouteNotFound':
 				return $elm$core$Platform$Cmd$none;
 			case 'RouteHome':
-				return $author$project$Features$Home$Model$queryHomeFeatureContent(model);
+				return $author$project$Features$Home$Model$Query$queryHomeFeatureContent(model);
 			default:
 				var id = _v0.a;
-				return $author$project$Features$Post$Model$queryPostFeatureContent(id);
+				return A2($author$project$Features$Post$Model$Query$queryPostFeatureContent, model, id);
 		}
 	});
 var $elm$url$Url$addPort = F2(
@@ -6821,7 +7186,7 @@ var $elm$url$Url$toString = function (url) {
 };
 var $author$project$Main$init = F3(
 	function (flags, url, key) {
-		var initialModel = A3($author$project$Main$getInitialModel, flags, key, url);
+		var initialModel = A3($author$project$Core$Model$Utils$getInitialModel, flags, key, url);
 		return _Utils_Tuple2(
 			initialModel,
 			A2(
@@ -6848,7 +7213,7 @@ var $elm$json$Json$Encode$object = function (pairs) {
 			pairs));
 };
 var $elm$json$Json$Encode$string = _Json_wrap;
-var $author$project$Main$getColorSchemaToggledPortEvent = function (colorSchema) {
+var $author$project$Core$Model$Utils$getColorSchemaToggledPortEvent = function (colorSchema) {
 	return A2(
 		$elm$json$Json$Encode$encode,
 		0,
@@ -6948,7 +7313,7 @@ var $elm$core$Array$push = F2(
 			array);
 	});
 var $elm$browser$Browser$Navigation$pushUrl = _Browser_pushUrl;
-var $author$project$Main$update = F2(
+var $author$project$Core$Model$Utils$updateModel = F2(
 	function (message, model) {
 		switch (message.$) {
 			case 'MessageLinkClicked':
@@ -6969,13 +7334,14 @@ var $author$project$Main$update = F2(
 				}
 			case 'MessageUrlChanged':
 				var url = message.a;
+				var updatedModel = _Utils_update(
+					model,
+					{featureData: $author$project$Core$FeatureData$FeatureData$defaultFeatureData, url: url});
 				return _Utils_Tuple2(
-					_Utils_update(
-						model,
-						{url: url}),
+					updatedModel,
 					A2(
 						$author$project$Core$FeatureData$Utils$queryFeatureContent,
-						model,
+						updatedModel,
 						$elm$url$Url$toString(url)));
 			case 'MessageColorSchemaToggled':
 				var colorSchema = message.a;
@@ -6987,7 +7353,7 @@ var $author$project$Main$update = F2(
 							theme: $author$project$Core$Theme$getTheme(colorSchema)
 						}),
 					$author$project$Ports$localStorageOutcomePort(
-						$author$project$Main$getColorSchemaToggledPortEvent(colorSchema)));
+						$author$project$Core$Model$Utils$getColorSchemaToggledPortEvent(colorSchema)));
 			default:
 				var step = message.a;
 				var steps = message.b;
@@ -7868,7 +8234,6 @@ var $rtfeldman$elm_css$Css$Structure$concatMapLastStyleBlock = F2(
 			first,
 			A2($rtfeldman$elm_css$Css$Structure$concatMapLastStyleBlock, update, rest));
 	});
-var $elm$core$String$cons = _String_cons;
 var $rtfeldman$elm_css$ElmCssVendor$Murmur3$HashData = F4(
 	function (shift, seed, hash, charsProcessed) {
 		return {charsProcessed: charsProcessed, hash: hash, seed: seed, shift: shift};
@@ -7880,7 +8245,6 @@ var $rtfeldman$elm_css$ElmCssVendor$Murmur3$multiplyBy = F2(
 		return ((a & 65535) * b) + ((((a >>> 16) * b) & 65535) << 16);
 	});
 var $elm$core$Basics$neq = _Utils_notEqual;
-var $elm$core$Bitwise$or = _Bitwise_or;
 var $rtfeldman$elm_css$ElmCssVendor$Murmur3$rotlBy = F2(
 	function (b, a) {
 		return (a << b) | (a >>> (32 - b));
@@ -7899,7 +8263,6 @@ var $rtfeldman$elm_css$ElmCssVendor$Murmur3$finalize = function (data) {
 	var h2 = A2($rtfeldman$elm_css$ElmCssVendor$Murmur3$multiplyBy, 3266489909, h1 ^ (h1 >>> 13));
 	return (h2 ^ (h2 >>> 16)) >>> 0;
 };
-var $elm$core$String$foldl = _String_foldl;
 var $rtfeldman$elm_css$ElmCssVendor$Murmur3$mix = F2(
 	function (h1, k1) {
 		return A2(
@@ -7942,9 +8305,6 @@ var $rtfeldman$elm_css$ElmCssVendor$Murmur3$hashString = F2(
 	});
 var $rtfeldman$elm_css$Hash$murmurSeed = 15739;
 var $elm$core$String$fromList = _String_fromList;
-var $elm$core$Basics$negate = function (n) {
-	return -n;
-};
 var $elm$core$Basics$modBy = _Basics_modBy;
 var $rtfeldman$elm_hex$Hex$unsafeToDigit = function (num) {
 	unsafeToDigit:
@@ -8887,283 +9247,7 @@ var $rtfeldman$elm_css$Css$prop2 = F3(
 	});
 var $rtfeldman$elm_css$Css$margin2 = $rtfeldman$elm_css$Css$prop2('margin');
 var $rtfeldman$elm_css$Css$maxWidth = $rtfeldman$elm_css$Css$prop1('max-width');
-var $elm$core$String$concat = function (strings) {
-	return A2($elm$core$String$join, '', strings);
-};
-var $truqu$elm_base64$Base64$Decode$pad = function (input) {
-	var _v0 = $elm$core$String$length(input) % 4;
-	switch (_v0) {
-		case 3:
-			return input + '=';
-		case 2:
-			return input + '==';
-		default:
-			return input;
-	}
-};
-var $elm$core$Result$andThen = F2(
-	function (callback, result) {
-		if (result.$ === 'Ok') {
-			var value = result.a;
-			return callback(value);
-		} else {
-			var msg = result.a;
-			return $elm$core$Result$Err(msg);
-		}
-	});
-var $truqu$elm_base64$Base64$Decode$charToInt = function (_char) {
-	switch (_char.valueOf()) {
-		case 'A':
-			return 0;
-		case 'B':
-			return 1;
-		case 'C':
-			return 2;
-		case 'D':
-			return 3;
-		case 'E':
-			return 4;
-		case 'F':
-			return 5;
-		case 'G':
-			return 6;
-		case 'H':
-			return 7;
-		case 'I':
-			return 8;
-		case 'J':
-			return 9;
-		case 'K':
-			return 10;
-		case 'L':
-			return 11;
-		case 'M':
-			return 12;
-		case 'N':
-			return 13;
-		case 'O':
-			return 14;
-		case 'P':
-			return 15;
-		case 'Q':
-			return 16;
-		case 'R':
-			return 17;
-		case 'S':
-			return 18;
-		case 'T':
-			return 19;
-		case 'U':
-			return 20;
-		case 'V':
-			return 21;
-		case 'W':
-			return 22;
-		case 'X':
-			return 23;
-		case 'Y':
-			return 24;
-		case 'Z':
-			return 25;
-		case 'a':
-			return 26;
-		case 'b':
-			return 27;
-		case 'c':
-			return 28;
-		case 'd':
-			return 29;
-		case 'e':
-			return 30;
-		case 'f':
-			return 31;
-		case 'g':
-			return 32;
-		case 'h':
-			return 33;
-		case 'i':
-			return 34;
-		case 'j':
-			return 35;
-		case 'k':
-			return 36;
-		case 'l':
-			return 37;
-		case 'm':
-			return 38;
-		case 'n':
-			return 39;
-		case 'o':
-			return 40;
-		case 'p':
-			return 41;
-		case 'q':
-			return 42;
-		case 'r':
-			return 43;
-		case 's':
-			return 44;
-		case 't':
-			return 45;
-		case 'u':
-			return 46;
-		case 'v':
-			return 47;
-		case 'w':
-			return 48;
-		case 'x':
-			return 49;
-		case 'y':
-			return 50;
-		case 'z':
-			return 51;
-		case '0':
-			return 52;
-		case '1':
-			return 53;
-		case '2':
-			return 54;
-		case '3':
-			return 55;
-		case '4':
-			return 56;
-		case '5':
-			return 57;
-		case '6':
-			return 58;
-		case '7':
-			return 59;
-		case '8':
-			return 60;
-		case '9':
-			return 61;
-		case '+':
-			return 62;
-		case '/':
-			return 63;
-		default:
-			return 0;
-	}
-};
-var $elm$core$String$fromChar = function (_char) {
-	return A2($elm$core$String$cons, _char, '');
-};
-var $elm$core$Char$fromCode = _Char_fromCode;
-var $truqu$elm_base64$Base64$Decode$intToString = A2($elm$core$Basics$composeR, $elm$core$Char$fromCode, $elm$core$String$fromChar);
-var $truqu$elm_base64$Base64$Decode$add = F2(
-	function (_char, _v0) {
-		var curr = _v0.a;
-		var need = _v0.b;
-		var res = _v0.c;
-		var shiftAndAdd = function (_int) {
-			return (63 & _int) | (curr << 6);
-		};
-		return (!need) ? ((!(128 & _char)) ? _Utils_Tuple3(
-			0,
-			0,
-			_Utils_ap(
-				res,
-				$truqu$elm_base64$Base64$Decode$intToString(_char))) : (((224 & _char) === 192) ? _Utils_Tuple3(31 & _char, 1, res) : (((240 & _char) === 224) ? _Utils_Tuple3(15 & _char, 2, res) : _Utils_Tuple3(7 & _char, 3, res)))) : ((need === 1) ? _Utils_Tuple3(
-			0,
-			0,
-			_Utils_ap(
-				res,
-				$truqu$elm_base64$Base64$Decode$intToString(
-					shiftAndAdd(_char)))) : _Utils_Tuple3(
-			shiftAndAdd(_char),
-			need - 1,
-			res));
-	});
-var $truqu$elm_base64$Base64$Decode$toUTF16 = F2(
-	function (_char, acc) {
-		return _Utils_Tuple3(
-			0,
-			0,
-			A2(
-				$truqu$elm_base64$Base64$Decode$add,
-				255 & (_char >>> 0),
-				A2(
-					$truqu$elm_base64$Base64$Decode$add,
-					255 & (_char >>> 8),
-					A2($truqu$elm_base64$Base64$Decode$add, 255 & (_char >>> 16), acc))));
-	});
-var $truqu$elm_base64$Base64$Decode$chomp = F2(
-	function (char_, _v0) {
-		var curr = _v0.a;
-		var cnt = _v0.b;
-		var utf8ToUtf16 = _v0.c;
-		var _char = $truqu$elm_base64$Base64$Decode$charToInt(char_);
-		if (cnt === 3) {
-			return A2($truqu$elm_base64$Base64$Decode$toUTF16, curr | _char, utf8ToUtf16);
-		} else {
-			return _Utils_Tuple3((_char << ((3 - cnt) * 6)) | curr, cnt + 1, utf8ToUtf16);
-		}
-	});
-var $truqu$elm_base64$Base64$Decode$initial = _Utils_Tuple3(
-	0,
-	0,
-	_Utils_Tuple3(0, 0, ''));
-var $elm$core$Result$map = F2(
-	function (func, ra) {
-		if (ra.$ === 'Ok') {
-			var a = ra.a;
-			return $elm$core$Result$Ok(
-				func(a));
-		} else {
-			var e = ra.a;
-			return $elm$core$Result$Err(e);
-		}
-	});
-var $elm$core$String$dropRight = F2(
-	function (n, string) {
-		return (n < 1) ? string : A3($elm$core$String$slice, 0, -n, string);
-	});
-var $elm$core$String$endsWith = _String_endsWith;
-var $truqu$elm_base64$Base64$Decode$stripNulls = F2(
-	function (input, output) {
-		return A2($elm$core$String$endsWith, '==', input) ? A2($elm$core$String$dropRight, 2, output) : (A2($elm$core$String$endsWith, '=', input) ? A2($elm$core$String$dropRight, 1, output) : output);
-	});
-var $elm$regex$Regex$Match = F4(
-	function (match, index, number, submatches) {
-		return {index: index, match: match, number: number, submatches: submatches};
-	});
-var $elm$regex$Regex$contains = _Regex_contains;
-var $elm$regex$Regex$fromStringWith = _Regex_fromStringWith;
-var $elm$regex$Regex$fromString = function (string) {
-	return A2(
-		$elm$regex$Regex$fromStringWith,
-		{caseInsensitive: false, multiline: false},
-		string);
-};
-var $elm$regex$Regex$never = _Regex_never;
-var $truqu$elm_base64$Base64$Decode$validBase64Regex = A2(
-	$elm$core$Maybe$withDefault,
-	$elm$regex$Regex$never,
-	$elm$regex$Regex$fromString('^([A-Za-z0-9\\/+]{4})*([A-Za-z0-9\\/+]{2}[A-Za-z0-9\\/+=]{2})?$'));
-var $truqu$elm_base64$Base64$Decode$validate = function (input) {
-	return A2($elm$regex$Regex$contains, $truqu$elm_base64$Base64$Decode$validBase64Regex, input) ? $elm$core$Result$Ok(input) : $elm$core$Result$Err('Invalid base64');
-};
-var $truqu$elm_base64$Base64$Decode$wrapUp = function (_v0) {
-	var _v1 = _v0.c;
-	var need = _v1.b;
-	var res = _v1.c;
-	return (need > 0) ? $elm$core$Result$Err('Invalid UTF-16') : $elm$core$Result$Ok(res);
-};
-var $truqu$elm_base64$Base64$Decode$validateAndDecode = function (input) {
-	return A2(
-		$elm$core$Result$map,
-		$truqu$elm_base64$Base64$Decode$stripNulls(input),
-		A2(
-			$elm$core$Result$andThen,
-			A2(
-				$elm$core$Basics$composeR,
-				A2($elm$core$String$foldl, $truqu$elm_base64$Base64$Decode$chomp, $truqu$elm_base64$Base64$Decode$initial),
-				$truqu$elm_base64$Base64$Decode$wrapUp),
-			$truqu$elm_base64$Base64$Decode$validate(input)));
-};
-var $truqu$elm_base64$Base64$Decode$decode = A2($elm$core$Basics$composeR, $truqu$elm_base64$Base64$Decode$pad, $truqu$elm_base64$Base64$Decode$validateAndDecode);
-var $truqu$elm_base64$Base64$decode = $truqu$elm_base64$Base64$Decode$decode;
-var $author$project$Features$Home$PostMeta$defaultPostMeta = {cover: '', description: '', keywords: '', title: ''};
+var $author$project$Model$PostMeta$Decoder$defaultPostMeta = {cover: '', description: '', keywords: '', name: '', title: ''};
 var $elm$core$List$drop = F2(
 	function (n, list) {
 		drop:
@@ -9185,7 +9269,7 @@ var $elm$core$List$drop = F2(
 			}
 		}
 	});
-var $author$project$Features$Home$PostMeta$getMetaItem = F2(
+var $author$project$Model$PostMeta$Decoder$getMetaItem = F2(
 	function (index, items) {
 		var _v0 = A2($elm$core$Array$get, index, items);
 		if (_v0.$ === 'Nothing') {
@@ -9230,11 +9314,11 @@ var $elm$core$Array$fromList = function (list) {
 		return A3($elm$core$Array$fromListHelp, list, _List_Nil, 0);
 	}
 };
-var $author$project$Features$Home$PostMeta$getIsNotEmptyString = function (string) {
+var $author$project$Model$PostMeta$Decoder$getIsNotEmptyString = function (string) {
 	return $elm$core$String$length(string) > 0;
 };
 var $elm$core$String$trim = _String_trim;
-var $author$project$Features$Home$PostMeta$getMetaLines = A2(
+var $author$project$Model$PostMeta$Decoder$getMetaLines = A2(
 	$elm$core$Basics$composeR,
 	$elm$core$String$split('\n'),
 	A2(
@@ -9246,59 +9330,61 @@ var $author$project$Features$Home$PostMeta$getMetaLines = A2(
 				$elm$core$String$split('|')),
 			A2(
 				$elm$core$Basics$composeR,
-				$elm$core$List$filter($author$project$Features$Home$PostMeta$getIsNotEmptyString),
+				$elm$core$List$filter($author$project$Model$PostMeta$Decoder$getIsNotEmptyString),
 				A2(
 					$elm$core$Basics$composeR,
 					$elm$core$List$map($elm$core$String$trim),
 					$elm$core$Array$fromList)))));
-var $elm$core$String$lines = _String_lines;
-var $author$project$Features$Home$PostMeta$decodePostMeta = function (table) {
-	var formattedTable = $elm$core$String$concat(
-		A2(
-			$elm$core$List$drop,
-			0,
-			$elm$core$String$lines(table)));
-	var _v0 = $truqu$elm_base64$Base64$decode(formattedTable);
-	if (_v0.$ === 'Err') {
-		return $author$project$Features$Home$PostMeta$defaultPostMeta;
-	} else {
-		var result = _v0.a;
-		var lines = $author$project$Features$Home$PostMeta$getMetaLines(result);
-		return {
-			cover: A2($author$project$Features$Home$PostMeta$getMetaItem, 7, lines),
-			description: A2($author$project$Features$Home$PostMeta$getMetaItem, 3, lines),
-			keywords: A2($author$project$Features$Home$PostMeta$getMetaItem, 5, lines),
-			title: A2($author$project$Features$Home$PostMeta$getMetaItem, 1, lines)
-		};
-	}
-};
-var $author$project$Features$Home$Post$PostRaw = F2(
+var $author$project$Model$PostMeta$Types$PostMetaRaw = F2(
 	function (name, content) {
 		return {content: content, name: name};
 	});
-var $author$project$Features$Home$Post$postDecoder = A3(
+var $author$project$Model$PostMeta$Decoder$postMetaDecoder = A3(
 	$elm$json$Json$Decode$map2,
-	$author$project$Features$Home$Post$PostRaw,
+	$author$project$Model$PostMeta$Types$PostMetaRaw,
 	A2($elm$json$Json$Decode$field, 'name', $elm$json$Json$Decode$string),
 	A2($elm$json$Json$Decode$field, 'content', $elm$json$Json$Decode$string));
-var $author$project$Features$Home$Post$decodePost = function (content) {
-	var post = A2($elm$json$Json$Decode$decodeString, $author$project$Features$Home$Post$postDecoder, content);
-	if (post.$ === 'Ok') {
-		var result = post.a;
-		return {
-			meta: $author$project$Features$Home$PostMeta$decodePostMeta(result.content),
-			name: result.name
-		};
+var $author$project$Model$PostMeta$Decoder$decodePostMeta = function (input) {
+	if (input.$ === 'Nothing') {
+		return $author$project$Model$PostMeta$Decoder$defaultPostMeta;
 	} else {
-		return {meta: $author$project$Features$Home$PostMeta$defaultPostMeta, name: 'Error'};
+		var value = input.a;
+		var _v1 = A2($elm$json$Json$Decode$decodeString, $author$project$Model$PostMeta$Decoder$postMetaDecoder, value);
+		if (_v1.$ === 'Err') {
+			return $author$project$Model$PostMeta$Decoder$defaultPostMeta;
+		} else {
+			var postMeta = _v1.a;
+			var formattedTable = $elm$core$String$concat(
+				A2(
+					$elm$core$List$drop,
+					0,
+					$elm$core$String$lines(postMeta.content)));
+			var _v2 = $truqu$elm_base64$Base64$decode(formattedTable);
+			if (_v2.$ === 'Err') {
+				return $author$project$Model$PostMeta$Decoder$defaultPostMeta;
+			} else {
+				var result = _v2.a;
+				var lines = $author$project$Model$PostMeta$Decoder$getMetaLines(result);
+				return {
+					cover: A2($author$project$Model$PostMeta$Decoder$getMetaItem, 7, lines),
+					description: A2($author$project$Model$PostMeta$Decoder$getMetaItem, 3, lines),
+					keywords: A2($author$project$Model$PostMeta$Decoder$getMetaItem, 5, lines),
+					name: postMeta.name,
+					title: A2($author$project$Model$PostMeta$Decoder$getMetaItem, 1, lines)
+				};
+			}
+		}
 	}
 };
-var $author$project$Features$Home$Model$parseHomeFeatureContent = function (content) {
+var $author$project$Features$Home$Model$Query$parseHomeFeatureContent = function (content) {
 	var posts = A2(
 		$elm$core$List$drop,
 		1,
 		$elm$core$Array$toList(content));
-	return A2($elm$core$List$map, $author$project$Features$Home$Post$decodePost, posts);
+	return A2(
+		$elm$core$List$map,
+		$author$project$Model$PostMeta$Decoder$decodePostMeta,
+		A2($elm$core$List$map, $elm$core$Maybe$Just, posts));
 };
 var $rtfeldman$elm_css$Html$Styled$a = $rtfeldman$elm_css$Html$Styled$node('a');
 var $rtfeldman$elm_css$Css$block = {display: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'block'};
@@ -9841,19 +9927,19 @@ var $elm$core$String$replace = F3(
 			A2($elm$core$String$split, before, string));
 	});
 var $author$project$Features$Home$Home$post = F2(
-	function (model, content) {
+	function (model, postMeta) {
 		return $author$project$Components$Card$card(
 			{
-				coverSrc: content.meta.cover,
+				coverSrc: postMeta.cover,
 				css: _List_fromArray(
 					[
 						$rtfeldman$elm_css$Css$marginBottom(
 						$rtfeldman$elm_css$Css$px(30))
 					]),
-				description: content.meta.description,
+				description: postMeta.description,
 				theme: model.theme,
-				title: content.meta.title,
-				to: '/post/' + A3($elm$core$String$replace, '.md', '', content.name)
+				title: postMeta.title,
+				to: '/post/' + A3($elm$core$String$replace, '.md', '', postMeta.name)
 			});
 	});
 var $rtfeldman$elm_css$Css$spaceBetween = $rtfeldman$elm_css$Css$prop1('space-between');
@@ -9861,7 +9947,7 @@ var $rtfeldman$elm_css$Css$wrap = {flexDirectionOrWrap: $rtfeldman$elm_css$Css$S
 var $rtfeldman$elm_css$Css$UnitlessInteger = {$: 'UnitlessInteger'};
 var $rtfeldman$elm_css$Css$zero = {length: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAutoOrCoverOrContain: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNone: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNoneOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNumber: $rtfeldman$elm_css$Css$Structure$Compatible, number: $rtfeldman$elm_css$Css$Structure$Compatible, numericValue: 0, outline: $rtfeldman$elm_css$Css$Structure$Compatible, unitLabel: '', units: $rtfeldman$elm_css$Css$UnitlessInteger, value: '0'};
 var $author$project$Features$Home$Home$posts = function (model) {
-	var content = $author$project$Features$Home$Model$parseHomeFeatureContent(model.featureData.content);
+	var content = $author$project$Features$Home$Model$Query$parseHomeFeatureContent(model.featureData.content);
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
 		_List_fromArray(
@@ -13964,63 +14050,27 @@ var $author$project$Components$Article$article = function (props) {
 			]),
 		$author$project$Utils$Html$parseMarkdown(props.content));
 };
-var $author$project$Features$Post$Model$PostFeatureContent = F2(
-	function (name, content) {
-		return {content: content, name: name};
-	});
-var $author$project$Features$Post$Model$postFeatureContentDecoder = A3(
-	$elm$json$Json$Decode$map2,
-	$author$project$Features$Post$Model$PostFeatureContent,
-	A2($elm$json$Json$Decode$field, 'name', $elm$json$Json$Decode$string),
-	A2($elm$json$Json$Decode$field, 'content', $elm$json$Json$Decode$string));
-var $author$project$Features$Post$Model$decodePostFeatureContent = function (content) {
-	if (content.$ === 'Nothing') {
-		return A2($elm$json$Json$Decode$decodeString, $author$project$Features$Post$Model$postFeatureContentDecoder, '{}');
-	} else {
-		var result = content.a;
-		return A2($elm$json$Json$Decode$decodeString, $author$project$Features$Post$Model$postFeatureContentDecoder, result);
-	}
-};
-var $author$project$Features$Post$Model$decodePostText = function (text) {
-	var formattedText = $elm$core$String$concat(
-		A2(
-			$elm$core$List$drop,
-			7,
-			$elm$core$String$lines(text)));
-	var _v0 = $truqu$elm_base64$Base64$decode(formattedText);
-	if (_v0.$ === 'Ok') {
-		var result = _v0.a;
-		return result;
-	} else {
-		return '';
-	}
-};
-var $author$project$Features$Post$Model$parsePostFeatureContent = function (content) {
-	var _v0 = $author$project$Features$Post$Model$decodePostFeatureContent(
-		A2($elm$core$Array$get, 0, content));
-	if (_v0.$ === 'Ok') {
-		var result = _v0.a;
-		return {
-			content: $author$project$Features$Post$Model$decodePostText(result.content),
-			name: result.name
-		};
-	} else {
-		return {content: '', name: 'Oops! Error happened...'};
-	}
+var $author$project$Features$Post$Model$Query$parsePostFeatureContent = function (input) {
+	return {
+		post: $author$project$Model$Post$Decoder$decodePost(
+			A2($elm$core$Array$get, 0, input)),
+		postMeta: $author$project$Model$PostMeta$Decoder$decodePostMeta(
+			A2($elm$core$Array$get, 1, input))
+	};
 };
 var $author$project$Features$Post$Post$post = function (model) {
 	var postId = A2($elm$url$Url$Parser$parse, $author$project$Core$Route$Parsers$postUrlParser, model.url);
 	if (_Utils_eq(postId, $elm$core$Maybe$Nothing)) {
 		return $rtfeldman$elm_css$Html$Styled$text('This post doesn\'t exist... :(');
 	} else {
-		var content = $author$project$Features$Post$Model$parsePostFeatureContent(model.featureData.content);
+		var content = $author$project$Features$Post$Model$Query$parsePostFeatureContent(model.featureData.content);
 		return A2(
 			$rtfeldman$elm_css$Html$Styled$div,
 			_List_Nil,
 			_List_fromArray(
 				[
 					$author$project$Components$Article$article(
-					{content: content.content, model: model})
+					{content: content.post.text, model: model})
 				]));
 	}
 };
@@ -15412,7 +15462,7 @@ var $author$project$Main$view = function (model) {
 	};
 };
 var $author$project$Main$main = $elm$browser$Browser$application(
-	{init: $author$project$Main$init, onUrlChange: $author$project$Core$Message$MessageUrlChanged, onUrlRequest: $author$project$Core$Message$MessageLinkClicked, subscriptions: $author$project$Main$subscriptions, update: $author$project$Main$update, view: $author$project$Main$view});
+	{init: $author$project$Main$init, onUrlChange: $author$project$Core$Message$MessageUrlChanged, onUrlRequest: $author$project$Core$Message$MessageLinkClicked, subscriptions: $author$project$Main$subscriptions, update: $author$project$Core$Model$Utils$updateModel, view: $author$project$Main$view});
 _Platform_export({'Main':{'init':$author$project$Main$main(
 	A2(
 		$elm$json$Json$Decode$andThen,

@@ -3,7 +3,7 @@ module Core.App exposing (app)
 import Url
 import Html.Styled exposing (Html)
 
-import Core.Model exposing (Model)
+import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message)
 import Core.Route.Utils exposing (getFeature)
 import Core.Layout exposing (layout)

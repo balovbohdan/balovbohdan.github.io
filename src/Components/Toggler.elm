@@ -9,7 +9,7 @@ import Html.Styled exposing (label, input, span, Html)
 import Html.Styled.Attributes exposing (css)
 
 import Core.Message exposing (Message)
-import Core.Model exposing (Model)
+import Core.Model.Types exposing (Model)
 
 type alias Props =
   { model: Model

@@ -1,4 +1,4 @@
-module Core.FeatureData.FeatureData exposing (FeatureContent, FeatureData)
+module Core.FeatureData.FeatureData exposing (defaultFeatureData, FeatureContent, FeatureData)
 
 import Array exposing (Array)
 
@@ -9,3 +9,6 @@ type alias FeatureData =
   , loading: Bool
   , step: Int
   }
+
+defaultFeatureData : FeatureData
+defaultFeatureData = { content = Array.empty, loading = False, step = 0 }

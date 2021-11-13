@@ -5,7 +5,7 @@ import Css.Global
 import Html.Styled exposing (div, Html)
 import Html.Styled.Attributes exposing (css)
 
-import Core.Model exposing (Model)
+import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message)
 import Utils.Html exposing (parseMarkdown)
 

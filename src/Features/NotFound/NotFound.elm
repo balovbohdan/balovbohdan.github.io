@@ -2,7 +2,7 @@ module Features.NotFound.NotFound exposing (notFound)
 
 import Html.Styled exposing (div, text, Html)
 
-import Core.Model exposing (Model)
+import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message)
 
 notFound : Model -> Html Message
