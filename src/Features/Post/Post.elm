@@ -7,7 +7,7 @@ import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message)
 import Core.Route.Parsers exposing (postUrlParser)
 import Components.Article exposing (article)
-import Features.Post.Model exposing (parsePostFeatureContent)
+import Features.Post.Model.Query exposing (parsePostFeatureContent)
 
 post : Model -> Html Message
 post model =
@@ -22,4 +22,4 @@ post model =
       in
         div
           []
-          [ article { model = model, content = content.content } ]
+          [ article { model = model, content = content.post.text } ]

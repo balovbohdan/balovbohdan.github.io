@@ -12,6 +12,7 @@ import Core.Message exposing (Message(..))
 import Core.Theme exposing (getTheme)
 import Ports exposing (localStorageOutcomePort)
 import Core.FeatureData.Utils exposing (queryFeatureContent)
+import Core.FeatureData.FeatureData exposing (defaultFeatureData)
 
 getColorSchemaToggledPortEvent : String -> String
 getColorSchemaToggledPortEvent colorSchema =
@@ -28,7 +29,7 @@ getInitialModel flags key url =
   , url = url
   , colorSchema = flags.colorSchema
   , theme = getTheme flags.colorSchema
-  , featureData = { content = Array.empty, loading = False, step = 0 }
+  , featureData = defaultFeatureData
   }
 
 updateModel : Message -> Model -> ( Model, Cmd Message )
@@ -42,9 +43,12 @@ updateModel message model =
           ( model, Browser.Navigation.load href )
 
     MessageUrlChanged url ->
-      ( { model | url = url }
-      , queryFeatureContent model (Url.toString url)
-      )
+      let
+        updatedModel = { model | url = url, featureData = defaultFeatureData }
+      in
+        ( updatedModel
+        , queryFeatureContent updatedModel (Url.toString url)
+        )
 
     MessageColorSchemaToggled colorSchema ->
       ( { model | colorSchema = colorSchema, theme = getTheme colorSchema }

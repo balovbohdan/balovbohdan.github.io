@@ -18,8 +18,7 @@ parseUrl = oneOf [ map RouteHome top, map RoutePost postUrlParser ]
 getRoute : String -> Route
 getRoute path =
   case Url.fromString path of
-    Nothing ->
-      RouteNotFound
+    Nothing -> RouteNotFound
     Just url ->
       Maybe.withDefault RouteNotFound (parse parseUrl url)
 

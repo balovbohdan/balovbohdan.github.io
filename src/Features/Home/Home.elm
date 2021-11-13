@@ -7,18 +7,17 @@ import Html.Styled.Attributes exposing (css)
 import Components.Card exposing (card)
 import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message)
-import Features.Home.Model exposing (parseHomeFeatureContent)
+import Features.Home.Model.Query exposing (parseHomeFeatureContent)
+import Model.PostMeta.Types exposing (PostMeta)
 
-import Features.Home.Types exposing (Post)
-
-post : Model -> Post -> Html Message
-post model content =
+post : Model -> PostMeta -> Html Message
+post model postMeta =
   card
-    { title = content.meta.title
-    , description = content.meta.description
-    , coverSrc = content.meta.cover
+    { title = postMeta.title
+    , description = postMeta.description
+    , coverSrc = postMeta.cover
     , css = [ Css.marginBottom (Css.px 30) ]
-    , to = "/post/" ++ (String.replace ".md" "" content.name)
+    , to = "/post/" ++ (String.replace ".md" "" postMeta.name)
     , theme = model.theme
     }
 
