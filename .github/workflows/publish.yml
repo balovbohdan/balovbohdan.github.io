@@ -19,6 +19,8 @@ jobs:
         run: npm install
 
       - name: Build Env Variables
+        env:
+          TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
         run: npm run build-env-variables
 
       - name: Build 🏗️
