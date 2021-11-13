@@ -23,7 +23,7 @@ jobs:
           TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
         run: |
           echo "___token___"
-          echo ${{ secrets.TOKEN_GITHUB }}
+          echo "foo ${{ secrets.TOKEN_GITHUB }}"
           npm run build-env-variables
 
       - name: Build 🏗️
