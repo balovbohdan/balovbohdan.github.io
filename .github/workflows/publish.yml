@@ -21,10 +21,12 @@ jobs:
       - name: Build Env Variables
         env:
           TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
-        run: |
-          echo "___token___"
-          echo "foo ${{ secrets }}"
-          npm run build-env-variables
+        run: npm run build-env-variables
+
+      - name: Log Env Variables
+        run: echo ${{ secrets.TOKEN_GITHUB }}
+        with:
+          TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
 
       - name: Build 🏗️
         run: npm run build
