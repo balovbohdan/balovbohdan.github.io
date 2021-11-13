@@ -7095,7 +7095,7 @@ var $author$project$Model$Post$Decoder$decodePost = function (input) {
 		}
 	}
 };
-var $author$project$Model$Post$Config$config = {extension: '.md', url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/posts/'};
+var $author$project$Model$Post$Config$config = {url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/posts/', urlPostfix: '/text.md'};
 var $author$project$Model$Post$Query$queryPost = F3(
 	function (step, steps, id) {
 		return $elm$http$Http$get(
@@ -7104,7 +7104,7 @@ var $author$project$Model$Post$Query$queryPost = F3(
 					A2($author$project$Core$Message$MessageFeatureContentReceived, step, steps)),
 				url: _Utils_ap(
 					$author$project$Model$Post$Config$config.url,
-					_Utils_ap(id, $author$project$Model$Post$Config$config.extension))
+					_Utils_ap(id, $author$project$Model$Post$Config$config.urlPostfix))
 			});
 	});
 var $author$project$Features$Post$Model$Query$queryPostFeatureContent = F2(
