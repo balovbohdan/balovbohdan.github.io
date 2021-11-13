@@ -19,7 +19,7 @@ const app = Elm.Main.init({
   node: document.getElementById('app'),
   flags: {
     colorSchema: getColorSchema(),
-    env: { gitHub: { token: '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' } },
+    env: { gitHub: { token: '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' } },
   },
 });
 

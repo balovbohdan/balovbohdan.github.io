@@ -2,6 +2,7 @@ module Components.Card exposing (card)
 
 import Css
 import Css.Media
+import Css.Global
 import Css.Transitions
 import Html.Styled exposing (a, div, h3, p, text, img, Html)
 import Html.Styled.Attributes exposing (css, src, href)
@@ -52,6 +53,7 @@ getCardCss props =
     , Css.flexBasis <| Css.pct 31.5
     , Css.cursor Css.pointer
     , Css.hover [ Css.backgroundColor props.theme.primary ]
+    , Css.hover [ Css.textDecoration Css.none ]
     , Css.Transitions.transition [ Css.Transitions.backgroundColor 200 ]
     , Css.Media.withMedia
         [ Css.Media.only Css.Media.screen [ Css.Media.maxWidth (Css.px 400) ] ]
