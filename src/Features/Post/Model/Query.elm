@@ -14,7 +14,7 @@ import Model.PostMeta.Decoder exposing (decodePostMeta)
 queryPostFeatureContent : Model -> String -> Cmd Message
 queryPostFeatureContent model id =
   case (model.featureData.step) of
-    0 -> queryPost config.post.step config.steps id
+    0 -> queryPost model config.post.step config.steps id
     1 ->
       case (Array.get 0 model.featureData.content) of
         Nothing -> Cmd.none
@@ -22,7 +22,7 @@ queryPostFeatureContent model id =
           let
             post = decodePost (Just content)
           in
-            queryPostMeta config.postMeta.step config.steps post.name
+            queryPostMeta model config.postMeta.step config.steps post.name
     _ -> Cmd.none
 
 parsePostFeatureContent : Array String -> PostFeatureContent

@@ -27,6 +27,7 @@ getInitialModel : Flags -> Browser.Navigation.Key -> Url.Url -> Model
 getInitialModel flags key url =
   { key = key
   , url = url
+  , env = flags.env
   , colorSchema = flags.colorSchema
   , theme = getTheme flags.colorSchema
   , featureData = defaultFeatureData

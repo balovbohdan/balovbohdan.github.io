@@ -18,8 +18,16 @@ article props =
         [ Css.maxWidth <| Css.px 750
         , Css.margin2 Css.zero Css.auto
         , Css.Global.children
-            [ Css.Global.typeSelector "p img" [ Css.margin2 Css.zero Css.auto, Css.height <| Css.px 550 ]
-            , Css.Global.typeSelector "p a" [ Css.color props.model.theme.accent ]
+            [ Css.Global.typeSelector "p a" [ Css.color props.model.theme.accent ]
+            , Css.Global.typeSelector "p img"
+              [ Css.margin2 Css.zero Css.auto
+              , Css.maxWidth <| Css.pct 100
+              , Css.height Css.auto
+              ]
+            , Css.Global.typeSelector "p center"
+              [ Css.color props.model.theme.textPrimary
+              , Css.fontSize <| Css.rem 0.8
+              ]
             ]
         ]
     ]

@@ -5564,6 +5564,7 @@ var $author$project$Core$Model$Utils$getInitialModel = F3(
 	function (flags, key, url) {
 		return {
 			colorSchema: flags.colorSchema,
+			env: flags.env,
 			featureData: $author$project$Core$FeatureData$FeatureData$defaultFeatureData,
 			key: key,
 			theme: $author$project$Core$Theme$getTheme(flags.colorSchema),
@@ -6497,6 +6498,7 @@ var $elm$core$Maybe$isJust = function (maybe) {
 	}
 };
 var $elm$core$Platform$sendToSelf = _Platform_sendToSelf;
+var $elm$http$Http$emptyBody = _Http_emptyBody;
 var $elm$core$Basics$composeR = F3(
 	function (f, g, x) {
 		return g(
@@ -6561,7 +6563,11 @@ var $elm$http$Http$expectString = function (toMsg) {
 		toMsg,
 		$elm$http$Http$resolve($elm$core$Result$Ok));
 };
-var $elm$http$Http$emptyBody = _Http_emptyBody;
+var $elm$http$Http$Header = F2(
+	function (a, b) {
+		return {$: 'Header', a: a, b: b};
+	});
+var $elm$http$Http$header = $elm$http$Http$Header;
 var $elm$http$Http$Request = function (a) {
 	return {$: 'Request', a: a};
 };
@@ -6730,26 +6736,38 @@ var $elm$http$Http$request = function (r) {
 		$elm$http$Http$Request(
 			{allowCookiesFromOtherDomains: false, body: r.body, expect: r.expect, headers: r.headers, method: r.method, timeout: r.timeout, tracker: r.tracker, url: r.url}));
 };
-var $elm$http$Http$get = function (r) {
-	return $elm$http$Http$request(
-		{body: $elm$http$Http$emptyBody, expect: r.expect, headers: _List_Nil, method: 'GET', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
-};
-var $author$project$Model$PostMeta$Query$queryPostMeta = F3(
-	function (step, steps, name) {
-		return $elm$http$Http$get(
+var $author$project$Model$PostMeta$Query$queryPostMeta = F4(
+	function (model, step, steps, name) {
+		return $elm$http$Http$request(
 			{
+				body: $elm$http$Http$emptyBody,
 				expect: $elm$http$Http$expectString(
 					A2($author$project$Core$Message$MessageFeatureContentReceived, step, steps)),
+				headers: _List_fromArray(
+					[
+						A2($elm$http$Http$header, 'Authorization', 'token ' + model.env.gitHub.token)
+					]),
+				method: 'GET',
+				timeout: $elm$core$Maybe$Nothing,
+				tracker: $elm$core$Maybe$Nothing,
 				url: _Utils_ap($author$project$Model$PostMeta$Config$config.url, name)
 			});
 	});
 var $author$project$Model$PostMetaItems$Config$config = {url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/metas'};
-var $author$project$Model$PostMetaItems$Query$queryPostMetaItems = F2(
-	function (step, steps) {
-		return $elm$http$Http$get(
+var $author$project$Model$PostMetaItems$Query$queryPostMetaItems = F3(
+	function (model, step, steps) {
+		return $elm$http$Http$request(
 			{
+				body: $elm$http$Http$emptyBody,
 				expect: $elm$http$Http$expectString(
 					A2($author$project$Core$Message$MessageFeatureContentReceived, step, steps)),
+				headers: _List_fromArray(
+					[
+						A2($elm$http$Http$header, 'Authorization', 'token ' + model.env.gitHub.token)
+					]),
+				method: 'GET',
+				timeout: $elm$core$Maybe$Nothing,
+				tracker: $elm$core$Maybe$Nothing,
 				url: $author$project$Model$PostMetaItems$Config$config.url
 			});
 	});
@@ -6757,12 +6775,12 @@ var $author$project$Features$Home$Model$Query$queryHomeFeatureContent = function
 	var _v0 = model.featureData.step;
 	switch (_v0) {
 		case 0:
-			return A2($author$project$Model$PostMetaItems$Query$queryPostMetaItems, $author$project$Features$Home$Model$Config$config.metaNames.step, $author$project$Features$Home$Model$Config$config.steps);
+			return A3($author$project$Model$PostMetaItems$Query$queryPostMetaItems, model, $author$project$Features$Home$Model$Config$config.metaNames.step, $author$project$Features$Home$Model$Config$config.steps);
 		case 1:
 			var metaItemNames = $author$project$Features$Home$Model$Query$getPostMetaItemNames(model);
 			var messages = A2(
 				$elm$core$List$map,
-				A2($author$project$Model$PostMeta$Query$queryPostMeta, $author$project$Features$Home$Model$Config$config.meta.step, $author$project$Features$Home$Model$Config$config.steps),
+				A3($author$project$Model$PostMeta$Query$queryPostMeta, model, $author$project$Features$Home$Model$Config$config.meta.step, $author$project$Features$Home$Model$Config$config.steps),
 				metaItemNames);
 			return $elm$core$Platform$Cmd$batch(messages);
 		default:
@@ -7096,12 +7114,20 @@ var $author$project$Model$Post$Decoder$decodePost = function (input) {
 	}
 };
 var $author$project$Model$Post$Config$config = {extension: '.md', url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/posts/'};
-var $author$project$Model$Post$Query$queryPost = F3(
-	function (step, steps, id) {
-		return $elm$http$Http$get(
+var $author$project$Model$Post$Query$queryPost = F4(
+	function (model, step, steps, id) {
+		return $elm$http$Http$request(
 			{
+				body: $elm$http$Http$emptyBody,
 				expect: $elm$http$Http$expectString(
 					A2($author$project$Core$Message$MessageFeatureContentReceived, step, steps)),
+				headers: _List_fromArray(
+					[
+						A2($elm$http$Http$header, 'Authorization', 'token ' + model.env.gitHub.token)
+					]),
+				method: 'GET',
+				timeout: $elm$core$Maybe$Nothing,
+				tracker: $elm$core$Maybe$Nothing,
 				url: $author$project$Model$Post$Config$config.url + (id + ('/' + (id + $author$project$Model$Post$Config$config.extension)))
 			});
 	});
@@ -7110,7 +7136,7 @@ var $author$project$Features$Post$Model$Query$queryPostFeatureContent = F2(
 		var _v0 = model.featureData.step;
 		switch (_v0) {
 			case 0:
-				return A3($author$project$Model$Post$Query$queryPost, $author$project$Features$Post$Model$Config$config.post.step, $author$project$Features$Post$Model$Config$config.steps, id);
+				return A4($author$project$Model$Post$Query$queryPost, model, $author$project$Features$Post$Model$Config$config.post.step, $author$project$Features$Post$Model$Config$config.steps, id);
 			case 1:
 				var _v1 = A2($elm$core$Array$get, 0, model.featureData.content);
 				if (_v1.$ === 'Nothing') {
@@ -7119,7 +7145,7 @@ var $author$project$Features$Post$Model$Query$queryPostFeatureContent = F2(
 					var content = _v1.a;
 					var post = $author$project$Model$Post$Decoder$decodePost(
 						$elm$core$Maybe$Just(content));
-					return A3($author$project$Model$PostMeta$Query$queryPostMeta, $author$project$Features$Post$Model$Config$config.postMeta.step, $author$project$Features$Post$Model$Config$config.steps, post.name);
+					return A4($author$project$Model$PostMeta$Query$queryPostMeta, model, $author$project$Features$Post$Model$Config$config.postMeta.step, $author$project$Features$Post$Model$Config$config.steps, post.name);
 				}
 			default:
 				return $elm$core$Platform$Cmd$none;
@@ -14029,19 +14055,29 @@ var $author$project$Components$Article$article = function (props) {
 							[
 								A2(
 								$rtfeldman$elm_css$Css$Global$typeSelector,
-								'p img',
-								_List_fromArray(
-									[
-										A2($rtfeldman$elm_css$Css$margin2, $rtfeldman$elm_css$Css$zero, $rtfeldman$elm_css$Css$auto),
-										$rtfeldman$elm_css$Css$height(
-										$rtfeldman$elm_css$Css$px(550))
-									])),
-								A2(
-								$rtfeldman$elm_css$Css$Global$typeSelector,
 								'p a',
 								_List_fromArray(
 									[
 										$rtfeldman$elm_css$Css$color(props.model.theme.accent)
+									])),
+								A2(
+								$rtfeldman$elm_css$Css$Global$typeSelector,
+								'p img',
+								_List_fromArray(
+									[
+										A2($rtfeldman$elm_css$Css$margin2, $rtfeldman$elm_css$Css$zero, $rtfeldman$elm_css$Css$auto),
+										$rtfeldman$elm_css$Css$maxWidth(
+										$rtfeldman$elm_css$Css$pct(100)),
+										$rtfeldman$elm_css$Css$height($rtfeldman$elm_css$Css$auto)
+									])),
+								A2(
+								$rtfeldman$elm_css$Css$Global$typeSelector,
+								'p center',
+								_List_fromArray(
+									[
+										$rtfeldman$elm_css$Css$color(props.model.theme.textPrimary),
+										$rtfeldman$elm_css$Css$fontSize(
+										$rtfeldman$elm_css$Css$rem(0.8))
 									]))
 							]))
 					]))
@@ -15464,8 +15500,31 @@ var $author$project$Main$main = $elm$browser$Browser$application(
 _Platform_export({'Main':{'init':$author$project$Main$main(
 	A2(
 		$elm$json$Json$Decode$andThen,
-		function (colorSchema) {
-			return $elm$json$Json$Decode$succeed(
-				{colorSchema: colorSchema});
+		function (env) {
+			return A2(
+				$elm$json$Json$Decode$andThen,
+				function (colorSchema) {
+					return $elm$json$Json$Decode$succeed(
+						{colorSchema: colorSchema, env: env});
+				},
+				A2($elm$json$Json$Decode$field, 'colorSchema', $elm$json$Json$Decode$string));
 		},
-		A2($elm$json$Json$Decode$field, 'colorSchema', $elm$json$Json$Decode$string)))(0)}});}(this));
+		A2(
+			$elm$json$Json$Decode$field,
+			'env',
+			A2(
+				$elm$json$Json$Decode$andThen,
+				function (gitHub) {
+					return $elm$json$Json$Decode$succeed(
+						{gitHub: gitHub});
+				},
+				A2(
+					$elm$json$Json$Decode$field,
+					'gitHub',
+					A2(
+						$elm$json$Json$Decode$andThen,
+						function (token) {
+							return $elm$json$Json$Decode$succeed(
+								{token: token});
+						},
+						A2($elm$json$Json$Decode$field, 'token', $elm$json$Json$Decode$string)))))))(0)}});}(this));
