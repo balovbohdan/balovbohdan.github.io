@@ -10015,6 +10015,18 @@ var $author$project$Features$NotFound$NotFound$notFound = function (_v0) {
 				$rtfeldman$elm_css$Html$Styled$text('not found')
 			]));
 };
+var $rtfeldman$elm_css$Css$prop3 = F4(
+	function (key, argA, argB, argC) {
+		return A2(
+			$rtfeldman$elm_css$Css$property,
+			key,
+			A2(
+				$elm$core$String$join,
+				' ',
+				_List_fromArray(
+					[argA.value, argB.value, argC.value])));
+	});
+var $rtfeldman$elm_css$Css$borderLeft3 = $rtfeldman$elm_css$Css$prop3('border-left');
 var $rtfeldman$elm_css$Css$Structure$Child = {$: 'Child'};
 var $rtfeldman$elm_css$Css$Preprocess$NestSnippet = F2(
 	function (a, b) {
@@ -10023,6 +10035,7 @@ var $rtfeldman$elm_css$Css$Preprocess$NestSnippet = F2(
 var $rtfeldman$elm_css$Css$Global$children = $rtfeldman$elm_css$Css$Preprocess$NestSnippet($rtfeldman$elm_css$Css$Structure$Child);
 var $rtfeldman$elm_css$Css$height = $rtfeldman$elm_css$Css$prop1('height');
 var $rtfeldman$elm_css$Css$padding2 = $rtfeldman$elm_css$Css$prop2('padding');
+var $rtfeldman$elm_css$Css$paddingLeft = $rtfeldman$elm_css$Css$prop1('padding-left');
 var $rtfeldman$elm_css$VirtualDom$Styled$unstyledNode = $rtfeldman$elm_css$VirtualDom$Styled$Unstyled;
 var $rtfeldman$elm_css$Html$Styled$fromUnstyled = $rtfeldman$elm_css$VirtualDom$Styled$unstyledNode;
 var $pablohirafuji$elm_markdown$Markdown$Block$BlockQuote = function (a) {
@@ -14034,6 +14047,7 @@ var $author$project$Utils$Html$parseMarkdown = function (markdown) {
 		$rtfeldman$elm_css$Html$Styled$fromUnstyled,
 		A2($pablohirafuji$elm_markdown$Markdown$toHtml, $elm$core$Maybe$Nothing, markdown));
 };
+var $rtfeldman$elm_css$Css$solid = {borderStyle: $rtfeldman$elm_css$Css$Structure$Compatible, textDecorationStyle: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'solid'};
 var $rtfeldman$elm_css$Css$Structure$TypeSelector = function (a) {
 	return {$: 'TypeSelector', a: a};
 };
@@ -14082,10 +14096,24 @@ var $author$project$Components$Article$article = function (props) {
 									])),
 								A2(
 								$rtfeldman$elm_css$Css$Global$typeSelector,
-								'p strong',
+								'p strong, blockquote p strong',
 								_List_fromArray(
 									[
 										$rtfeldman$elm_css$Css$color(props.model.theme.textPrimary)
+									])),
+								A2(
+								$rtfeldman$elm_css$Css$Global$typeSelector,
+								'blockquote',
+								_List_fromArray(
+									[
+										$rtfeldman$elm_css$Css$color(props.model.theme.textPrimary),
+										$rtfeldman$elm_css$Css$paddingLeft(
+										$rtfeldman$elm_css$Css$px(10)),
+										A3(
+										$rtfeldman$elm_css$Css$borderLeft3,
+										$rtfeldman$elm_css$Css$px(2),
+										$rtfeldman$elm_css$Css$solid,
+										props.model.theme.accent)
 									])),
 								A2(
 								$rtfeldman$elm_css$Css$Global$typeSelector,

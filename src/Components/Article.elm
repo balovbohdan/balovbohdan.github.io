@@ -20,7 +20,12 @@ article props =
         , Css.Global.children
             [ Css.Global.typeSelector "p a" [ Css.color props.model.theme.accent ]
             , Css.Global.typeSelector "pre" [ Css.width <| Css.pct 100 ]
-            , Css.Global.typeSelector "p strong" [ Css.color props.model.theme.textPrimary ]
+            , Css.Global.typeSelector "p strong, blockquote p strong" [ Css.color props.model.theme.textPrimary ]
+            , Css.Global.typeSelector "blockquote"
+              [ Css.color props.model.theme.textPrimary
+              , Css.paddingLeft (Css.px <| 10)
+              , Css.borderLeft3 (Css.px <| 2) Css.solid props.model.theme.accent
+              ]
             , Css.Global.typeSelector "p code"
               [ Css.color props.model.theme.codeColor
               , Css.backgroundColor props.model.theme.codeBackground
