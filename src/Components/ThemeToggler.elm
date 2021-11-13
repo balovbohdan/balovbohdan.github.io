@@ -2,7 +2,7 @@ module Components.ThemeToggler exposing (themeToggler)
 
 import Html.Styled exposing (Html)
 
-import Core.Model exposing (Model)
+import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message(..))
 import Components.Toggler exposing (toggler)
 

@@ -6,7 +6,8 @@ import Url
 import Html.Styled exposing (toUnstyled)
 
 import Core.App exposing (app)
-import Core.Model exposing (updateModel, getInitialModel, Model)
+import Core.Model.Types exposing (Model)
+import Core.Model.Utils exposing (updateModel, getInitialModel)
 import Core.Message exposing (Message(..))
 import Core.Flags exposing (Flags)
 import Core.Utils.PageTitle exposing (getPageTitle)

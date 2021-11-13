@@ -3,7 +3,7 @@ module Features.Post.Post exposing (post)
 import Html.Styled exposing (div, text, Html)
 import Url.Parser exposing ((</>), parse)
 
-import Core.Model exposing (Model)
+import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message)
 import Core.Route.Parsers exposing (postUrlParser)
 import Components.Article exposing (article)

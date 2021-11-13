@@ -6,7 +6,7 @@ import Html.Styled exposing (div, a, p, text, Html)
 import Html.Styled.Attributes exposing (css, href)
 
 import Utils.Css exposing (mixCss)
-import Core.Model exposing (Model)
+import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message)
 
 type alias Props =

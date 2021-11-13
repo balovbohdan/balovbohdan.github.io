@@ -3,7 +3,7 @@ module Features.Home.Model exposing (queryHomeFeatureContent, parseHomeFeatureCo
 import Http
 import Array exposing (Array)
 
-import Core.Model exposing (Model)
+import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message(..))
 import Features.Home.Config exposing (config)
 

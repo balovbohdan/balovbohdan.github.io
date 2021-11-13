@@ -3,7 +3,7 @@ module Features.Home.PostMetasList exposing (getMetasList)
 import Json.Decode
 import Array
 
-import Core.Model exposing (Model)
+import Core.Model.Types exposing (Model)
 import Features.Home.Types exposing (PostMetaListItem)
 
 metaDecoder : Json.Decode.Decoder PostMetaListItem

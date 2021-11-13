@@ -5,7 +5,7 @@ import Html.Styled exposing (div, Html)
 import Html.Styled.Attributes exposing (css)
 
 import Components.Card exposing (card)
-import Core.Model exposing (Model)
+import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message)
 import Features.Home.Model exposing (parseHomeFeatureContent)
 

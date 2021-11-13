@@ -1,4 +1,4 @@
-module Core.Model exposing (updateModel, getInitialModel, Model)
+module Core.Model.Utils exposing (updateModel, getInitialModel)
 
 import Url
 import Array
@@ -6,21 +6,12 @@ import Browser
 import Browser.Navigation
 import Json.Encode
 
-import Core.Theme exposing (Theme)
+import Core.Model.Types exposing (Model)
 import Core.Flags exposing (Flags)
 import Core.Message exposing (Message(..))
-import Core.FeatureData.FeatureData exposing (FeatureData)
 import Core.Theme exposing (getTheme)
 import Ports exposing (localStorageOutcomePort)
 import Core.FeatureData.Utils exposing (queryFeatureContent)
-
-type alias Model =
-  { key : Browser.Navigation.Key
-  , url : Url.Url
-  , colorSchema: String
-  , theme: Theme
-  , featureData: FeatureData
-  }
 
 getColorSchemaToggledPortEvent : String -> String
 getColorSchemaToggledPortEvent colorSchema =

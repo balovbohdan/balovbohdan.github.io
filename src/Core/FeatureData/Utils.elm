@@ -1,6 +1,6 @@
 module Core.FeatureData.Utils exposing (queryFeatureContent)
 
-import Core.Model exposing (Model)
+import Core.Model.Types exposing (Model)
 import Core.Route.Route exposing (Route(..))
 import Core.Message exposing (Message(..))
 import Core.Route.Utils exposing (getRoute)

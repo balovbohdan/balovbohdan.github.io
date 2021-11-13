@@ -5559,7 +5559,7 @@ var $author$project$Core$Theme$getTheme = function (colorShema) {
 			return $author$project$Core$Theme$themeLight;
 	}
 };
-var $author$project$Main$getInitialModel = F3(
+var $author$project$Core$Model$Utils$getInitialModel = F3(
 	function (flags, key, url) {
 		return {
 			colorSchema: flags.colorSchema,
@@ -6821,7 +6821,7 @@ var $elm$url$Url$toString = function (url) {
 };
 var $author$project$Main$init = F3(
 	function (flags, url, key) {
-		var initialModel = A3($author$project$Main$getInitialModel, flags, key, url);
+		var initialModel = A3($author$project$Core$Model$Utils$getInitialModel, flags, key, url);
 		return _Utils_Tuple2(
 			initialModel,
 			A2(
@@ -6848,7 +6848,7 @@ var $elm$json$Json$Encode$object = function (pairs) {
 			pairs));
 };
 var $elm$json$Json$Encode$string = _Json_wrap;
-var $author$project$Main$getColorSchemaToggledPortEvent = function (colorSchema) {
+var $author$project$Core$Model$Utils$getColorSchemaToggledPortEvent = function (colorSchema) {
 	return A2(
 		$elm$json$Json$Encode$encode,
 		0,
@@ -6948,7 +6948,7 @@ var $elm$core$Array$push = F2(
 			array);
 	});
 var $elm$browser$Browser$Navigation$pushUrl = _Browser_pushUrl;
-var $author$project$Main$update = F2(
+var $author$project$Core$Model$Utils$updateModel = F2(
 	function (message, model) {
 		switch (message.$) {
 			case 'MessageLinkClicked':
@@ -6987,7 +6987,7 @@ var $author$project$Main$update = F2(
 							theme: $author$project$Core$Theme$getTheme(colorSchema)
 						}),
 					$author$project$Ports$localStorageOutcomePort(
-						$author$project$Main$getColorSchemaToggledPortEvent(colorSchema)));
+						$author$project$Core$Model$Utils$getColorSchemaToggledPortEvent(colorSchema)));
 			default:
 				var step = message.a;
 				var steps = message.b;
@@ -15412,7 +15412,7 @@ var $author$project$Main$view = function (model) {
 	};
 };
 var $author$project$Main$main = $elm$browser$Browser$application(
-	{init: $author$project$Main$init, onUrlChange: $author$project$Core$Message$MessageUrlChanged, onUrlRequest: $author$project$Core$Message$MessageLinkClicked, subscriptions: $author$project$Main$subscriptions, update: $author$project$Main$update, view: $author$project$Main$view});
+	{init: $author$project$Main$init, onUrlChange: $author$project$Core$Message$MessageUrlChanged, onUrlRequest: $author$project$Core$Message$MessageLinkClicked, subscriptions: $author$project$Main$subscriptions, update: $author$project$Core$Model$Utils$updateModel, view: $author$project$Main$view});
 _Platform_export({'Main':{'init':$author$project$Main$main(
 	A2(
 		$elm$json$Json$Decode$andThen,
