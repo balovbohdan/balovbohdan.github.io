@@ -27,11 +27,11 @@ getPostMetaItemNames model =
 queryHomeFeatureContent : Model -> Cmd Message
 queryHomeFeatureContent model =
   case (model.featureData.step) of
-    0 -> queryPostMetaItems model config.metaNames.step config.steps
+    0 -> queryPostMetaItems config.metaNames.step config.steps
     1 ->
       let
         metaItemNames = getPostMetaItemNames model
-        messages = List.map (queryPostMeta model config.meta.step config.steps) metaItemNames
+        messages = List.map (queryPostMeta config.meta.step config.steps) metaItemNames
       in
         Cmd.batch messages
     _ -> Cmd.none

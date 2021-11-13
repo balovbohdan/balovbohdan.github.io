@@ -5564,7 +5564,6 @@ var $author$project$Core$Model$Utils$getInitialModel = F3(
 	function (flags, key, url) {
 		return {
 			colorSchema: flags.colorSchema,
-			env: flags.env,
 			featureData: $author$project$Core$FeatureData$FeatureData$defaultFeatureData,
 			key: key,
 			theme: $author$project$Core$Theme$getTheme(flags.colorSchema),
@@ -6736,8 +6735,9 @@ var $elm$http$Http$request = function (r) {
 		$elm$http$Http$Request(
 			{allowCookiesFromOtherDomains: false, body: r.body, expect: r.expect, headers: r.headers, method: r.method, timeout: r.timeout, tracker: r.tracker, url: r.url}));
 };
-var $author$project$Model$PostMeta$Query$queryPostMeta = F4(
-	function (model, step, steps, name) {
+var $author$project$Env$tokenGithub = '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';
+var $author$project$Model$PostMeta$Query$queryPostMeta = F3(
+	function (step, steps, name) {
 		return $elm$http$Http$request(
 			{
 				body: $elm$http$Http$emptyBody,
@@ -6745,7 +6745,7 @@ var $author$project$Model$PostMeta$Query$queryPostMeta = F4(
 					A2($author$project$Core$Message$MessageFeatureContentReceived, step, steps)),
 				headers: _List_fromArray(
 					[
-						A2($elm$http$Http$header, 'Authorization', 'token ' + model.env.gitHub.token)
+						A2($elm$http$Http$header, 'Authorization', 'token ' + $author$project$Env$tokenGithub)
 					]),
 				method: 'GET',
 				timeout: $elm$core$Maybe$Nothing,
@@ -6754,8 +6754,8 @@ var $author$project$Model$PostMeta$Query$queryPostMeta = F4(
 			});
 	});
 var $author$project$Model$PostMetaItems$Config$config = {url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/metas'};
-var $author$project$Model$PostMetaItems$Query$queryPostMetaItems = F3(
-	function (model, step, steps) {
+var $author$project$Model$PostMetaItems$Query$queryPostMetaItems = F2(
+	function (step, steps) {
 		return $elm$http$Http$request(
 			{
 				body: $elm$http$Http$emptyBody,
@@ -6763,7 +6763,7 @@ var $author$project$Model$PostMetaItems$Query$queryPostMetaItems = F3(
 					A2($author$project$Core$Message$MessageFeatureContentReceived, step, steps)),
 				headers: _List_fromArray(
 					[
-						A2($elm$http$Http$header, 'Authorization', 'token ' + model.env.gitHub.token)
+						A2($elm$http$Http$header, 'Authorization', 'token ' + $author$project$Env$tokenGithub)
 					]),
 				method: 'GET',
 				timeout: $elm$core$Maybe$Nothing,
@@ -6775,12 +6775,12 @@ var $author$project$Features$Home$Model$Query$queryHomeFeatureContent = function
 	var _v0 = model.featureData.step;
 	switch (_v0) {
 		case 0:
-			return A3($author$project$Model$PostMetaItems$Query$queryPostMetaItems, model, $author$project$Features$Home$Model$Config$config.metaNames.step, $author$project$Features$Home$Model$Config$config.steps);
+			return A2($author$project$Model$PostMetaItems$Query$queryPostMetaItems, $author$project$Features$Home$Model$Config$config.metaNames.step, $author$project$Features$Home$Model$Config$config.steps);
 		case 1:
 			var metaItemNames = $author$project$Features$Home$Model$Query$getPostMetaItemNames(model);
 			var messages = A2(
 				$elm$core$List$map,
-				A3($author$project$Model$PostMeta$Query$queryPostMeta, model, $author$project$Features$Home$Model$Config$config.meta.step, $author$project$Features$Home$Model$Config$config.steps),
+				A2($author$project$Model$PostMeta$Query$queryPostMeta, $author$project$Features$Home$Model$Config$config.meta.step, $author$project$Features$Home$Model$Config$config.steps),
 				metaItemNames);
 			return $elm$core$Platform$Cmd$batch(messages);
 		default:
@@ -7114,8 +7114,8 @@ var $author$project$Model$Post$Decoder$decodePost = function (input) {
 	}
 };
 var $author$project$Model$Post$Config$config = {extension: '.md', url: 'https://api.github.com/repos/balovbohdan/mr-balov-blog/contents/docs/content/blog/posts/'};
-var $author$project$Model$Post$Query$queryPost = F4(
-	function (model, step, steps, id) {
+var $author$project$Model$Post$Query$queryPost = F3(
+	function (step, steps, id) {
 		return $elm$http$Http$request(
 			{
 				body: $elm$http$Http$emptyBody,
@@ -7123,7 +7123,7 @@ var $author$project$Model$Post$Query$queryPost = F4(
 					A2($author$project$Core$Message$MessageFeatureContentReceived, step, steps)),
 				headers: _List_fromArray(
 					[
-						A2($elm$http$Http$header, 'Authorization', 'token ' + model.env.gitHub.token)
+						A2($elm$http$Http$header, 'Authorization', 'token ' + $author$project$Env$tokenGithub)
 					]),
 				method: 'GET',
 				timeout: $elm$core$Maybe$Nothing,
@@ -7136,7 +7136,7 @@ var $author$project$Features$Post$Model$Query$queryPostFeatureContent = F2(
 		var _v0 = model.featureData.step;
 		switch (_v0) {
 			case 0:
-				return A4($author$project$Model$Post$Query$queryPost, model, $author$project$Features$Post$Model$Config$config.post.step, $author$project$Features$Post$Model$Config$config.steps, id);
+				return A3($author$project$Model$Post$Query$queryPost, $author$project$Features$Post$Model$Config$config.post.step, $author$project$Features$Post$Model$Config$config.steps, id);
 			case 1:
 				var _v1 = A2($elm$core$Array$get, 0, model.featureData.content);
 				if (_v1.$ === 'Nothing') {
@@ -7145,7 +7145,7 @@ var $author$project$Features$Post$Model$Query$queryPostFeatureContent = F2(
 					var content = _v1.a;
 					var post = $author$project$Model$Post$Decoder$decodePost(
 						$elm$core$Maybe$Just(content));
-					return A4($author$project$Model$PostMeta$Query$queryPostMeta, model, $author$project$Features$Post$Model$Config$config.postMeta.step, $author$project$Features$Post$Model$Config$config.steps, post.name);
+					return A3($author$project$Model$PostMeta$Query$queryPostMeta, $author$project$Features$Post$Model$Config$config.postMeta.step, $author$project$Features$Post$Model$Config$config.steps, post.name);
 				}
 			default:
 				return $elm$core$Platform$Cmd$none;
@@ -15507,31 +15507,8 @@ var $author$project$Main$main = $elm$browser$Browser$application(
 _Platform_export({'Main':{'init':$author$project$Main$main(
 	A2(
 		$elm$json$Json$Decode$andThen,
-		function (env) {
-			return A2(
-				$elm$json$Json$Decode$andThen,
-				function (colorSchema) {
-					return $elm$json$Json$Decode$succeed(
-						{colorSchema: colorSchema, env: env});
-				},
-				A2($elm$json$Json$Decode$field, 'colorSchema', $elm$json$Json$Decode$string));
+		function (colorSchema) {
+			return $elm$json$Json$Decode$succeed(
+				{colorSchema: colorSchema});
 		},
-		A2(
-			$elm$json$Json$Decode$field,
-			'env',
-			A2(
-				$elm$json$Json$Decode$andThen,
-				function (gitHub) {
-					return $elm$json$Json$Decode$succeed(
-						{gitHub: gitHub});
-				},
-				A2(
-					$elm$json$Json$Decode$field,
-					'gitHub',
-					A2(
-						$elm$json$Json$Decode$andThen,
-						function (token) {
-							return $elm$json$Json$Decode$succeed(
-								{token: token});
-						},
-						A2($elm$json$Json$Decode$field, 'token', $elm$json$Json$Decode$string)))))))(0)}});}(this));
+		A2($elm$json$Json$Decode$field, 'colorSchema', $elm$json$Json$Decode$string)))(0)}});}(this));
