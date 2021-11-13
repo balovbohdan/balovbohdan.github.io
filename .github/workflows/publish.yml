@@ -24,7 +24,7 @@ jobs:
         run: npm run build-env-variables
 
       - name: Save Env Variables
-        run: echo TOKEN_GH=${{ secrets.TOKEN_GITHUB }} >> .enver
+        run: echo TOKEN_GH=${{ secrets.token_github }} >> .enver
 
       - name: Build 🏗️
         run: npm run build
