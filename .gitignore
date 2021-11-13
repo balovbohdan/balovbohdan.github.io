@@ -4,3 +4,4 @@ workspace.code-workspace
 .DS_Store
 .env
 src/Env.elm
+src/index.js
