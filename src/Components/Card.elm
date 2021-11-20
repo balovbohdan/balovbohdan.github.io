@@ -2,7 +2,6 @@ module Components.Card exposing (card)
 
 import Css
 import Css.Media
-import Css.Global
 import Css.Transitions
 import Html.Styled exposing (a, div, h3, p, text, img, Html)
 import Html.Styled.Attributes exposing (css, src, href)
@@ -23,18 +22,20 @@ type alias Props =
 cover : Props -> Html Message
 cover props =
   div
-    [ css [ Css.width (Css.pct 100) ] ]
-    [ img
-        [ src props.coverSrc
-        , css [ Css.display Css.block, Css.maxWidth (Css.pct 100) ]
+    [ css
+        [ Css.width <| Css.pct 100
+        , Css.height <| Css.px 180
+        , Css.backgroundImage (Css.url props.coverSrc)
+        , Css.backgroundSize Css.cover
+        , Css.backgroundPosition Css.center
         ]
-        []
     ]
+    []
 
 footer : Props -> Html Message
 footer props =
   div
-    [ css [ Css.flexBasis <| Css.pct 25, Css.padding (Css.px 10) ] ]
+    [ css [ Css.flexBasis <| Css.pct 25, Css.padding <| Css.px 10 ] ]
     [ p
         [ css
             [ Css.color props.theme.textSecondary

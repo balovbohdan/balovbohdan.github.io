@@ -9,14 +9,14 @@ import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message)
 import Utils.Html exposing (parseMarkdown)
 
-type alias Props = { model: Model, content: String }
+type alias Props = { model: Model, content: String, meta: Html Message }
 
-article : Props -> Html Message
-article props =
+content : Props -> Html Message
+content props =
   div
     [ css
-        [ Css.maxWidth <| Css.px 750
-        , Css.margin2 Css.zero Css.auto
+        [ Css.borderBottom3 (Css.px 1) Css.solid props.model.theme.primary
+        , Css.marginBottom <| Css.px 15
         , Css.Global.children
             [ Css.Global.typeSelector "p a" [ Css.color props.model.theme.accent ]
             , Css.Global.typeSelector "pre" [ Css.width <| Css.pct 100 ]
@@ -50,3 +50,13 @@ article props =
         ]
     ]
     (parseMarkdown props.content)
+
+article : Props -> Html Message
+article props =
+  div
+    [ css
+        [ Css.maxWidth <| Css.px 750
+        , Css.margin2 Css.zero Css.auto
+        ]
+    ]
+    [ content props, props.meta ]
