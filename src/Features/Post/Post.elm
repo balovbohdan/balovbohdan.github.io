@@ -2,8 +2,7 @@ module Features.Post.Post exposing (post)
 
 import Css
 import Array
-import Html.Styled.Attributes exposing (href, target)
-import Html.Styled.Attributes exposing (css)
+import Html.Styled.Attributes exposing (css, href, target)
 import Html.Styled exposing (a, div, text, Html)
 import Url.Parser exposing ((</>), parse)
 

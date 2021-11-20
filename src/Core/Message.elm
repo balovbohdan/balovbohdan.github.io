@@ -10,5 +10,4 @@ type Message =
   MessageLinkClicked Browser.UrlRequest
   | MessageUrlChanged Url.Url
   | MessageColorSchemaToggled String
-  -- | MessageFeatureContentPartReceived Int Int (Result Http.Error FeatureContent)
   | MessageFeatureContentReceived Int Int (Result Http.Error FeatureContent)

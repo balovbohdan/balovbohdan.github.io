@@ -1,3 +1,3 @@
 module Core.Route.Route exposing (Route(..))
 
-type Route = RouteHome | RoutePost String | RouteNotFound
+type Route = RouteHome | RouteBlog | RoutePost String | RouteNotFound

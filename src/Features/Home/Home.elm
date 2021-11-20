@@ -1,14 +1,20 @@
 module Features.Home.Home exposing (home)
 
 import Css
-import Html.Styled exposing (div, Html)
+import Url
+import Array
+import Browser
+import Html.Styled exposing (h2, div, text, Html)
 import Html.Styled.Attributes exposing (css)
 
 import Components.Card exposing (card)
 import Core.Model.Types exposing (Model)
-import Core.Message exposing (Message)
-import Features.Home.Model.Query exposing (parseHomeFeatureContent)
+import Core.Message exposing (Message(..))
 import Model.PostMeta.Types exposing (PostMeta)
+import Components.Button exposing (button)
+import Features.Home.Constants exposing (constants)
+import Features.Home.Model.Config exposing (config)
+import Features.Home.Model.Query exposing (parseHomeFeatureContent)
 
 post : Model -> PostMeta -> Html Message
 post model postMeta =
@@ -37,5 +43,31 @@ posts model =
       ]
       ( List.map (post model) content )
 
+loadMoreButton : Model -> Html Message
+loadMoreButton model =
+  button
+    { text = "Go to blog"
+    , model = model
+    , onClick = MessageLinkClicked (Browser.External "/#/blog")
+    }
+
+getShouldShowLoadMoreButton : Model -> Bool
+getShouldShowLoadMoreButton model =
+  let
+    metaNamesIndex = config.metaNames.step
+    -- postsAmount = Maybe.withDefault (List.singleton) (Array.get metaNamesIndex model.featureData.content)
+  in
+    False
+
 home : Model -> Html Message
-home model = posts model
+home model =
+  div
+    []
+    [ h2 [ css [ Css.marginBottom <| Css.px 50 ] ] [ text "Some blog posts..." ]
+    , posts model
+    , div
+      [ css
+          [ Css.displayFlex, Css.justifyContent Css.center, Css.marginTop <| Css.px 30 ]
+      ]
+      [ if (getShouldShowLoadMoreButton model) then loadMoreButton model else (div [] []) ]
+    ]
