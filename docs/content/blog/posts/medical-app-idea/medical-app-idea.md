@@ -1,7 +1,3 @@
----
-permalink: /
----
-
 # Medical app idea
 
 ## Formalization of my thoughts about medical pet project
