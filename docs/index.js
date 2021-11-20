@@ -5481,6 +5481,67 @@ var $elm$core$Task$perform = F2(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
 var $elm$browser$Browser$application = _Browser_application;
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var $mthadley$elm_hash_routing$Browser$Hash$Internal$fixPathQuery = function (url) {
+	var _v0 = function () {
+		var _v1 = A2($elm$core$String$split, '?', url.path);
+		if (_v1.b && _v1.b.b) {
+			var path = _v1.a;
+			var _v2 = _v1.b;
+			var query = _v2.a;
+			return _Utils_Tuple2(
+				path,
+				$elm$core$Maybe$Just(query));
+		} else {
+			return _Utils_Tuple2(url.path, url.query);
+		}
+	}();
+	var newPath = _v0.a;
+	var newQuery = _v0.b;
+	return _Utils_update(
+		url,
+		{path: newPath, query: newQuery});
+};
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $mthadley$elm_hash_routing$Browser$Hash$Internal$pathFromFragment = function (url) {
+	return _Utils_update(
+		url,
+		{
+			fragment: $elm$core$Maybe$Nothing,
+			path: A2($elm$core$Maybe$withDefault, '', url.fragment)
+		});
+};
+var $mthadley$elm_hash_routing$Browser$Hash$Internal$updateUrl = A2($elm$core$Basics$composeL, $mthadley$elm_hash_routing$Browser$Hash$Internal$fixPathQuery, $mthadley$elm_hash_routing$Browser$Hash$Internal$pathFromFragment);
+var $mthadley$elm_hash_routing$Browser$Hash$application = function (config) {
+	return $elm$browser$Browser$application(
+		{
+			init: F3(
+				function (flags, url, key) {
+					return A3(
+						config.init,
+						flags,
+						$mthadley$elm_hash_routing$Browser$Hash$Internal$updateUrl(url),
+						key);
+				}),
+			onUrlChange: A2($elm$core$Basics$composeL, config.onUrlChange, $mthadley$elm_hash_routing$Browser$Hash$Internal$updateUrl),
+			onUrlRequest: config.onUrlRequest,
+			subscriptions: config.subscriptions,
+			update: config.update,
+			view: config.view
+		});
+};
 var $elm$json$Json$Decode$field = _Json_decodeField;
 var $author$project$Core$FeatureData$FeatureData$defaultFeatureData = {content: $elm$core$Array$empty, loading: false, step: 0};
 var $rtfeldman$elm_css$Css$Structure$Compatible = {$: 'Compatible'};
@@ -6364,15 +6425,6 @@ var $author$project$Core$Route$Utils$parseUrl = $elm$url$Url$Parser$oneOf(
 			A2($elm$url$Url$Parser$map, $author$project$Core$Route$Route$RoutePost, $author$project$Core$Route$Parsers$postUrlParser),
 			A2($elm$url$Url$Parser$map, $author$project$Core$Route$Route$RouteNotFound, $elm$url$Url$Parser$top)
 		]));
-var $elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
 var $author$project$Core$Route$Utils$getRoute = function (path) {
 	var _v0 = $elm$url$Url$fromString(path);
 	if (_v0.$ === 'Nothing') {
@@ -7439,11 +7491,6 @@ var $elm$core$List$any = F2(
 				}
 			}
 		}
-	});
-var $elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
 	});
 var $elm$core$Basics$not = _Basics_not;
 var $elm$core$List$all = F2(
@@ -9976,7 +10023,7 @@ var $author$project$Features$Home$Home$post = F2(
 				description: postMeta.description,
 				theme: model.theme,
 				title: postMeta.title,
-				to: '/post/' + A3($elm$core$String$replace, '.md', '', postMeta.name)
+				to: '/#/post/' + A3($elm$core$String$replace, '.md', '', postMeta.name)
 			});
 	});
 var $rtfeldman$elm_css$Css$spaceBetween = $rtfeldman$elm_css$Css$prop1('space-between');
@@ -15646,7 +15693,7 @@ var $author$project$Main$view = function (model) {
 		title: $author$project$Core$Utils$PageTitle$getPageTitle(model)
 	};
 };
-var $author$project$Main$main = $elm$browser$Browser$application(
+var $author$project$Main$main = $mthadley$elm_hash_routing$Browser$Hash$application(
 	{init: $author$project$Main$init, onUrlChange: $author$project$Core$Message$MessageUrlChanged, onUrlRequest: $author$project$Core$Message$MessageLinkClicked, subscriptions: $author$project$Main$subscriptions, update: $author$project$Core$Model$Utils$updateModel, view: $author$project$Main$view});
 _Platform_export({'Main':{'init':$author$project$Main$main(
 	A2(

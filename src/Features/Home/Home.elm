@@ -17,7 +17,7 @@ post model postMeta =
     , description = postMeta.description
     , coverSrc = postMeta.cover
     , css = [ Css.marginBottom (Css.px 30) ]
-    , to = "/post/" ++ (String.replace ".md" "" postMeta.name)
+    , to = "/#/post/" ++ (String.replace ".md" "" postMeta.name)
     , theme = model.theme
     }
 
