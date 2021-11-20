@@ -30,6 +30,7 @@ html {
 body {
 	width: 100%;
 	overflow-x: hidden;
+	padding-bottom: 10px;
 }
 
 strong {
@@ -50,6 +51,7 @@ ol, ul, li {
 
 a {
 	text-decoration: none;
+	cursor: pointer;
 	font-family: "Ubuntu", sans-serif;
 	font-weight: 300;
 	color: rgb(33, 34, 39);
