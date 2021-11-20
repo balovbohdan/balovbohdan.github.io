@@ -1,8 +1,9 @@
 module Main exposing (main)
 
-import Browser
-import Browser.Navigation
 import Url
+import Browser
+import Browser.Hash
+import Browser.Navigation
 import Html.Styled exposing (toUnstyled)
 
 import Core.App exposing (app)
@@ -33,7 +34,7 @@ view model =
 
 main : Program Flags Model Message
 main =
-  Browser.application
+  Browser.Hash.application
     { init = init
     , view = view
     , update = updateModel

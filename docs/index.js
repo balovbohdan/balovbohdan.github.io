@@ -5481,6 +5481,67 @@ var $elm$core$Task$perform = F2(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
 var $elm$browser$Browser$application = _Browser_application;
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var $mthadley$elm_hash_routing$Browser$Hash$Internal$fixPathQuery = function (url) {
+	var _v0 = function () {
+		var _v1 = A2($elm$core$String$split, '?', url.path);
+		if (_v1.b && _v1.b.b) {
+			var path = _v1.a;
+			var _v2 = _v1.b;
+			var query = _v2.a;
+			return _Utils_Tuple2(
+				path,
+				$elm$core$Maybe$Just(query));
+		} else {
+			return _Utils_Tuple2(url.path, url.query);
+		}
+	}();
+	var newPath = _v0.a;
+	var newQuery = _v0.b;
+	return _Utils_update(
+		url,
+		{path: newPath, query: newQuery});
+};
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $mthadley$elm_hash_routing$Browser$Hash$Internal$pathFromFragment = function (url) {
+	return _Utils_update(
+		url,
+		{
+			fragment: $elm$core$Maybe$Nothing,
+			path: A2($elm$core$Maybe$withDefault, '', url.fragment)
+		});
+};
+var $mthadley$elm_hash_routing$Browser$Hash$Internal$updateUrl = A2($elm$core$Basics$composeL, $mthadley$elm_hash_routing$Browser$Hash$Internal$fixPathQuery, $mthadley$elm_hash_routing$Browser$Hash$Internal$pathFromFragment);
+var $mthadley$elm_hash_routing$Browser$Hash$application = function (config) {
+	return $elm$browser$Browser$application(
+		{
+			init: F3(
+				function (flags, url, key) {
+					return A3(
+						config.init,
+						flags,
+						$mthadley$elm_hash_routing$Browser$Hash$Internal$updateUrl(url),
+						key);
+				}),
+			onUrlChange: A2($elm$core$Basics$composeL, config.onUrlChange, $mthadley$elm_hash_routing$Browser$Hash$Internal$updateUrl),
+			onUrlRequest: config.onUrlRequest,
+			subscriptions: config.subscriptions,
+			update: config.update,
+			view: config.view
+		});
+};
 var $elm$json$Json$Decode$field = _Json_decodeField;
 var $author$project$Core$FeatureData$FeatureData$defaultFeatureData = {content: $elm$core$Array$empty, loading: false, step: 0};
 var $rtfeldman$elm_css$Css$Structure$Compatible = {$: 'Compatible'};
@@ -6361,17 +6422,9 @@ var $author$project$Core$Route$Utils$parseUrl = $elm$url$Url$Parser$oneOf(
 	_List_fromArray(
 		[
 			A2($elm$url$Url$Parser$map, $author$project$Core$Route$Route$RouteHome, $elm$url$Url$Parser$top),
-			A2($elm$url$Url$Parser$map, $author$project$Core$Route$Route$RoutePost, $author$project$Core$Route$Parsers$postUrlParser)
+			A2($elm$url$Url$Parser$map, $author$project$Core$Route$Route$RoutePost, $author$project$Core$Route$Parsers$postUrlParser),
+			A2($elm$url$Url$Parser$map, $author$project$Core$Route$Route$RouteNotFound, $elm$url$Url$Parser$top)
 		]));
-var $elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
 var $author$project$Core$Route$Utils$getRoute = function (path) {
 	var _v0 = $elm$url$Url$fromString(path);
 	if (_v0.$ === 'Nothing') {
@@ -6739,7 +6792,7 @@ var $elm$http$Http$request = function (r) {
 		$elm$http$Http$Request(
 			{allowCookiesFromOtherDomains: false, body: r.body, expect: r.expect, headers: r.headers, method: r.method, timeout: r.timeout, tracker: r.tracker, url: r.url}));
 };
-var $author$project$Env$tokenGithub = 'e14b0e683e8003419eb1ca746a495662fe411227';
+var $author$project$Env$tokenGithub = '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';
 var $author$project$Model$PostMeta$Query$queryPostMeta = F3(
 	function (step, steps, name) {
 		return $elm$http$Http$request(
@@ -7438,11 +7491,6 @@ var $elm$core$List$any = F2(
 				}
 			}
 		}
-	});
-var $elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
 	});
 var $elm$core$Basics$not = _Basics_not;
 var $elm$core$List$all = F2(
@@ -9975,7 +10023,7 @@ var $author$project$Features$Home$Home$post = F2(
 				description: postMeta.description,
 				theme: model.theme,
 				title: postMeta.title,
-				to: '/post/' + A3($elm$core$String$replace, '.md', '', postMeta.name)
+				to: '/#/post/' + A3($elm$core$String$replace, '.md', '', postMeta.name)
 			});
 	});
 var $rtfeldman$elm_css$Css$spaceBetween = $rtfeldman$elm_css$Css$prop1('space-between');
@@ -10007,14 +10055,53 @@ var $author$project$Features$Home$Home$posts = function (model) {
 var $author$project$Features$Home$Home$home = function (model) {
 	return $author$project$Features$Home$Home$posts(model);
 };
-var $author$project$Features$NotFound$NotFound$notFound = function (_v0) {
+var $rtfeldman$elm_css$Html$Styled$iframe = $rtfeldman$elm_css$Html$Styled$node('iframe');
+var $rtfeldman$elm_css$Html$Styled$Attributes$property = $rtfeldman$elm_css$VirtualDom$Styled$property;
+var $rtfeldman$elm_css$Html$Styled$Attributes$src = function (url) {
+	return A2($rtfeldman$elm_css$Html$Styled$Attributes$stringProperty, 'src', url);
+};
+var $author$project$Features$NotFound$NotFound$gif = A2(
+	$rtfeldman$elm_css$Html$Styled$div,
+	_List_Nil,
+	_List_fromArray(
+		[
+			A2(
+			$rtfeldman$elm_css$Html$Styled$iframe,
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Html$Styled$Attributes$css(
+					_List_fromArray(
+						[
+							A2($rtfeldman$elm_css$Css$margin2, $rtfeldman$elm_css$Css$zero, $rtfeldman$elm_css$Css$auto),
+							$rtfeldman$elm_css$Css$width(
+							$rtfeldman$elm_css$Css$px(300)),
+							$rtfeldman$elm_css$Css$height(
+							$rtfeldman$elm_css$Css$px(300)),
+							$rtfeldman$elm_css$Css$maxWidth(
+							$rtfeldman$elm_css$Css$pct(100))
+						])),
+					$rtfeldman$elm_css$Html$Styled$Attributes$src('https://giphy.com/embed/OZeWzZalgU5XNyHAqh'),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$Attributes$property,
+					'class',
+					$elm$json$Json$Encode$string('giphy-embed')),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$Attributes$property,
+					'frameBorder',
+					$elm$json$Json$Encode$string('0')),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$Attributes$property,
+					'allowfullscreen',
+					$elm$json$Json$Encode$string('true'))
+				]),
+			_List_Nil)
+		]));
+var $author$project$Features$NotFound$NotFound$notFound = function (model) {
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
 		_List_Nil,
 		_List_fromArray(
-			[
-				$rtfeldman$elm_css$Html$Styled$text('not found')
-			]));
+			[$author$project$Features$NotFound$NotFound$gif]));
 };
 var $rtfeldman$elm_css$Css$prop3 = F4(
 	function (key, argA, argB, argC) {
@@ -15645,7 +15732,7 @@ var $author$project$Main$view = function (model) {
 		title: $author$project$Core$Utils$PageTitle$getPageTitle(model)
 	};
 };
-var $author$project$Main$main = $elm$browser$Browser$application(
+var $author$project$Main$main = $mthadley$elm_hash_routing$Browser$Hash$application(
 	{init: $author$project$Main$init, onUrlChange: $author$project$Core$Message$MessageUrlChanged, onUrlRequest: $author$project$Core$Message$MessageLinkClicked, subscriptions: $author$project$Main$subscriptions, update: $author$project$Core$Model$Utils$updateModel, view: $author$project$Main$view});
 _Platform_export({'Main':{'init':$author$project$Main$main(
 	A2(
