@@ -10055,14 +10055,53 @@ var $author$project$Features$Home$Home$posts = function (model) {
 var $author$project$Features$Home$Home$home = function (model) {
 	return $author$project$Features$Home$Home$posts(model);
 };
-var $author$project$Features$NotFound$NotFound$notFound = function (_v0) {
+var $rtfeldman$elm_css$Html$Styled$iframe = $rtfeldman$elm_css$Html$Styled$node('iframe');
+var $rtfeldman$elm_css$Html$Styled$Attributes$property = $rtfeldman$elm_css$VirtualDom$Styled$property;
+var $rtfeldman$elm_css$Html$Styled$Attributes$src = function (url) {
+	return A2($rtfeldman$elm_css$Html$Styled$Attributes$stringProperty, 'src', url);
+};
+var $author$project$Features$NotFound$NotFound$gif = A2(
+	$rtfeldman$elm_css$Html$Styled$div,
+	_List_Nil,
+	_List_fromArray(
+		[
+			A2(
+			$rtfeldman$elm_css$Html$Styled$iframe,
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Html$Styled$Attributes$css(
+					_List_fromArray(
+						[
+							A2($rtfeldman$elm_css$Css$margin2, $rtfeldman$elm_css$Css$zero, $rtfeldman$elm_css$Css$auto),
+							$rtfeldman$elm_css$Css$width(
+							$rtfeldman$elm_css$Css$px(300)),
+							$rtfeldman$elm_css$Css$height(
+							$rtfeldman$elm_css$Css$px(300)),
+							$rtfeldman$elm_css$Css$maxWidth(
+							$rtfeldman$elm_css$Css$pct(100))
+						])),
+					$rtfeldman$elm_css$Html$Styled$Attributes$src('https://giphy.com/embed/OZeWzZalgU5XNyHAqh'),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$Attributes$property,
+					'class',
+					$elm$json$Json$Encode$string('giphy-embed')),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$Attributes$property,
+					'frameBorder',
+					$elm$json$Json$Encode$string('0')),
+					A2(
+					$rtfeldman$elm_css$Html$Styled$Attributes$property,
+					'allowfullscreen',
+					$elm$json$Json$Encode$string('true'))
+				]),
+			_List_Nil)
+		]));
+var $author$project$Features$NotFound$NotFound$notFound = function (model) {
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
 		_List_Nil,
 		_List_fromArray(
-			[
-				$rtfeldman$elm_css$Html$Styled$text('not found')
-			]));
+			[$author$project$Features$NotFound$NotFound$gif]));
 };
 var $rtfeldman$elm_css$Css$prop3 = F4(
 	function (key, argA, argB, argC) {
