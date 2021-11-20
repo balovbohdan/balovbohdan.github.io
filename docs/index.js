@@ -6361,7 +6361,8 @@ var $author$project$Core$Route$Utils$parseUrl = $elm$url$Url$Parser$oneOf(
 	_List_fromArray(
 		[
 			A2($elm$url$Url$Parser$map, $author$project$Core$Route$Route$RouteHome, $elm$url$Url$Parser$top),
-			A2($elm$url$Url$Parser$map, $author$project$Core$Route$Route$RoutePost, $author$project$Core$Route$Parsers$postUrlParser)
+			A2($elm$url$Url$Parser$map, $author$project$Core$Route$Route$RoutePost, $author$project$Core$Route$Parsers$postUrlParser),
+			A2($elm$url$Url$Parser$map, $author$project$Core$Route$Route$RouteNotFound, $elm$url$Url$Parser$top)
 		]));
 var $elm$core$Maybe$withDefault = F2(
 	function (_default, maybe) {
@@ -6739,7 +6740,7 @@ var $elm$http$Http$request = function (r) {
 		$elm$http$Http$Request(
 			{allowCookiesFromOtherDomains: false, body: r.body, expect: r.expect, headers: r.headers, method: r.method, timeout: r.timeout, tracker: r.tracker, url: r.url}));
 };
-var $author$project$Env$tokenGithub = '2fef37d161466113115c8c2a038b086e75818486';
+var $author$project$Env$tokenGithub = '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';
 var $author$project$Model$PostMeta$Query$queryPostMeta = F3(
 	function (step, steps, name) {
 		return $elm$http$Http$request(

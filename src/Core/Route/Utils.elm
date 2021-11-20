@@ -13,7 +13,12 @@ import Core.Model.Types exposing (Model)
 import Core.Route.Parsers exposing (postUrlParser)
 
 parseUrl : Parser (Route -> a) a
-parseUrl = oneOf [ map RouteHome top, map RoutePost postUrlParser ]
+parseUrl =
+  oneOf
+    [ map RouteHome top
+    , map RoutePost postUrlParser
+    , map RouteNotFound top
+    ]
 
 getRoute : String -> Route
 getRoute path =
