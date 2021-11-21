@@ -54,7 +54,7 @@ On the other side, I think that it is possible to set up component-driven develo
 
 ## Safety
 
-Elm outputs in a really type-safe app. You will never face `Uncaught TypeError: Cannot read property of undefined` error so common for JavaScript. And this is a really big advantage of Elm. On the other hand, this safety means you need to write more complex code. I think that it is possible to develop type-safe apps with TypeScript (in case of following some FP principles such as ["totality"](https://kowainik.github.io/posts/totality).)
+Elm outputs in a really type-safe app. You will never face "Uncaught TypeError: Cannot read property of undefined" error so common for JavaScript. And this is a really big advantage of Elm. On the other hand, this safety means you need to write more complex code. I think that it is possible to develop type-safe apps with TypeScript (in case of following some FP principles such as ["totality"](https://kowainik.github.io/posts/totality).)
 
 ## Summary
 
