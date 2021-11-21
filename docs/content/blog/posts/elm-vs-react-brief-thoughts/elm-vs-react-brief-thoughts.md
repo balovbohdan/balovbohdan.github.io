@@ -66,10 +66,10 @@ But it's still a good idea to use Elm for learning purposes, for instance. It is
 
 I can elaborate on the FP topic for the whole book. But let's stop here for now. Jjust let me suggest some useful links for you to dive deeper into FP and Elm.
 
-- Official Elm docs: https://elm-lang.org/docs
-- Non-official Elm guide: https://elmprogramming.com/
-- Professor Frisby's FP guide: https://mostly-adequate.gitbook.io/mostly-adequate-guide/
-- Kowainik (about Haskell): https://kowainik.github.io/
-- Haskell book: https://haskellbook.com/
-- One more Haskell book: http://learnyouahaskell.com/
-- My first attempt to write about FP with JavaScript: https://balovbohdan.github.io/#/post/fp-notes-purity-1
+- [Official Elm docs](https://elm-lang.org/docs)
+- [Non-official Elm guide](https://elmprogramming.com/)
+- [Professor Frisby's FP guide](https://mostly-adequate.gitbook.io/mostly-adequate-guide/)
+- [Kowainik (about Haskell)](https://kowainik.github.io/)
+- [Haskell book](https://haskellbook.com/)
+- [One more Haskell book](http://learnyouahaskell.com/)
+- [My first attempt to write about FP with JavaScript](https://balovbohdan.github.io/#/post/fp-notes-purity-1)
