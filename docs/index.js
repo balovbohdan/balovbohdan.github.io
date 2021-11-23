@@ -5597,6 +5597,7 @@ var $author$project$Core$Theme$themeDark = {
 	codeBackground: A3($rtfeldman$elm_css$Css$rgb, 4, 21, 31),
 	codeColor: A3($rtfeldman$elm_css$Css$rgb, 7, 160, 195),
 	primary: A3($rtfeldman$elm_css$Css$rgb, 97, 112, 189),
+	primaryStrong: A3($rtfeldman$elm_css$Css$rgb, 69, 85, 165),
 	secondary: A3($rtfeldman$elm_css$Css$rgb, 249, 249, 249),
 	secondaryStrong: A3($rtfeldman$elm_css$Css$rgb, 216, 212, 213),
 	textPrimary: A4($rtfeldman$elm_css$Css$rgba, 255, 255, 255, 0.8),
@@ -5608,7 +5609,8 @@ var $author$project$Core$Theme$themeLight = {
 	background: A3($rtfeldman$elm_css$Css$rgb, 255, 255, 255),
 	codeBackground: A3($rtfeldman$elm_css$Css$rgb, 33, 34, 39),
 	codeColor: A4($rtfeldman$elm_css$Css$rgba, 255, 255, 255, 0.8),
-	primary: A3($rtfeldman$elm_css$Css$rgb, 97, 112, 189),
+	primary: A3($rtfeldman$elm_css$Css$rgb, 111, 125, 195),
+	primaryStrong: A3($rtfeldman$elm_css$Css$rgb, 97, 112, 189),
 	secondary: A3($rtfeldman$elm_css$Css$rgb, 249, 249, 249),
 	secondaryStrong: A3($rtfeldman$elm_css$Css$rgb, 216, 212, 213),
 	textPrimary: A3($rtfeldman$elm_css$Css$rgb, 33, 34, 39),
@@ -6412,7 +6414,7 @@ var $elm$url$Url$Parser$custom = F2(
 var $elm$url$Url$Parser$string = A2($elm$url$Url$Parser$custom, 'STRING', $elm$core$Maybe$Just);
 var $author$project$Core$Route$Parsers$postUrlParser = A2(
 	$elm$url$Url$Parser$slash,
-	$elm$url$Url$Parser$s('post'),
+	$elm$url$Url$Parser$s('posts'),
 	$elm$url$Url$Parser$string);
 var $elm$url$Url$Parser$top = $elm$url$Url$Parser$Parser(
 	function (state) {
@@ -10074,7 +10076,7 @@ var $author$project$Features$Blog$Blog$post = F2(
 				description: postMeta.description,
 				theme: model.theme,
 				title: postMeta.title,
-				to: '/#/post/' + A3($elm$core$String$replace, '.md', '', postMeta.name)
+				to: '/#/posts/' + A3($elm$core$String$replace, '.md', '', postMeta.name)
 			});
 	});
 var $rtfeldman$elm_css$Css$spaceBetween = $rtfeldman$elm_css$Css$prop1('space-between');
@@ -10106,11 +10108,12 @@ var $author$project$Features$Blog$Blog$posts = function (model) {
 var $author$project$Features$Blog$Blog$blog = function (model) {
 	return $author$project$Features$Blog$Blog$posts(model);
 };
-var $author$project$Features$Home$Home$getShouldShowLoadMoreButton = function (model) {
-	var metaNamesIndex = $author$project$Features$Home$Model$Config$config.metaNames.step;
-	return false;
+var $author$project$Features$Home$Constants$constants = {blogPostsLimit: 3};
+var $author$project$Features$Home$Home$getShouldShowLoadMoreButton = function (content) {
+	return _Utils_cmp(
+		$elm$core$List$length(content),
+		$author$project$Features$Home$Constants$constants.blogPostsLimit) > 0;
 };
-var $rtfeldman$elm_css$Html$Styled$h2 = $rtfeldman$elm_css$Html$Styled$node('h2');
 var $rtfeldman$elm_css$Css$borderRadius = $rtfeldman$elm_css$Css$prop1('border-radius');
 var $rtfeldman$elm_css$Css$inlineBlock = {display: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'inline-block'};
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
@@ -10157,7 +10160,17 @@ var $author$project$Components$Button$button = function (props) {
 						$rtfeldman$elm_css$Css$px(3)),
 						$rtfeldman$elm_css$Css$cursor($rtfeldman$elm_css$Css$pointer),
 						$rtfeldman$elm_css$Css$backgroundColor(props.model.theme.primary),
-						$rtfeldman$elm_css$Css$color(props.model.theme.textPrimary)
+						$rtfeldman$elm_css$Css$color(props.model.theme.textPrimary),
+						$rtfeldman$elm_css$Css$Transitions$transition(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$Transitions$backgroundColor(200)
+							])),
+						$rtfeldman$elm_css$Css$hover(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$backgroundColor(props.model.theme.primaryStrong)
+							]))
 					]))
 			]),
 		_List_fromArray(
@@ -10174,6 +10187,43 @@ var $author$project$Features$Home$Home$loadMoreButton = function (model) {
 			text: 'Go to blog'
 		});
 };
+var $author$project$Features$Home$Home$footer = F2(
+	function (model, content) {
+		var shouldShowLoadMoreButton = $author$project$Features$Home$Home$getShouldShowLoadMoreButton(content);
+		return A2(
+			$rtfeldman$elm_css$Html$Styled$div,
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Html$Styled$Attributes$css(
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$displayFlex,
+							$rtfeldman$elm_css$Css$justifyContent($rtfeldman$elm_css$Css$center),
+							$rtfeldman$elm_css$Css$marginTop(
+							$rtfeldman$elm_css$Css$px(30))
+						]))
+				]),
+			_List_fromArray(
+				[
+					shouldShowLoadMoreButton ? $author$project$Features$Home$Home$loadMoreButton(model) : A2($rtfeldman$elm_css$Html$Styled$div, _List_Nil, _List_Nil)
+				]));
+	});
+var $rtfeldman$elm_css$Html$Styled$h2 = $rtfeldman$elm_css$Html$Styled$node('h2');
+var $author$project$Features$Home$Home$header = A2(
+	$rtfeldman$elm_css$Html$Styled$h2,
+	_List_fromArray(
+		[
+			$rtfeldman$elm_css$Html$Styled$Attributes$css(
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Css$marginBottom(
+					$rtfeldman$elm_css$Css$px(50))
+				]))
+		]),
+	_List_fromArray(
+		[
+			$rtfeldman$elm_css$Html$Styled$text('Some blog posts...')
+		]));
 var $author$project$Features$Home$Model$Query$parseHomeFeatureContent = function (content) {
 	var posts = A2(
 		$elm$core$List$drop,
@@ -10197,70 +10247,42 @@ var $author$project$Features$Home$Home$post = F2(
 				description: postMeta.description,
 				theme: model.theme,
 				title: postMeta.title,
-				to: '/#/post/' + A3($elm$core$String$replace, '.md', '', postMeta.name)
+				to: '/#/posts/' + A3($elm$core$String$replace, '.md', '', postMeta.name)
 			});
 	});
-var $author$project$Features$Home$Home$posts = function (model) {
-	var content = $author$project$Features$Home$Model$Query$parseHomeFeatureContent(model.featureData.content);
-	return A2(
-		$rtfeldman$elm_css$Html$Styled$div,
-		_List_fromArray(
-			[
-				$rtfeldman$elm_css$Html$Styled$Attributes$css(
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Css$displayFlex,
-						$rtfeldman$elm_css$Css$flexWrap($rtfeldman$elm_css$Css$wrap),
-						$rtfeldman$elm_css$Css$justifyContent($rtfeldman$elm_css$Css$spaceBetween),
-						A2($rtfeldman$elm_css$Css$margin2, $rtfeldman$elm_css$Css$zero, $rtfeldman$elm_css$Css$auto),
-						$rtfeldman$elm_css$Css$maxWidth(
-						$rtfeldman$elm_css$Css$px(1000))
-					]))
-			]),
-		A2(
-			$elm$core$List$map,
-			$author$project$Features$Home$Home$post(model),
-			content));
-};
+var $author$project$Features$Home$Home$posts = F2(
+	function (model, limitedContent) {
+		return A2(
+			$rtfeldman$elm_css$Html$Styled$div,
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Html$Styled$Attributes$css(
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$displayFlex,
+							$rtfeldman$elm_css$Css$flexWrap($rtfeldman$elm_css$Css$wrap),
+							$rtfeldman$elm_css$Css$justifyContent($rtfeldman$elm_css$Css$spaceBetween),
+							A2($rtfeldman$elm_css$Css$margin2, $rtfeldman$elm_css$Css$zero, $rtfeldman$elm_css$Css$auto),
+							$rtfeldman$elm_css$Css$maxWidth(
+							$rtfeldman$elm_css$Css$px(1000))
+						]))
+				]),
+			A2(
+				$elm$core$List$map,
+				$author$project$Features$Home$Home$post(model),
+				limitedContent));
+	});
 var $author$project$Features$Home$Home$home = function (model) {
+	var content = $author$project$Features$Home$Model$Query$parseHomeFeatureContent(model.featureData.content);
+	var limitedContent = A2($elm$core$List$take, $author$project$Features$Home$Constants$constants.blogPostsLimit, content);
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
 		_List_Nil,
 		_List_fromArray(
 			[
-				A2(
-				$rtfeldman$elm_css$Html$Styled$h2,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$Attributes$css(
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Css$marginBottom(
-								$rtfeldman$elm_css$Css$px(50))
-							]))
-					]),
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text('Some blog posts...')
-					])),
-				$author$project$Features$Home$Home$posts(model),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$div,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$Attributes$css(
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Css$displayFlex,
-								$rtfeldman$elm_css$Css$justifyContent($rtfeldman$elm_css$Css$center),
-								$rtfeldman$elm_css$Css$marginTop(
-								$rtfeldman$elm_css$Css$px(30))
-							]))
-					]),
-				_List_fromArray(
-					[
-						$author$project$Features$Home$Home$getShouldShowLoadMoreButton(model) ? $author$project$Features$Home$Home$loadMoreButton(model) : A2($rtfeldman$elm_css$Html$Styled$div, _List_Nil, _List_Nil)
-					]))
+				$author$project$Features$Home$Home$header,
+				A2($author$project$Features$Home$Home$posts, model, limitedContent),
+				A2($author$project$Features$Home$Home$footer, model, content)
 			]));
 };
 var $rtfeldman$elm_css$Html$Styled$iframe = $rtfeldman$elm_css$Html$Styled$node('iframe');

@@ -1,8 +1,6 @@
 module Features.Home.Home exposing (home)
 
 import Css
-import Url
-import Array
 import Browser
 import Html.Styled exposing (h2, div, text, Html)
 import Html.Styled.Attributes exposing (css)
@@ -13,7 +11,6 @@ import Core.Message exposing (Message(..))
 import Model.PostMeta.Types exposing (PostMeta)
 import Components.Button exposing (button)
 import Features.Home.Constants exposing (constants)
-import Features.Home.Model.Config exposing (config)
 import Features.Home.Model.Query exposing (parseHomeFeatureContent)
 
 post : Model -> PostMeta -> Html Message
@@ -23,25 +20,22 @@ post model postMeta =
     , description = postMeta.description
     , coverSrc = postMeta.cover
     , css = [ Css.marginBottom (Css.px 30) ]
-    , to = "/#/post/" ++ (String.replace ".md" "" postMeta.name)
+    , to = "/#/posts/" ++ (String.replace ".md" "" postMeta.name)
     , theme = model.theme
     }
 
-posts : Model -> Html Message
-posts model =
-  let
-    content = parseHomeFeatureContent model.featureData.content
-  in
-    div
-      [ css
-          [ Css.displayFlex
-          , Css.flexWrap Css.wrap
-          , Css.justifyContent Css.spaceBetween
-          , Css.margin2 Css.zero Css.auto
-          , Css.maxWidth (Css.px 1000)
-          ]
-      ]
-      ( List.map (post model) content )
+posts : Model -> List PostMeta -> Html Message
+posts model limitedContent =
+  div
+    [ css
+        [ Css.displayFlex
+        , Css.flexWrap Css.wrap
+        , Css.justifyContent Css.spaceBetween
+        , Css.margin2 Css.zero Css.auto
+        , Css.maxWidth (Css.px 1000)
+        ]
+    ]
+    ( List.map (post model) limitedContent )
 
 loadMoreButton : Model -> Html Message
 loadMoreButton model =
@@ -51,23 +45,35 @@ loadMoreButton model =
     , onClick = MessageLinkClicked (Browser.External "/#/blog")
     }
 
-getShouldShowLoadMoreButton : Model -> Bool
-getShouldShowLoadMoreButton model =
+getShouldShowLoadMoreButton : List PostMeta -> Bool
+getShouldShowLoadMoreButton content = List.length content > constants.blogPostsLimit
+
+header : Html Message
+header = h2 [ css [ Css.marginBottom <| Css.px 50 ] ] [ text "Some blog posts..." ]
+
+footer : Model -> List PostMeta -> Html Message
+footer model content =
   let
-    metaNamesIndex = config.metaNames.step
-    -- postsAmount = Maybe.withDefault (List.singleton) (Array.get metaNamesIndex model.featureData.content)
+    shouldShowLoadMoreButton = getShouldShowLoadMoreButton content
   in
-    False
+    div
+      [ css
+          [ Css.displayFlex
+          , Css.justifyContent Css.center
+          , Css.marginTop <| Css.px 30
+          ]
+      ]
+      [ if (shouldShowLoadMoreButton) then loadMoreButton model else (div [] []) ]
 
 home : Model -> Html Message
 home model =
-  div
-    []
-    [ h2 [ css [ Css.marginBottom <| Css.px 50 ] ] [ text "Some blog posts..." ]
-    , posts model
-    , div
-      [ css
-          [ Css.displayFlex, Css.justifyContent Css.center, Css.marginTop <| Css.px 30 ]
+  let
+    content = parseHomeFeatureContent model.featureData.content
+    limitedContent = List.take constants.blogPostsLimit content
+  in
+    div
+      []
+      [ header
+      , posts model limitedContent
+      , footer model content
       ]
-      [ if (getShouldShowLoadMoreButton model) then loadMoreButton model else (div [] []) ]
-    ]

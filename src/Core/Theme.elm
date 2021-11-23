@@ -3,7 +3,8 @@ module Core.Theme exposing (getTheme, Theme)
 import Css exposing (rgb, rgba, Color)
 
 type alias Theme =
-  { primary : Color
+  { primary: Color
+  , primaryStrong: Color
   , secondary : Color
   , secondaryStrong: Color
   , accent : Color
@@ -17,7 +18,8 @@ type alias Theme =
 
 themeLight : Theme
 themeLight =
-  { primary = rgb 97 112 189
+  { primary = rgb 111 125 195
+  , primaryStrong = rgb 97 112 189
   , secondary = rgb 249 249 249
   , secondaryStrong = rgb 216 212 213
   , accent = rgb 255 51 102
@@ -32,6 +34,7 @@ themeLight =
 themeDark : Theme
 themeDark =
   { primary = rgb 97 112 189
+  , primaryStrong = rgb 69 85 165
   , secondary = rgb 249 249 249
   , secondaryStrong = rgb 216 212 213
   , accent = rgb 255 51 102

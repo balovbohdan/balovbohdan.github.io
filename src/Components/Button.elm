@@ -1,6 +1,7 @@
 module Components.Button exposing (button)
 
 import Css
+import Css.Transitions
 import Html.Styled exposing (div, text, Html)
 import Html.Styled.Attributes exposing (css)
 import Html.Styled.Events exposing (onClick)
@@ -20,6 +21,8 @@ button props =
         , Css.cursor Css.pointer
         , Css.backgroundColor props.model.theme.primary
         , Css.color props.model.theme.textPrimary
+        , Css.Transitions.transition [ Css.Transitions.backgroundColor 200 ]
+        , Css.hover [ Css.backgroundColor props.model.theme.primaryStrong ]
         ]
     ]
     [ text props.text ]
