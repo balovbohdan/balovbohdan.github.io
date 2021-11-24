@@ -3,8 +3,8 @@ module Components.Card exposing (card)
 import Css
 import Css.Media
 import Css.Transitions
-import Html.Styled exposing (a, div, h3, p, text, img, Html)
-import Html.Styled.Attributes exposing (css, src, href)
+import Html.Styled exposing (a, div, h3, p, text, Html)
+import Html.Styled.Attributes exposing (css, href)
 
 import Utils.Css exposing (mixCss)
 import Core.Message exposing (Message)

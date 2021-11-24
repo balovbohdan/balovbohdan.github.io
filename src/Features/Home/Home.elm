@@ -1,14 +1,17 @@
 module Features.Home.Home exposing (home)
 
 import Css
-import Html.Styled exposing (div, Html)
+import Browser
+import Html.Styled exposing (h2, div, text, Html)
 import Html.Styled.Attributes exposing (css)
 
 import Components.Card exposing (card)
 import Core.Model.Types exposing (Model)
-import Core.Message exposing (Message)
-import Features.Home.Model.Query exposing (parseHomeFeatureContent)
+import Core.Message exposing (Message(..))
 import Model.PostMeta.Types exposing (PostMeta)
+import Components.Button exposing (button)
+import Features.Home.Constants exposing (constants)
+import Features.Home.Model.Query exposing (parseHomeFeatureContent)
 
 post : Model -> PostMeta -> Html Message
 post model postMeta =
@@ -17,25 +20,60 @@ post model postMeta =
     , description = postMeta.description
     , coverSrc = postMeta.cover
     , css = [ Css.marginBottom (Css.px 30) ]
-    , to = "/#/post/" ++ (String.replace ".md" "" postMeta.name)
+    , to = "/#/posts/" ++ (String.replace ".md" "" postMeta.name)
     , theme = model.theme
     }
 
-posts : Model -> Html Message
-posts model =
+posts : Model -> List PostMeta -> Html Message
+posts model limitedContent =
+  div
+    [ css
+        [ Css.displayFlex
+        , Css.flexWrap Css.wrap
+        , Css.justifyContent Css.spaceBetween
+        , Css.margin2 Css.zero Css.auto
+        , Css.maxWidth (Css.px 1000)
+        ]
+    ]
+    ( List.map (post model) limitedContent )
+
+loadMoreButton : Model -> Html Message
+loadMoreButton model =
+  button
+    { text = "Go to blog"
+    , model = model
+    , onClick = MessageLinkClicked (Browser.External "/#/blog")
+    }
+
+getShouldShowLoadMoreButton : List PostMeta -> Bool
+getShouldShowLoadMoreButton content = List.length content > constants.blogPostsLimit
+
+header : Html Message
+header = h2 [ css [ Css.marginBottom <| Css.px 50 ] ] [ text "Some blog posts..." ]
+
+footer : Model -> List PostMeta -> Html Message
+footer model content =
   let
-    content = parseHomeFeatureContent model.featureData.content
+    shouldShowLoadMoreButton = getShouldShowLoadMoreButton content
   in
     div
       [ css
           [ Css.displayFlex
-          , Css.flexWrap Css.wrap
-          , Css.justifyContent Css.spaceBetween
-          , Css.margin2 Css.zero Css.auto
-          , Css.maxWidth (Css.px 1000)
+          , Css.justifyContent Css.center
+          , Css.marginTop <| Css.px 30
           ]
       ]
-      ( List.map (post model) content )
+      [ if (shouldShowLoadMoreButton) then loadMoreButton model else (div [] []) ]
 
 home : Model -> Html Message
-home model = posts model
+home model =
+  let
+    content = parseHomeFeatureContent model.featureData.content
+    limitedContent = List.take constants.blogPostsLimit content
+  in
+    div
+      []
+      [ header
+      , posts model limitedContent
+      , footer model content
+      ]

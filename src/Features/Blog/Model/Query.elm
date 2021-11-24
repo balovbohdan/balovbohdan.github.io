@@ -1,16 +1,16 @@
-module Features.Home.Model.Query exposing (queryHomeFeatureContent, parseHomeFeatureContent)
+module Features.Blog.Model.Query exposing (queryPostsFeatureContent, parsePostsFeatureContent)
 
 import Array exposing (Array)
 
 import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message(..))
-import Features.Home.Model.Config exposing (config)
+import Features.Blog.Model.Config exposing (config)
 
 import Model.PostMeta.Query exposing (queryPostMeta)
 import Model.PostMetaItems.Query exposing (queryPostMetaItems)
 import Model.PostMeta.Decoder exposing (decodePostMeta)
 import Model.PostMetaItems.Decoder exposing (decodePostMetaItems)
-import Features.Home.Model.Types exposing (HomeFeatureContent)
+import Features.Blog.Model.Types exposing (PostsFeatureContent)
 
 getPostMetaItemNames : Model -> List String
 getPostMetaItemNames model =
@@ -24,8 +24,8 @@ getPostMetaItemNames model =
           Ok metaItems -> List.map (\metaItem -> metaItem.name) metaItems
           Err _ -> []
 
-queryHomeFeatureContent : Model -> Cmd Message
-queryHomeFeatureContent model =
+queryPostsFeatureContent : Model -> Cmd Message
+queryPostsFeatureContent model =
   case (model.featureData.step) of
     0 -> queryPostMetaItems config.metaNames.step config.steps
     1 ->
@@ -36,9 +36,9 @@ queryHomeFeatureContent model =
         Cmd.batch messages
     _ -> Cmd.none
 
-parseHomeFeatureContent : Array String -> HomeFeatureContent
-parseHomeFeatureContent content =
+parsePostsFeatureContent : Array String -> PostsFeatureContent
+parsePostsFeatureContent content =
   let
     posts = List.drop 1 (Array.toList content)
   in
-    List.map decodePostMeta (List.map Just posts)
+    List.map (decodePostMeta) (List.map Just posts)
