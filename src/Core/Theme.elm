@@ -4,6 +4,7 @@ import Css exposing (rgb, rgba, Color)
 
 type alias Theme =
   { primary: Color
+  , primaryLight: Color
   , primaryStrong: Color
   , secondary : Color
   , secondaryStrong: Color
@@ -19,6 +20,7 @@ type alias Theme =
 themeLight : Theme
 themeLight =
   { primary = rgb 111 125 195
+  , primaryLight = rgb 93 100 116
   , primaryStrong = rgb 97 112 189
   , secondary = rgb 249 249 249
   , secondaryStrong = rgb 216 212 213
@@ -34,6 +36,7 @@ themeLight =
 themeDark : Theme
 themeDark =
   { primary = rgb 97 112 189
+  , primaryLight = rgb 112 121 140
   , primaryStrong = rgb 69 85 165
   , secondary = rgb 249 249 249
   , secondaryStrong = rgb 216 212 213
