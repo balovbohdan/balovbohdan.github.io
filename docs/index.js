@@ -15531,15 +15531,29 @@ var $author$project$Core$App$app = function (model) {
 			model: model
 		});
 };
+var $author$project$Core$Utils$PageTitle$defaultTitle = 'Mr. Balov | Personal Blog';
 var $author$project$Core$Utils$PageTitle$getPageTitle = function (model) {
-	var _v0 = model.url.path;
-	switch (_v0) {
-		case '/':
-			return 'Bohdan Balov | Personal Blog';
-		case '/post':
-			return 'Awesome Post | Bohdan Balov';
+	var pathPartsRaw = A2($elm$core$String$split, '/', model.url.path);
+	var pathParts = A2(
+		$elm$core$List$filter,
+		function (pathPart) {
+			return pathPart !== '';
+		},
+		pathPartsRaw);
+	var firstPathPart = A2(
+		$elm$core$Maybe$withDefault,
+		'',
+		$elm$core$List$head(pathParts));
+	switch (firstPathPart) {
+		case 'posts':
+			var postMetaRaw = A2($elm$core$Array$get, 1, model.featureData.content);
+			var postMetaDecoded = $author$project$Model$PostMeta$Decoder$decodePostMeta(postMetaRaw);
+			var postTitle = (postMetaDecoded.title === '') ? 'Awesome Article...' : postMetaDecoded.title;
+			return postTitle + ' | Mr. Balov';
+		case '':
+			return $author$project$Core$Utils$PageTitle$defaultTitle;
 		default:
-			return 'Bohdan Balov | Personal Blog';
+			return $author$project$Core$Utils$PageTitle$defaultTitle;
 	}
 };
 var $rtfeldman$elm_css$VirtualDom$Styled$accumulateStyles = F2(
