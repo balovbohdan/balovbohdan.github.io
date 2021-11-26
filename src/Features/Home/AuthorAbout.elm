@@ -10,9 +10,6 @@ import Components.Button exposing (button)
 import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message(..))
 
-header : Html Message
-header = h2 [ css [ Css.marginBottom <| Css.px 50 ] ] [ text "About author" ]
-
 exploreMoreButton : Model -> Html Message
 exploreMoreButton model =
   button
@@ -20,6 +17,9 @@ exploreMoreButton model =
     , model = model
     , onClick = MessageLinkClicked (Browser.External "/#/blog")
     }
+
+header : Html Message
+header = h2 [ css [ Css.marginBottom <| Css.px 50 ] ] [ text "About author" ]
 
 footer : Model -> Html Message
 footer model =
