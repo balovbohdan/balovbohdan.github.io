@@ -37,7 +37,7 @@ picture model =
   div
     [ css
         [ Css.flexBasis <| Css.pct 50
-        , Css.backgroundColor model.theme.accent
+        , Css.backgroundColor model.theme.primaryLight
         , Css.backgroundImage (Css.url "/assets/author-1.jpg")
         , Css.backgroundSize Css.cover
         , Css.backgroundPosition Css.top
