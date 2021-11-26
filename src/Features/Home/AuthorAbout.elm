@@ -77,7 +77,7 @@ authorAbout model =
                 [ Css.displayFlex
                 , Css.property "gap" "20px"
                 , Css.Media.withMedia
-                  [ Css.Media.only Css.Media.screen [ Css.Media.maxWidth <| Css.px 600 ] ] 
+                  [ Css.Media.only Css.Media.screen [ Css.Media.maxWidth <| Css.px 600 ] ]
                   [ Css.flexWrap Css.wrap ]
                 ]
             ]
