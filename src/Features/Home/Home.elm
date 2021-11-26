@@ -12,6 +12,32 @@ import Model.PostMeta.Types exposing (PostMeta)
 import Components.Button exposing (button)
 import Features.Home.Constants exposing (constants)
 import Features.Home.Model.Query exposing (parseHomeFeatureContent)
+import Features.Home.AuthorAbout exposing (authorAbout)
+
+loadMoreButton : Model -> Html Message
+loadMoreButton model =
+  button
+    { text = "Go to blog"
+    , model = model
+    , onClick = MessageLinkClicked (Browser.External "/#/blog")
+    }
+
+postsHeader : Html Message
+postsHeader = h2 [ css [ Css.marginBottom <| Css.px 50 ] ] [ text "Some blog posts..." ]
+
+postsFooter : Model -> List PostMeta -> Html Message
+postsFooter model content =
+  let
+    shouldShowLoadMoreButton = getShouldShowLoadMoreButton content
+  in
+    div
+      [ css
+          [ Css.displayFlex
+          , Css.justifyContent Css.center
+          , Css.marginTop <| Css.px 30
+          ]
+      ]
+      [ if (shouldShowLoadMoreButton) then loadMoreButton model else (div [] []) ]
 
 post : Model -> PostMeta -> Html Message
 post model postMeta =
@@ -37,33 +63,8 @@ posts model limitedContent =
     ]
     ( List.map (post model) limitedContent )
 
-loadMoreButton : Model -> Html Message
-loadMoreButton model =
-  button
-    { text = "Go to blog"
-    , model = model
-    , onClick = MessageLinkClicked (Browser.External "/#/blog")
-    }
-
 getShouldShowLoadMoreButton : List PostMeta -> Bool
 getShouldShowLoadMoreButton content = List.length content > constants.blogPostsLimit
-
-header : Html Message
-header = h2 [ css [ Css.marginBottom <| Css.px 50 ] ] [ text "Some blog posts..." ]
-
-footer : Model -> List PostMeta -> Html Message
-footer model content =
-  let
-    shouldShowLoadMoreButton = getShouldShowLoadMoreButton content
-  in
-    div
-      [ css
-          [ Css.displayFlex
-          , Css.justifyContent Css.center
-          , Css.marginTop <| Css.px 30
-          ]
-      ]
-      [ if (shouldShowLoadMoreButton) then loadMoreButton model else (div [] []) ]
 
 home : Model -> Html Message
 home model =
@@ -73,7 +74,8 @@ home model =
   in
     div
       []
-      [ header
+      [ postsHeader
       , posts model limitedContent
-      , footer model content
+      , postsFooter model content
+      , authorAbout model
       ]
