@@ -8,6 +8,7 @@ import Features.Home.Home exposing (home)
 import Features.NotFound.NotFound exposing (notFound)
 import Features.Post.Post exposing (post)
 import Features.Blog.Blog exposing (blog)
+import Features.Author.Author exposing (author)
 import Core.Message exposing (Message)
 import Core.Model.Types exposing (Model)
 import Core.Route.Route exposing (Route(..))
@@ -18,6 +19,7 @@ parseUrl =
   oneOf
     [ map RouteHome top
     , map RouteBlog (s "blog")
+    , map RouteAuthor (s "author")
     , map RoutePost postUrlParser
     , map RouteNotFound (s "404")
     ]
@@ -36,3 +38,4 @@ getFeature path =
     RouteHome -> home
     RouteBlog -> blog
     RoutePost _ -> post
+    RouteAuthor -> author
