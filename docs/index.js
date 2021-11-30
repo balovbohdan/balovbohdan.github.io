@@ -9350,7 +9350,7 @@ var $rtfeldman$elm_css$Css$Preprocess$WithMedia = F2(
 var $rtfeldman$elm_css$Css$Media$withMedia = $rtfeldman$elm_css$Css$Preprocess$WithMedia;
 var $rtfeldman$elm_css$Css$UnitlessInteger = {$: 'UnitlessInteger'};
 var $rtfeldman$elm_css$Css$zero = {length: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAutoOrCoverOrContain: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNone: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNoneOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNumber: $rtfeldman$elm_css$Css$Structure$Compatible, number: $rtfeldman$elm_css$Css$Structure$Compatible, numericValue: 0, outline: $rtfeldman$elm_css$Css$Structure$Compatible, unitLabel: '', units: $rtfeldman$elm_css$Css$UnitlessInteger, value: '0'};
-var $author$project$Features$Author$Author$description = A2(
+var $author$project$Features$Author$Bio$description = A2(
 	$rtfeldman$elm_css$Html$Styled$div,
 	_List_fromArray(
 		[
@@ -9518,7 +9518,7 @@ var $rtfeldman$elm_css$Css$url = function (urlValue) {
 };
 var $rtfeldman$elm_css$Css$VhUnits = {$: 'VhUnits'};
 var $rtfeldman$elm_css$Css$vh = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$VhUnits, 'vh');
-var $author$project$Features$Author$Author$picture = function (model) {
+var $author$project$Features$Author$Bio$picture = function (model) {
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
 		_List_fromArray(
@@ -9558,7 +9558,7 @@ var $author$project$Features$Author$Author$picture = function (model) {
 		_List_Nil);
 };
 var $rtfeldman$elm_css$Css$wrap = {flexDirectionOrWrap: $rtfeldman$elm_css$Css$Structure$Compatible, flexWrap: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'wrap'};
-var $author$project$Features$Author$Author$body = function (model) {
+var $author$project$Features$Author$Bio$body = function (model) {
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
 		_List_fromArray(
@@ -9589,8 +9589,8 @@ var $author$project$Features$Author$Author$body = function (model) {
 			]),
 		_List_fromArray(
 			[
-				$author$project$Features$Author$Author$picture(model),
-				$author$project$Features$Author$Author$description
+				$author$project$Features$Author$Bio$picture(model),
+				$author$project$Features$Author$Bio$description
 			]));
 };
 var $rtfeldman$elm_css$Css$color = function (c) {
@@ -9665,14 +9665,88 @@ var $author$project$Components$PageSection$pageSection = function (props) {
 				$author$project$Components$PageSection$footer(props)
 			]));
 };
-var $author$project$Features$Author$Author$author = function (model) {
+var $author$project$Features$Author$Bio$bio = function (model) {
 	return $author$project$Components$PageSection$pageSection(
 		{
-			body: $author$project$Features$Author$Author$body(model),
+			body: $author$project$Features$Author$Bio$body(model),
 			footer: $elm$core$Maybe$Nothing,
 			model: model,
 			title: 'Nerdy bio'
 		});
+};
+var $rtfeldman$elm_css$Css$width = $rtfeldman$elm_css$Css$prop1('width');
+var $author$project$Features$Author$Interests$tile = function (model) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$div,
+		_List_fromArray(
+			[
+				$rtfeldman$elm_css$Html$Styled$Attributes$css(
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Css$backgroundColor(model.theme.accent)
+					]))
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$rtfeldman$elm_css$Html$Styled$div,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$width(
+								$rtfeldman$elm_css$Css$px(200)),
+								$rtfeldman$elm_css$Css$height(
+								$rtfeldman$elm_css$Css$px(100)),
+								$rtfeldman$elm_css$Css$backgroundColor(model.theme.accent),
+								$rtfeldman$elm_css$Css$backgroundImage(
+								$rtfeldman$elm_css$Css$url('/assets/coding-1.gif')),
+								$rtfeldman$elm_css$Css$backgroundSize($rtfeldman$elm_css$Css$cover)
+							]))
+					]),
+				_List_Nil)
+			]));
+};
+var $author$project$Features$Author$Interests$tiles = function (model) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$div,
+		_List_fromArray(
+			[
+				$rtfeldman$elm_css$Html$Styled$Attributes$css(
+				_List_fromArray(
+					[
+						A2($rtfeldman$elm_css$Css$property, 'display', 'grid'),
+						A2($rtfeldman$elm_css$Css$property, 'gap', '10px'),
+						A2($rtfeldman$elm_css$Css$property, 'grid-template-columns', 'repeat(auto-fit, minmax(250px, 1fr))')
+					]))
+			]),
+		_List_fromArray(
+			[
+				$author$project$Features$Author$Interests$tile(model),
+				$author$project$Features$Author$Interests$tile(model),
+				$author$project$Features$Author$Interests$tile(model),
+				$author$project$Features$Author$Interests$tile(model)
+			]));
+};
+var $author$project$Features$Author$Interests$interests = function (model) {
+	return $author$project$Components$PageSection$pageSection(
+		{
+			body: $author$project$Features$Author$Interests$tiles(model),
+			footer: $elm$core$Maybe$Nothing,
+			model: model,
+			title: 'Interests'
+		});
+};
+var $author$project$Features$Author$Author$author = function (model) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$div,
+		_List_Nil,
+		_List_fromArray(
+			[
+				$author$project$Features$Author$Bio$bio(model),
+				$author$project$Features$Author$Interests$interests(model)
+			]));
 };
 var $rtfeldman$elm_css$Css$auto = {alignItemsOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, cursor: $rtfeldman$elm_css$Css$Structure$Compatible, flexBasis: $rtfeldman$elm_css$Css$Structure$Compatible, intOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, justifyContentOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAutoOrCoverOrContain: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible, overflow: $rtfeldman$elm_css$Css$Structure$Compatible, pointerEvents: $rtfeldman$elm_css$Css$Structure$Compatible, tableLayout: $rtfeldman$elm_css$Css$Structure$Compatible, textRendering: $rtfeldman$elm_css$Css$Structure$Compatible, touchAction: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'auto'};
 var $rtfeldman$elm_css$Css$prop2 = F3(
@@ -9828,7 +9902,6 @@ var $author$project$Features$Blog$Model$Query$parsePostsFeatureContent = functio
 		A2($elm$core$List$map, $elm$core$Maybe$Just, posts));
 };
 var $rtfeldman$elm_css$Html$Styled$a = $rtfeldman$elm_css$Html$Styled$node('a');
-var $rtfeldman$elm_css$Css$width = $rtfeldman$elm_css$Css$prop1('width');
 var $author$project$Components$Card$cover = function (props) {
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
