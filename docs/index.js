@@ -5594,6 +5594,7 @@ var $rtfeldman$elm_css$Css$rgba = F4(
 var $author$project$Core$Theme$themeDark = {
 	accent: A3($rtfeldman$elm_css$Css$rgb, 255, 51, 102),
 	background: A3($rtfeldman$elm_css$Css$rgb, 33, 34, 39),
+	backgroundSecondary: A3($rtfeldman$elm_css$Css$rgb, 47, 48, 55),
 	codeBackground: A3($rtfeldman$elm_css$Css$rgb, 4, 21, 31),
 	codeColor: A3($rtfeldman$elm_css$Css$rgb, 7, 160, 195),
 	primary: A3($rtfeldman$elm_css$Css$rgb, 97, 112, 189),
@@ -5608,6 +5609,7 @@ var $author$project$Core$Theme$themeDark = {
 var $author$project$Core$Theme$themeLight = {
 	accent: A3($rtfeldman$elm_css$Css$rgb, 255, 51, 102),
 	background: A3($rtfeldman$elm_css$Css$rgb, 255, 255, 255),
+	backgroundSecondary: A3($rtfeldman$elm_css$Css$rgb, 240, 240, 240),
 	codeBackground: A3($rtfeldman$elm_css$Css$rgb, 33, 34, 39),
 	codeColor: A4($rtfeldman$elm_css$Css$rgba, 255, 255, 255, 0.8),
 	primary: A3($rtfeldman$elm_css$Css$rgb, 111, 125, 195),
@@ -9674,312 +9676,8 @@ var $author$project$Features$Author$Bio$bio = function (model) {
 			title: 'Nerdy bio'
 		});
 };
-var $rtfeldman$elm_css$Css$width = $rtfeldman$elm_css$Css$prop1('width');
-var $author$project$Features$Author$Interests$tile = function (model) {
-	return A2(
-		$rtfeldman$elm_css$Html$Styled$div,
-		_List_fromArray(
-			[
-				$rtfeldman$elm_css$Html$Styled$Attributes$css(
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Css$backgroundColor(model.theme.accent)
-					]))
-			]),
-		_List_fromArray(
-			[
-				A2(
-				$rtfeldman$elm_css$Html$Styled$div,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$Attributes$css(
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Css$width(
-								$rtfeldman$elm_css$Css$px(200)),
-								$rtfeldman$elm_css$Css$height(
-								$rtfeldman$elm_css$Css$px(100)),
-								$rtfeldman$elm_css$Css$backgroundColor(model.theme.accent),
-								$rtfeldman$elm_css$Css$backgroundImage(
-								$rtfeldman$elm_css$Css$url('/assets/coding-1.gif')),
-								$rtfeldman$elm_css$Css$backgroundSize($rtfeldman$elm_css$Css$cover)
-							]))
-					]),
-				_List_Nil)
-			]));
-};
-var $author$project$Features$Author$Interests$tiles = function (model) {
-	return A2(
-		$rtfeldman$elm_css$Html$Styled$div,
-		_List_fromArray(
-			[
-				$rtfeldman$elm_css$Html$Styled$Attributes$css(
-				_List_fromArray(
-					[
-						A2($rtfeldman$elm_css$Css$property, 'display', 'grid'),
-						A2($rtfeldman$elm_css$Css$property, 'gap', '10px'),
-						A2($rtfeldman$elm_css$Css$property, 'grid-template-columns', 'repeat(auto-fit, minmax(250px, 1fr))')
-					]))
-			]),
-		_List_fromArray(
-			[
-				$author$project$Features$Author$Interests$tile(model),
-				$author$project$Features$Author$Interests$tile(model),
-				$author$project$Features$Author$Interests$tile(model),
-				$author$project$Features$Author$Interests$tile(model)
-			]));
-};
-var $author$project$Features$Author$Interests$interests = function (model) {
-	return $author$project$Components$PageSection$pageSection(
-		{
-			body: $author$project$Features$Author$Interests$tiles(model),
-			footer: $elm$core$Maybe$Nothing,
-			model: model,
-			title: 'Interests'
-		});
-};
-var $author$project$Features$Author$Author$author = function (model) {
-	return A2(
-		$rtfeldman$elm_css$Html$Styled$div,
-		_List_Nil,
-		_List_fromArray(
-			[
-				$author$project$Features$Author$Bio$bio(model),
-				$author$project$Features$Author$Interests$interests(model)
-			]));
-};
-var $rtfeldman$elm_css$Css$auto = {alignItemsOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, cursor: $rtfeldman$elm_css$Css$Structure$Compatible, flexBasis: $rtfeldman$elm_css$Css$Structure$Compatible, intOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, justifyContentOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAutoOrCoverOrContain: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible, overflow: $rtfeldman$elm_css$Css$Structure$Compatible, pointerEvents: $rtfeldman$elm_css$Css$Structure$Compatible, tableLayout: $rtfeldman$elm_css$Css$Structure$Compatible, textRendering: $rtfeldman$elm_css$Css$Structure$Compatible, touchAction: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'auto'};
-var $rtfeldman$elm_css$Css$prop2 = F3(
-	function (key, argA, argB) {
-		return A2(
-			$rtfeldman$elm_css$Css$property,
-			key,
-			A2(
-				$elm$core$String$join,
-				' ',
-				_List_fromArray(
-					[argA.value, argB.value])));
-	});
-var $rtfeldman$elm_css$Css$margin2 = $rtfeldman$elm_css$Css$prop2('margin');
-var $rtfeldman$elm_css$Css$maxWidth = $rtfeldman$elm_css$Css$prop1('max-width');
-var $author$project$Model$PostMeta$Decoder$defaultPostMeta = {cover: '', description: '', keywords: '', name: '', title: ''};
-var $elm$core$List$drop = F2(
-	function (n, list) {
-		drop:
-		while (true) {
-			if (n <= 0) {
-				return list;
-			} else {
-				if (!list.b) {
-					return list;
-				} else {
-					var x = list.a;
-					var xs = list.b;
-					var $temp$n = n - 1,
-						$temp$list = xs;
-					n = $temp$n;
-					list = $temp$list;
-					continue drop;
-				}
-			}
-		}
-	});
-var $author$project$Model$PostMeta$Decoder$getMetaItem = F2(
-	function (index, items) {
-		var _v0 = A2($elm$core$Array$get, index, items);
-		if (_v0.$ === 'Nothing') {
-			return '';
-		} else {
-			var result = _v0.a;
-			return result;
-		}
-	});
-var $elm$core$Array$fromListHelp = F3(
-	function (list, nodeList, nodeListSize) {
-		fromListHelp:
-		while (true) {
-			var _v0 = A2($elm$core$Elm$JsArray$initializeFromList, $elm$core$Array$branchFactor, list);
-			var jsArray = _v0.a;
-			var remainingItems = _v0.b;
-			if (_Utils_cmp(
-				$elm$core$Elm$JsArray$length(jsArray),
-				$elm$core$Array$branchFactor) < 0) {
-				return A2(
-					$elm$core$Array$builderToArray,
-					true,
-					{nodeList: nodeList, nodeListSize: nodeListSize, tail: jsArray});
-			} else {
-				var $temp$list = remainingItems,
-					$temp$nodeList = A2(
-					$elm$core$List$cons,
-					$elm$core$Array$Leaf(jsArray),
-					nodeList),
-					$temp$nodeListSize = nodeListSize + 1;
-				list = $temp$list;
-				nodeList = $temp$nodeList;
-				nodeListSize = $temp$nodeListSize;
-				continue fromListHelp;
-			}
-		}
-	});
-var $elm$core$Array$fromList = function (list) {
-	if (!list.b) {
-		return $elm$core$Array$empty;
-	} else {
-		return A3($elm$core$Array$fromListHelp, list, _List_Nil, 0);
-	}
-};
-var $author$project$Model$PostMeta$Decoder$getIsNotEmptyString = function (string) {
-	return $elm$core$String$length(string) > 0;
-};
-var $elm$core$String$trim = _String_trim;
-var $author$project$Model$PostMeta$Decoder$getMetaLines = A2(
-	$elm$core$Basics$composeR,
-	$elm$core$String$split('\n'),
-	A2(
-		$elm$core$Basics$composeR,
-		$elm$core$List$drop(2),
-		A2(
-			$elm$core$Basics$composeR,
-			$elm$core$List$concatMap(
-				$elm$core$String$split('|')),
-			A2(
-				$elm$core$Basics$composeR,
-				$elm$core$List$filter($author$project$Model$PostMeta$Decoder$getIsNotEmptyString),
-				A2(
-					$elm$core$Basics$composeR,
-					$elm$core$List$map($elm$core$String$trim),
-					$elm$core$Array$fromList)))));
-var $author$project$Model$PostMeta$Types$PostMetaRaw = F2(
-	function (name, content) {
-		return {content: content, name: name};
-	});
-var $author$project$Model$PostMeta$Decoder$postMetaDecoder = A3(
-	$elm$json$Json$Decode$map2,
-	$author$project$Model$PostMeta$Types$PostMetaRaw,
-	A2($elm$json$Json$Decode$field, 'name', $elm$json$Json$Decode$string),
-	A2($elm$json$Json$Decode$field, 'content', $elm$json$Json$Decode$string));
-var $author$project$Model$PostMeta$Decoder$decodePostMeta = function (input) {
-	if (input.$ === 'Nothing') {
-		return $author$project$Model$PostMeta$Decoder$defaultPostMeta;
-	} else {
-		var value = input.a;
-		var _v1 = A2($elm$json$Json$Decode$decodeString, $author$project$Model$PostMeta$Decoder$postMetaDecoder, value);
-		if (_v1.$ === 'Err') {
-			return $author$project$Model$PostMeta$Decoder$defaultPostMeta;
-		} else {
-			var postMeta = _v1.a;
-			var formattedTable = $elm$core$String$concat(
-				A2(
-					$elm$core$List$drop,
-					0,
-					$elm$core$String$lines(postMeta.content)));
-			var _v2 = $truqu$elm_base64$Base64$decode(formattedTable);
-			if (_v2.$ === 'Err') {
-				return $author$project$Model$PostMeta$Decoder$defaultPostMeta;
-			} else {
-				var result = _v2.a;
-				var lines = $author$project$Model$PostMeta$Decoder$getMetaLines(result);
-				return {
-					cover: A2($author$project$Model$PostMeta$Decoder$getMetaItem, 7, lines),
-					description: A2($author$project$Model$PostMeta$Decoder$getMetaItem, 3, lines),
-					keywords: A2($author$project$Model$PostMeta$Decoder$getMetaItem, 5, lines),
-					name: postMeta.name,
-					title: A2($author$project$Model$PostMeta$Decoder$getMetaItem, 1, lines)
-				};
-			}
-		}
-	}
-};
-var $author$project$Features$Blog$Model$Query$parsePostsFeatureContent = function (content) {
-	var posts = A2(
-		$elm$core$List$drop,
-		1,
-		$elm$core$Array$toList(content));
-	return A2(
-		$elm$core$List$map,
-		$author$project$Model$PostMeta$Decoder$decodePostMeta,
-		A2($elm$core$List$map, $elm$core$Maybe$Just, posts));
-};
 var $rtfeldman$elm_css$Html$Styled$a = $rtfeldman$elm_css$Html$Styled$node('a');
-var $author$project$Components$Card$cover = function (props) {
-	return A2(
-		$rtfeldman$elm_css$Html$Styled$div,
-		_List_fromArray(
-			[
-				$rtfeldman$elm_css$Html$Styled$Attributes$css(
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Css$width(
-						$rtfeldman$elm_css$Css$pct(100)),
-						$rtfeldman$elm_css$Css$height(
-						$rtfeldman$elm_css$Css$px(180)),
-						$rtfeldman$elm_css$Css$backgroundImage(
-						$rtfeldman$elm_css$Css$url(props.coverSrc)),
-						$rtfeldman$elm_css$Css$backgroundSize($rtfeldman$elm_css$Css$cover),
-						$rtfeldman$elm_css$Css$backgroundPosition($rtfeldman$elm_css$Css$center)
-					]))
-			]),
-		_List_Nil);
-};
-var $rtfeldman$elm_css$Css$fontSize = $rtfeldman$elm_css$Css$prop1('font-size');
-var $rtfeldman$elm_css$Html$Styled$h3 = $rtfeldman$elm_css$Html$Styled$node('h3');
-var $rtfeldman$elm_css$Css$margin = $rtfeldman$elm_css$Css$prop1('margin');
-var $rtfeldman$elm_css$Css$padding = $rtfeldman$elm_css$Css$prop1('padding');
-var $rtfeldman$elm_css$Css$RemUnits = {$: 'RemUnits'};
-var $rtfeldman$elm_css$Css$rem = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$RemUnits, 'rem');
-var $author$project$Components$Card$footer = function (props) {
-	return A2(
-		$rtfeldman$elm_css$Html$Styled$div,
-		_List_fromArray(
-			[
-				$rtfeldman$elm_css$Html$Styled$Attributes$css(
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Css$flexBasis(
-						$rtfeldman$elm_css$Css$pct(25)),
-						$rtfeldman$elm_css$Css$padding(
-						$rtfeldman$elm_css$Css$px(10))
-					]))
-			]),
-		_List_fromArray(
-			[
-				A2(
-				$rtfeldman$elm_css$Html$Styled$p,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$Attributes$css(
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Css$color(props.theme.textSecondary),
-								$rtfeldman$elm_css$Css$marginTop(
-								$rtfeldman$elm_css$Css$px(5)),
-								$rtfeldman$elm_css$Css$fontSize(
-								$rtfeldman$elm_css$Css$rem(1))
-							]))
-					]),
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text(props.description)
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$h3,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$Attributes$css(
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Css$margin(
-								$rtfeldman$elm_css$Css$px(0))
-							]))
-					]),
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text(props.title)
-					]))
-			]));
-};
-var $rtfeldman$elm_css$Css$Transitions$BackgroundColor = {$: 'BackgroundColor'};
+var $rtfeldman$elm_css$Css$Transitions$Color = {$: 'Color'};
 var $rtfeldman$elm_css$Css$Transitions$Transition = function (a) {
 	return {$: 'Transition', a: a};
 };
@@ -9988,10 +9686,12 @@ var $rtfeldman$elm_css$Css$Transitions$durationTransition = F2(
 		return $rtfeldman$elm_css$Css$Transitions$Transition(
 			{animation: animation, delay: $elm$core$Maybe$Nothing, duration: duration, timing: $elm$core$Maybe$Nothing});
 	});
-var $rtfeldman$elm_css$Css$Transitions$backgroundColor = $rtfeldman$elm_css$Css$Transitions$durationTransition($rtfeldman$elm_css$Css$Transitions$BackgroundColor);
-var $rtfeldman$elm_css$Css$block = {display: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'block'};
-var $rtfeldman$elm_css$Css$cursor = $rtfeldman$elm_css$Css$prop1('cursor');
-var $rtfeldman$elm_css$Css$display = $rtfeldman$elm_css$Css$prop1('display');
+var $rtfeldman$elm_css$Css$Transitions$color = $rtfeldman$elm_css$Css$Transitions$durationTransition($rtfeldman$elm_css$Css$Transitions$Color);
+var $rtfeldman$elm_css$Css$row = {flexDirection: $rtfeldman$elm_css$Css$Structure$Compatible, flexDirectionOrWrap: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'row'};
+var $rtfeldman$elm_css$Css$column = _Utils_update(
+	$rtfeldman$elm_css$Css$row,
+	{value: 'column'});
+var $rtfeldman$elm_css$Css$flexDirection = $rtfeldman$elm_css$Css$prop1('flex-direction');
 var $rtfeldman$elm_css$Css$Preprocess$ExtendSelector = F2(
 	function (a, b) {
 		return {$: 'ExtendSelector', a: a, b: b};
@@ -10004,13 +9704,90 @@ var $rtfeldman$elm_css$Css$pseudoClass = function (_class) {
 		$rtfeldman$elm_css$Css$Structure$PseudoClassSelector(_class));
 };
 var $rtfeldman$elm_css$Css$hover = $rtfeldman$elm_css$Css$pseudoClass('hover');
-var $author$project$Utils$Css$mixCss = F2(
-	function (baseCss, customCss) {
-		return A2($elm$core$List$append, baseCss, customCss);
+var $rtfeldman$elm_css$VirtualDom$Styled$property = F2(
+	function (key, value) {
+		return A3(
+			$rtfeldman$elm_css$VirtualDom$Styled$Attribute,
+			A2($elm$virtual_dom$VirtualDom$property, key, value),
+			_List_Nil,
+			'');
 	});
-var $rtfeldman$elm_css$Css$none = {backgroundImage: $rtfeldman$elm_css$Css$Structure$Compatible, blockAxisOverflow: $rtfeldman$elm_css$Css$Structure$Compatible, borderStyle: $rtfeldman$elm_css$Css$Structure$Compatible, cursor: $rtfeldman$elm_css$Css$Structure$Compatible, display: $rtfeldman$elm_css$Css$Structure$Compatible, hoverCapability: $rtfeldman$elm_css$Css$Structure$Compatible, inlineAxisOverflow: $rtfeldman$elm_css$Css$Structure$Compatible, keyframes: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNone: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNoneOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible, listStyleType: $rtfeldman$elm_css$Css$Structure$Compatible, listStyleTypeOrPositionOrImage: $rtfeldman$elm_css$Css$Structure$Compatible, none: $rtfeldman$elm_css$Css$Structure$Compatible, outline: $rtfeldman$elm_css$Css$Structure$Compatible, pointerDevice: $rtfeldman$elm_css$Css$Structure$Compatible, pointerEvents: $rtfeldman$elm_css$Css$Structure$Compatible, resize: $rtfeldman$elm_css$Css$Structure$Compatible, scriptingSupport: $rtfeldman$elm_css$Css$Structure$Compatible, textDecorationLine: $rtfeldman$elm_css$Css$Structure$Compatible, textTransform: $rtfeldman$elm_css$Css$Structure$Compatible, touchAction: $rtfeldman$elm_css$Css$Structure$Compatible, transform: $rtfeldman$elm_css$Css$Structure$Compatible, updateFrequency: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'none'};
-var $rtfeldman$elm_css$Css$pointer = {cursor: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'pointer'};
+var $rtfeldman$elm_css$Html$Styled$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			$rtfeldman$elm_css$VirtualDom$Styled$property,
+			key,
+			$elm$json$Json$Encode$string(string));
+	});
+var $rtfeldman$elm_css$Html$Styled$Attributes$href = function (url) {
+	return A2($rtfeldman$elm_css$Html$Styled$Attributes$stringProperty, 'href', url);
+};
+var $rtfeldman$elm_css$Css$padding = $rtfeldman$elm_css$Css$prop1('padding');
+var $rtfeldman$elm_css$Css$spaceBetween = $rtfeldman$elm_css$Css$prop1('space-between');
 var $rtfeldman$elm_css$Css$textDecoration = $rtfeldman$elm_css$Css$prop1('text-decoration');
+var $rtfeldman$elm_css$Css$alignItems = function (fn) {
+	return A3(
+		$rtfeldman$elm_css$Css$Internal$getOverloadedProperty,
+		'alignItems',
+		'align-items',
+		fn($rtfeldman$elm_css$Css$Internal$lengthForOverloadedProperty));
+};
+var $rtfeldman$elm_css$Html$Styled$h3 = $rtfeldman$elm_css$Html$Styled$node('h3');
+var $rtfeldman$elm_css$Html$Styled$img = $rtfeldman$elm_css$Html$Styled$node('img');
+var $rtfeldman$elm_css$Css$margin = $rtfeldman$elm_css$Css$prop1('margin');
+var $rtfeldman$elm_css$Css$marginLeft = $rtfeldman$elm_css$Css$prop1('margin-left');
+var $rtfeldman$elm_css$Html$Styled$Attributes$src = function (url) {
+	return A2($rtfeldman$elm_css$Html$Styled$Attributes$stringProperty, 'src', url);
+};
+var $rtfeldman$elm_css$Css$width = $rtfeldman$elm_css$Css$prop1('width');
+var $author$project$Features$Author$Interests$tileHeader = function (props) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$div,
+		_List_fromArray(
+			[
+				$rtfeldman$elm_css$Html$Styled$Attributes$css(
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Css$displayFlex,
+						$rtfeldman$elm_css$Css$alignItems($rtfeldman$elm_css$Css$center)
+					]))
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$rtfeldman$elm_css$Html$Styled$img,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$src(props.iconSrc),
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$width(
+								$rtfeldman$elm_css$Css$px(30)),
+								$rtfeldman$elm_css$Css$height(
+								$rtfeldman$elm_css$Css$px(30))
+							]))
+					]),
+				_List_Nil),
+				A2(
+				$rtfeldman$elm_css$Html$Styled$h3,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$margin($rtfeldman$elm_css$Css$zero),
+								$rtfeldman$elm_css$Css$marginLeft(
+								$rtfeldman$elm_css$Css$px(20)),
+								$rtfeldman$elm_css$Css$color(props.model.theme.textSecondary)
+							]))
+					]),
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text(props.title)
+					]))
+			]));
+};
 var $rtfeldman$elm_css$Css$Transitions$propToString = function (prop) {
 	switch (prop.$) {
 		case 'Background':
@@ -10268,6 +10045,362 @@ var $rtfeldman$elm_css$Css$Transitions$transition = function (options) {
 			options));
 	return A2($rtfeldman$elm_css$Css$property, 'transition', v);
 };
+var $rtfeldman$elm_css$Css$underline = {textDecorationLine: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'underline'};
+var $author$project$Features$Author$Interests$tile = function (props) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$div,
+		_List_fromArray(
+			[
+				$rtfeldman$elm_css$Html$Styled$Attributes$css(
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Css$displayFlex,
+						$rtfeldman$elm_css$Css$flexDirection($rtfeldman$elm_css$Css$column),
+						$rtfeldman$elm_css$Css$justifyContent($rtfeldman$elm_css$Css$spaceBetween),
+						$rtfeldman$elm_css$Css$height(
+						$rtfeldman$elm_css$Css$px(250)),
+						$rtfeldman$elm_css$Css$padding(
+						$rtfeldman$elm_css$Css$px(15)),
+						$rtfeldman$elm_css$Css$backgroundColor(props.model.theme.backgroundSecondary)
+					]))
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$rtfeldman$elm_css$Html$Styled$div,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$author$project$Features$Author$Interests$tileHeader(props),
+						A2(
+						$rtfeldman$elm_css$Html$Styled$p,
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Html$Styled$Attributes$css(
+								_List_fromArray(
+									[
+										$rtfeldman$elm_css$Css$color(props.model.theme.textPrimary)
+									]))
+							]),
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Html$Styled$text(props.description)
+							]))
+					])),
+				A2(
+				$rtfeldman$elm_css$Html$Styled$a,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$href(props.href),
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$textDecoration($rtfeldman$elm_css$Css$underline),
+								$rtfeldman$elm_css$Css$color(props.model.theme.textPrimary),
+								$rtfeldman$elm_css$Css$hover(
+								_List_fromArray(
+									[
+										$rtfeldman$elm_css$Css$color(props.model.theme.textSecondary)
+									])),
+								$rtfeldman$elm_css$Css$Transitions$transition(
+								_List_fromArray(
+									[
+										$rtfeldman$elm_css$Css$Transitions$color(100)
+									]))
+							]))
+					]),
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text('Explore')
+					]))
+			]));
+};
+var $author$project$Features$Author$Interests$tiles = function (model) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$div,
+		_List_fromArray(
+			[
+				$rtfeldman$elm_css$Html$Styled$Attributes$css(
+				_List_fromArray(
+					[
+						A2($rtfeldman$elm_css$Css$property, 'display', 'grid'),
+						A2($rtfeldman$elm_css$Css$property, 'gap', '30px'),
+						A2($rtfeldman$elm_css$Css$property, 'grid-template-columns', 'repeat(auto-fit, minmax(300px, 1fr))')
+					]))
+			]),
+		_List_fromArray(
+			[
+				$author$project$Features$Author$Interests$tile(
+				{description: 'This is my everyday tool.', href: '/', iconSrc: '/assets/react.svg', model: model, title: 'React'}),
+				$author$project$Features$Author$Interests$tile(
+				{description: 'I believe this is the best lang for business apps development. And a good one for applied FP.', href: '/', iconSrc: '/assets/typescript.svg', model: model, title: 'TypeScript'}),
+				$author$project$Features$Author$Interests$tile(
+				{description: 'I started exploring this tech just for fun! And I\'m still not sure this is a good production lang.', href: '/#/posts/why-i-decided-to-drop-react', iconSrc: '/assets/elm.svg', model: model, title: 'Elm'}),
+				$author$project$Features$Author$Interests$tile(
+				{description: 'As for me, FP is a good thing for developing reliable apps.', href: '/#/posts/fp-notes-purity-1', iconSrc: '/assets/cpu.svg', model: model, title: 'Functional Programming'}),
+				$author$project$Features$Author$Interests$tile(
+				{description: 'I\'m not a professional. But this lang looks interesting for me from an experiments perspective.', href: '/', iconSrc: '/assets/haskell.svg', model: model, title: 'Haskell'}),
+				$author$project$Features$Author$Interests$tile(
+				{description: 'I like reading and writing. Even tried myself at writing a novel! ✍️', href: 'https://medium.com/@balovbohdan', iconSrc: '/assets/typewriter.svg', model: model, title: 'Writing'})
+			]));
+};
+var $author$project$Features$Author$Interests$interests = function (model) {
+	return $author$project$Components$PageSection$pageSection(
+		{
+			body: $author$project$Features$Author$Interests$tiles(model),
+			footer: $elm$core$Maybe$Nothing,
+			model: model,
+			title: 'Interests'
+		});
+};
+var $author$project$Features$Author$Author$author = function (model) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$div,
+		_List_Nil,
+		_List_fromArray(
+			[
+				$author$project$Features$Author$Bio$bio(model),
+				$author$project$Features$Author$Interests$interests(model)
+			]));
+};
+var $rtfeldman$elm_css$Css$auto = {alignItemsOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, cursor: $rtfeldman$elm_css$Css$Structure$Compatible, flexBasis: $rtfeldman$elm_css$Css$Structure$Compatible, intOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, justifyContentOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAutoOrCoverOrContain: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible, overflow: $rtfeldman$elm_css$Css$Structure$Compatible, pointerEvents: $rtfeldman$elm_css$Css$Structure$Compatible, tableLayout: $rtfeldman$elm_css$Css$Structure$Compatible, textRendering: $rtfeldman$elm_css$Css$Structure$Compatible, touchAction: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'auto'};
+var $rtfeldman$elm_css$Css$prop2 = F3(
+	function (key, argA, argB) {
+		return A2(
+			$rtfeldman$elm_css$Css$property,
+			key,
+			A2(
+				$elm$core$String$join,
+				' ',
+				_List_fromArray(
+					[argA.value, argB.value])));
+	});
+var $rtfeldman$elm_css$Css$margin2 = $rtfeldman$elm_css$Css$prop2('margin');
+var $rtfeldman$elm_css$Css$maxWidth = $rtfeldman$elm_css$Css$prop1('max-width');
+var $author$project$Model$PostMeta$Decoder$defaultPostMeta = {cover: '', description: '', keywords: '', name: '', title: ''};
+var $elm$core$List$drop = F2(
+	function (n, list) {
+		drop:
+		while (true) {
+			if (n <= 0) {
+				return list;
+			} else {
+				if (!list.b) {
+					return list;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs;
+					n = $temp$n;
+					list = $temp$list;
+					continue drop;
+				}
+			}
+		}
+	});
+var $author$project$Model$PostMeta$Decoder$getMetaItem = F2(
+	function (index, items) {
+		var _v0 = A2($elm$core$Array$get, index, items);
+		if (_v0.$ === 'Nothing') {
+			return '';
+		} else {
+			var result = _v0.a;
+			return result;
+		}
+	});
+var $elm$core$Array$fromListHelp = F3(
+	function (list, nodeList, nodeListSize) {
+		fromListHelp:
+		while (true) {
+			var _v0 = A2($elm$core$Elm$JsArray$initializeFromList, $elm$core$Array$branchFactor, list);
+			var jsArray = _v0.a;
+			var remainingItems = _v0.b;
+			if (_Utils_cmp(
+				$elm$core$Elm$JsArray$length(jsArray),
+				$elm$core$Array$branchFactor) < 0) {
+				return A2(
+					$elm$core$Array$builderToArray,
+					true,
+					{nodeList: nodeList, nodeListSize: nodeListSize, tail: jsArray});
+			} else {
+				var $temp$list = remainingItems,
+					$temp$nodeList = A2(
+					$elm$core$List$cons,
+					$elm$core$Array$Leaf(jsArray),
+					nodeList),
+					$temp$nodeListSize = nodeListSize + 1;
+				list = $temp$list;
+				nodeList = $temp$nodeList;
+				nodeListSize = $temp$nodeListSize;
+				continue fromListHelp;
+			}
+		}
+	});
+var $elm$core$Array$fromList = function (list) {
+	if (!list.b) {
+		return $elm$core$Array$empty;
+	} else {
+		return A3($elm$core$Array$fromListHelp, list, _List_Nil, 0);
+	}
+};
+var $author$project$Model$PostMeta$Decoder$getIsNotEmptyString = function (string) {
+	return $elm$core$String$length(string) > 0;
+};
+var $elm$core$String$trim = _String_trim;
+var $author$project$Model$PostMeta$Decoder$getMetaLines = A2(
+	$elm$core$Basics$composeR,
+	$elm$core$String$split('\n'),
+	A2(
+		$elm$core$Basics$composeR,
+		$elm$core$List$drop(2),
+		A2(
+			$elm$core$Basics$composeR,
+			$elm$core$List$concatMap(
+				$elm$core$String$split('|')),
+			A2(
+				$elm$core$Basics$composeR,
+				$elm$core$List$filter($author$project$Model$PostMeta$Decoder$getIsNotEmptyString),
+				A2(
+					$elm$core$Basics$composeR,
+					$elm$core$List$map($elm$core$String$trim),
+					$elm$core$Array$fromList)))));
+var $author$project$Model$PostMeta$Types$PostMetaRaw = F2(
+	function (name, content) {
+		return {content: content, name: name};
+	});
+var $author$project$Model$PostMeta$Decoder$postMetaDecoder = A3(
+	$elm$json$Json$Decode$map2,
+	$author$project$Model$PostMeta$Types$PostMetaRaw,
+	A2($elm$json$Json$Decode$field, 'name', $elm$json$Json$Decode$string),
+	A2($elm$json$Json$Decode$field, 'content', $elm$json$Json$Decode$string));
+var $author$project$Model$PostMeta$Decoder$decodePostMeta = function (input) {
+	if (input.$ === 'Nothing') {
+		return $author$project$Model$PostMeta$Decoder$defaultPostMeta;
+	} else {
+		var value = input.a;
+		var _v1 = A2($elm$json$Json$Decode$decodeString, $author$project$Model$PostMeta$Decoder$postMetaDecoder, value);
+		if (_v1.$ === 'Err') {
+			return $author$project$Model$PostMeta$Decoder$defaultPostMeta;
+		} else {
+			var postMeta = _v1.a;
+			var formattedTable = $elm$core$String$concat(
+				A2(
+					$elm$core$List$drop,
+					0,
+					$elm$core$String$lines(postMeta.content)));
+			var _v2 = $truqu$elm_base64$Base64$decode(formattedTable);
+			if (_v2.$ === 'Err') {
+				return $author$project$Model$PostMeta$Decoder$defaultPostMeta;
+			} else {
+				var result = _v2.a;
+				var lines = $author$project$Model$PostMeta$Decoder$getMetaLines(result);
+				return {
+					cover: A2($author$project$Model$PostMeta$Decoder$getMetaItem, 7, lines),
+					description: A2($author$project$Model$PostMeta$Decoder$getMetaItem, 3, lines),
+					keywords: A2($author$project$Model$PostMeta$Decoder$getMetaItem, 5, lines),
+					name: postMeta.name,
+					title: A2($author$project$Model$PostMeta$Decoder$getMetaItem, 1, lines)
+				};
+			}
+		}
+	}
+};
+var $author$project$Features$Blog$Model$Query$parsePostsFeatureContent = function (content) {
+	var posts = A2(
+		$elm$core$List$drop,
+		1,
+		$elm$core$Array$toList(content));
+	return A2(
+		$elm$core$List$map,
+		$author$project$Model$PostMeta$Decoder$decodePostMeta,
+		A2($elm$core$List$map, $elm$core$Maybe$Just, posts));
+};
+var $author$project$Components$Card$cover = function (props) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$div,
+		_List_fromArray(
+			[
+				$rtfeldman$elm_css$Html$Styled$Attributes$css(
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Css$width(
+						$rtfeldman$elm_css$Css$pct(100)),
+						$rtfeldman$elm_css$Css$height(
+						$rtfeldman$elm_css$Css$px(180)),
+						$rtfeldman$elm_css$Css$backgroundImage(
+						$rtfeldman$elm_css$Css$url(props.coverSrc)),
+						$rtfeldman$elm_css$Css$backgroundSize($rtfeldman$elm_css$Css$cover),
+						$rtfeldman$elm_css$Css$backgroundPosition($rtfeldman$elm_css$Css$center)
+					]))
+			]),
+		_List_Nil);
+};
+var $rtfeldman$elm_css$Css$fontSize = $rtfeldman$elm_css$Css$prop1('font-size');
+var $rtfeldman$elm_css$Css$RemUnits = {$: 'RemUnits'};
+var $rtfeldman$elm_css$Css$rem = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$RemUnits, 'rem');
+var $author$project$Components$Card$footer = function (props) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$div,
+		_List_fromArray(
+			[
+				$rtfeldman$elm_css$Html$Styled$Attributes$css(
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Css$flexBasis(
+						$rtfeldman$elm_css$Css$pct(25)),
+						$rtfeldman$elm_css$Css$padding(
+						$rtfeldman$elm_css$Css$px(10))
+					]))
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$rtfeldman$elm_css$Html$Styled$p,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$color(props.theme.textSecondary),
+								$rtfeldman$elm_css$Css$marginTop(
+								$rtfeldman$elm_css$Css$px(5)),
+								$rtfeldman$elm_css$Css$fontSize(
+								$rtfeldman$elm_css$Css$rem(1))
+							]))
+					]),
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text(props.description)
+					])),
+				A2(
+				$rtfeldman$elm_css$Html$Styled$h3,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$margin(
+								$rtfeldman$elm_css$Css$px(0))
+							]))
+					]),
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text(props.title)
+					]))
+			]));
+};
+var $rtfeldman$elm_css$Css$Transitions$BackgroundColor = {$: 'BackgroundColor'};
+var $rtfeldman$elm_css$Css$Transitions$backgroundColor = $rtfeldman$elm_css$Css$Transitions$durationTransition($rtfeldman$elm_css$Css$Transitions$BackgroundColor);
+var $rtfeldman$elm_css$Css$block = {display: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'block'};
+var $rtfeldman$elm_css$Css$cursor = $rtfeldman$elm_css$Css$prop1('cursor');
+var $rtfeldman$elm_css$Css$display = $rtfeldman$elm_css$Css$prop1('display');
+var $author$project$Utils$Css$mixCss = F2(
+	function (baseCss, customCss) {
+		return A2($elm$core$List$append, baseCss, customCss);
+	});
+var $rtfeldman$elm_css$Css$none = {backgroundImage: $rtfeldman$elm_css$Css$Structure$Compatible, blockAxisOverflow: $rtfeldman$elm_css$Css$Structure$Compatible, borderStyle: $rtfeldman$elm_css$Css$Structure$Compatible, cursor: $rtfeldman$elm_css$Css$Structure$Compatible, display: $rtfeldman$elm_css$Css$Structure$Compatible, hoverCapability: $rtfeldman$elm_css$Css$Structure$Compatible, inlineAxisOverflow: $rtfeldman$elm_css$Css$Structure$Compatible, keyframes: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNone: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNoneOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNumberOrAutoOrNoneOrContent: $rtfeldman$elm_css$Css$Structure$Compatible, listStyleType: $rtfeldman$elm_css$Css$Structure$Compatible, listStyleTypeOrPositionOrImage: $rtfeldman$elm_css$Css$Structure$Compatible, none: $rtfeldman$elm_css$Css$Structure$Compatible, outline: $rtfeldman$elm_css$Css$Structure$Compatible, pointerDevice: $rtfeldman$elm_css$Css$Structure$Compatible, pointerEvents: $rtfeldman$elm_css$Css$Structure$Compatible, resize: $rtfeldman$elm_css$Css$Structure$Compatible, scriptingSupport: $rtfeldman$elm_css$Css$Structure$Compatible, textDecorationLine: $rtfeldman$elm_css$Css$Structure$Compatible, textTransform: $rtfeldman$elm_css$Css$Structure$Compatible, touchAction: $rtfeldman$elm_css$Css$Structure$Compatible, transform: $rtfeldman$elm_css$Css$Structure$Compatible, updateFrequency: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'none'};
+var $rtfeldman$elm_css$Css$pointer = {cursor: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'pointer'};
 var $author$project$Components$Card$getCardCss = function (props) {
 	return A2(
 		$author$project$Utils$Css$mixCss,
@@ -10331,24 +10464,6 @@ var $author$project$Components$Card$getCardCss = function (props) {
 			]),
 		props.css);
 };
-var $rtfeldman$elm_css$VirtualDom$Styled$property = F2(
-	function (key, value) {
-		return A3(
-			$rtfeldman$elm_css$VirtualDom$Styled$Attribute,
-			A2($elm$virtual_dom$VirtualDom$property, key, value),
-			_List_Nil,
-			'');
-	});
-var $rtfeldman$elm_css$Html$Styled$Attributes$stringProperty = F2(
-	function (key, string) {
-		return A2(
-			$rtfeldman$elm_css$VirtualDom$Styled$property,
-			key,
-			$elm$json$Json$Encode$string(string));
-	});
-var $rtfeldman$elm_css$Html$Styled$Attributes$href = function (url) {
-	return A2($rtfeldman$elm_css$Html$Styled$Attributes$stringProperty, 'href', url);
-};
 var $author$project$Components$Card$card = function (props) {
 	var _v0 = props.to;
 	if (_v0 === '') {
@@ -10403,7 +10518,6 @@ var $author$project$Features$Blog$Blog$post = F2(
 				to: '/#/posts/' + A3($elm$core$String$replace, '.md', '', postMeta.name)
 			});
 	});
-var $rtfeldman$elm_css$Css$spaceBetween = $rtfeldman$elm_css$Css$prop1('space-between');
 var $author$project$Features$Blog$Blog$posts = function (model) {
 	var content = $author$project$Features$Blog$Model$Query$parsePostsFeatureContent(model.featureData.content);
 	return A2(
@@ -10766,9 +10880,6 @@ var $author$project$Features$Home$Home$home = function (model) {
 };
 var $rtfeldman$elm_css$Html$Styled$iframe = $rtfeldman$elm_css$Html$Styled$node('iframe');
 var $rtfeldman$elm_css$Html$Styled$Attributes$property = $rtfeldman$elm_css$VirtualDom$Styled$property;
-var $rtfeldman$elm_css$Html$Styled$Attributes$src = function (url) {
-	return A2($rtfeldman$elm_css$Html$Styled$Attributes$stringProperty, 'src', url);
-};
 var $author$project$Features$NotFound$NotFound$gif = A2(
 	$rtfeldman$elm_css$Html$Styled$div,
 	_List_Nil,
@@ -15088,16 +15199,7 @@ var $author$project$Core$App$feature = function (model) {
 	return $author$project$Core$Route$Utils$getFeature(
 		$elm$url$Url$toString(model.url))(model);
 };
-var $rtfeldman$elm_css$Css$alignItems = function (fn) {
-	return A3(
-		$rtfeldman$elm_css$Css$Internal$getOverloadedProperty,
-		'alignItems',
-		'align-items',
-		fn($rtfeldman$elm_css$Css$Internal$lengthForOverloadedProperty));
-};
 var $rtfeldman$elm_css$Css$borderTop3 = $rtfeldman$elm_css$Css$prop3('border-top');
-var $rtfeldman$elm_css$Html$Styled$img = $rtfeldman$elm_css$Html$Styled$node('img');
-var $rtfeldman$elm_css$Css$marginLeft = $rtfeldman$elm_css$Css$prop1('margin-left');
 var $rtfeldman$elm_css$Html$Styled$Attributes$title = $rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('title');
 var $author$project$Core$Layout$socialButton = F3(
 	function (name, socialHref, imageUrl) {
@@ -15264,8 +15366,6 @@ var $author$project$Components$Author$avatar = function (props) {
 			]),
 		_List_Nil);
 };
-var $rtfeldman$elm_css$Css$flexDirection = $rtfeldman$elm_css$Css$prop1('flex-direction');
-var $rtfeldman$elm_css$Css$row = {flexDirection: $rtfeldman$elm_css$Css$Structure$Compatible, flexDirectionOrWrap: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'row'};
 var $author$project$Components$Author$getAuthorCss = function (props) {
 	return A2(
 		$author$project$Utils$Css$mixCss,
