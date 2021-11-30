@@ -1,36 +1,13 @@
-module Features.Home.AuthorAbout exposing (authorAbout)
+module Features.Author.Bio exposing (bio)
 
 import Css
 import Css.Media
-import Browser
+import Html.Styled exposing (p, div, text, Html)
 import Html.Styled.Attributes exposing (css)
-import Html.Styled exposing (p, h2, div, text, Html)
 
-import Components.Button exposing (button)
 import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message(..))
-
-exploreMoreButton : Model -> Html Message
-exploreMoreButton model =
-  button
-    { text = "Explore more"
-    , model = model
-    , onClick = MessageLinkClicked (Browser.External "/#/blog")
-    }
-
-header : Html Message
-header = h2 [ css [ Css.marginBottom <| Css.px 50 ] ] [ text "About author" ]
-
-footer : Model -> Html Message
-footer model =
-  div
-    [ css
-        [ Css.displayFlex
-        , Css.justifyContent Css.center
-        , Css.marginTop <| Css.px 70
-        ]
-    ]
-    [ exploreMoreButton model ]
+import Components.PageSection exposing (pageSection)
 
 picture : Model -> Html Message
 picture model =
@@ -65,23 +42,24 @@ description =
     , p [ css [ Css.marginBottom Css.zero ] ] [ text "So, stay connected! I hope, this will be useful for you. And for me, of course! 🤓" ]
     ]
 
-authorAbout : Model -> Html Message
-authorAbout model =
+body : Model -> Html Message
+body model =
   div
-    [ css [ Css.color model.theme.textPrimary, Css.marginTop <| Css.px 70 ] ]
-    [ header
-    , div
-        []
-        [ div
-            [ css
-                [ Css.displayFlex
-                , Css.property "gap" "20px"
-                , Css.Media.withMedia
-                  [ Css.Media.only Css.Media.screen [ Css.Media.maxWidth <| Css.px 600 ] ]
-                  [ Css.flexWrap Css.wrap ]
-                ]
-            ]
-            [ picture model, description ]
-          , footer model
+    [ css
+        [ Css.displayFlex
+        , Css.property "gap" "20px"
+        , Css.Media.withMedia
+          [ Css.Media.only Css.Media.screen [ Css.Media.maxWidth <| Css.px 600 ] ]
+          [ Css.flexWrap Css.wrap ]
         ]
     ]
+    [ picture model, description ]
+
+bio : Model -> Html Message
+bio model =
+  pageSection
+    { model = model
+    , title = "Nerdy bio"
+    , body = body model
+    , footer = Nothing
+    }

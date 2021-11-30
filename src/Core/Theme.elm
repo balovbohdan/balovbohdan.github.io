@@ -13,6 +13,7 @@ type alias Theme =
   , textSecondary: Color
   , textSecondryStrong: Color
   , background: Color
+  , backgroundSecondary: Color
   , codeColor: Color
   , codeBackground: Color
   }
@@ -29,6 +30,7 @@ themeLight =
   , textSecondary = rgb 173 172 181
   , textSecondryStrong = rgb 75 83 88
   , background = rgb 255 255 255
+  , backgroundSecondary = rgb 240 240 240
   , codeColor = rgba 255 255 255 0.8
   , codeBackground = rgb 33 34 39
   }
@@ -45,6 +47,7 @@ themeDark =
   , textSecondary = rgb 173 172 181
   , textSecondryStrong = rgb 216 212 213
   , background = rgb 33 34 39
+  , backgroundSecondary = rgb 47 48 55
   , codeColor = rgb 7 160 195
   , codeBackground = rgb 4 21 31
   }

@@ -2,7 +2,7 @@ module Features.NotFound.NotFound exposing (notFound)
 
 import Css
 import Json.Encode
-import Html.Styled exposing (div, text, img, iframe, Html)
+import Html.Styled exposing (div, iframe, Html)
 import Html.Styled.Attributes exposing (css, src, property)
 
 import Core.Model.Types exposing (Model)
