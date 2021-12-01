@@ -8,22 +8,6 @@ import Model.Post.Types exposing (Post, PostRaw)
 defaultPost : Post
 defaultPost = { name = "", text = "" }
 
--- decodePostMetaItem : Maybe String -> String
--- decodePostMetaItem metaItem =
---   case (metaItem) of
---     Nothing -> ""
---     Just value -> value
-
--- decodePostMeta : String -> PostMeta
--- decodePostMeta text =
---   let
---     metaItems = Array.fromList (List.take 8 (String.lines text))
---   in
---     { title = decodePostMetaItem (Array.get 1 metaItems)
---     , description = decodePostMetaItem (Array.get 2 metaItems)
---     , keywords = decodePostMetaItem (Array.get 3 metaItems)
---     }
-
 decodePostText : String -> String
 decodePostText input =
   let

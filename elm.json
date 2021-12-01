@@ -15,6 +15,7 @@
             "elm/url": "1.0.0",
             "mthadley/elm-hash-routing": "1.0.1",
             "pablohirafuji/elm-markdown": "2.0.5",
+            "pilatch/flip": "1.0.0",
             "rtfeldman/elm-css": "16.1.1",
             "truqu/elm-base64": "2.0.4"
         },
