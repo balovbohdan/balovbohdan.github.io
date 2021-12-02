@@ -11,6 +11,12 @@ Today I finally completed the "Tech Interviewer Certification" at EPAM. The fina
 
 So! Let's go through the main topics.
 
+## Preparations
+
+This is a good ritual to explore that candidate's personality and his experience. I even prepare topics I'm going to cover during the interview. Why? Just because there is no sense to discuss topics the candidate hasn't experience with. As the main target of the interview - recognize strong candidate's features. And then after that - weaknesses.
+
+If you are new to handling interviews, you can create a list of questions rather than topics. This will allow feeling more confident. As a session may be stressful for interviewees as well, not only for a candidate.
+
 ## Participants introduction
 
 Every participant should introduce himself: interviewers and interviewee. It is really a terrible thing when an interviewee has not an imagination of the persons who are assessing him.
@@ -64,3 +70,5 @@ Feedback should be useful for a team, customer and candidate.
 ## ...
 
 Actually, that's it! There are main points that allow me to handle tech interviews effectively and with no stress. Keep in mind that the session should be beneficial for every side: interviewee, interviewers, hiring party.
+
+I'm not going to provide tons of useful links for this topic. This is a field that requires a lot of practice. And theory will not help to be a good interviewer. I suggest you gradually look at the theory during your tech interviewer way.
