@@ -47,7 +47,7 @@ And maybe something else. Improvising may help here. Every session and candidate
 
 ## STAR technique
 
-This is an easy but useful technique for telling something. Applicable for small stories. So, you can rely on it listening candidate's stories. Or even provide a behavioural task.
+This is an easy but useful technique for telling something. Applicable for small stories. So, you can rely on it listening to a candidate's stories. Or even provide a behavioural task.
 
 - Situation (context). E.g., "I was an engineer in the...".
 - Task (challenge). E.g., "and I faced a situation...".
