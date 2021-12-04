@@ -54,7 +54,7 @@ This is an easy but useful technique for telling something. Applicable for small
 - Action (a role you played). E.g., "I did following action to solve...".
 - Result. E.g., "my actions helped (or not) to solve...".
 
-[Here](https://biosciencecareers.org/2018/01/how-to-be-a-star-performer-at-interview.html) you can find better description of this technique.
+[Here](https://biosciencecareers.org/2018/01/how-to-be-a-star-performer-at-interview.html) you can find a better description of this technique.
 
 ![STAR Technique](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/main/docs/content/blog/posts/tech-interview-notes/start-technique.jpg)
 <center>[Bioscience Careers](https://biosciencecareers.org/2018/01/how-to-be-a-star-performer-at-interview.html)</center>
