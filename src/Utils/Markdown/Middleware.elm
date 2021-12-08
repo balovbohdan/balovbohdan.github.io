@@ -1,8 +1,6 @@
 module Utils.Markdown.Middleware exposing (markdownMiddleware)
 
-import Markdown
-import Flip exposing (flip)
-import Html exposing (div, details, Html)
+import Html exposing (Html)
 import Core.Message exposing (Message)
 
 import Html.Attributes exposing (..)
@@ -31,4 +29,3 @@ markdownMiddleware markdown =
     |> Markdown.Block.parse Nothing
     |> List.map (customHtmlBlock)
     |> List.concat
-    -- |> div []
