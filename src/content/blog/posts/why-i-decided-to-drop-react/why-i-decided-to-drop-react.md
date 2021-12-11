@@ -42,7 +42,7 @@ I’m still on my way to understanding Haskell. I think there are a lot of usefu
 
 ## Elm
 
-I heard about it a lot. I wanted to try it. And I even started reading official dist several times, and then gave up because I thought it was wasting of time. But today I started reading docs again, and now it is a serious intention. After some Haskell experience, I see all the power of languages like Elm:
+I heard about it a lot. I wanted to try it. And I even started reading official docs several times, and then gave up because I thought it was wasting of time. But today I started reading docs again, and now it is a serious intention. After some Haskell experience, I see all the power of languages like Elm:
 
 - easy to learn and start building an app
 - implements basic FP concepts: currying, Hindley-Milner notation, composition, and so forth
