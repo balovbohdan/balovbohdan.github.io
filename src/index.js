@@ -1,4 +1,4 @@
-import { Elm } from './Main.elm';
+import { Elm } from './elm/Main.elm';
 
 // import '../codemirror-elm';
 

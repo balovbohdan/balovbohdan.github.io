@@ -19,7 +19,7 @@ module.exports = {
   },
   entry: [
     path.resolve(__dirname, 'src/index.js'),
-    path.resolve(__dirname, 'src/Main.elm'),
+    path.resolve(__dirname, 'src/elm/Main.elm'),
   ],
   output: {
     path: path.resolve(__dirname, 'docs'),
@@ -57,7 +57,7 @@ module.exports = {
               cwd: __dirname,
               pathToElm: 'node_modules/.bin/elm',
               files: [
-                path.resolve(__dirname, "src/Main.elm"),
+                path.resolve(__dirname, "src/elm/Main.elm"),
               ],
             },
           },
