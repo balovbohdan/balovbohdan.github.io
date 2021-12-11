@@ -19,4 +19,4 @@ Yeah... Still not sure I really need this. But want to try. In any case, I do it
 
 Let's stay in touch!
 
-![Hard Coder](/docs/assets/coding-1.gif)
+![Hard Coder](/src/assets/coding-1.gif)
