@@ -10,7 +10,7 @@ queryPostMetaItems : Int -> Int -> Cmd Message
 queryPostMetaItems step steps =
   Http.request
     { method = "GET"
-    , url = config.url
+    , url = config.url ++ config.parameters
     , expect = Http.expectString (MessageFeatureContentReceived step steps)
     , headers = [ Http.header "Authorization" Env.tokenGithub ]
     , body = Http.emptyBody
