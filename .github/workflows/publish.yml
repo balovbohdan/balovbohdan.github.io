@@ -35,6 +35,9 @@ jobs:
           # https://stackoverflow.com/a/69578322/8097218
           git add .
           files=$(find $SRC_FOLDER_PATH -type f)
+          echo "------------------------------------"
+          echo $files
+          echo "------------------------------------"
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git fetch
