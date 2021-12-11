@@ -5,7 +5,7 @@
   "main": "elm.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack --mode production",
+    "build": "webpack --mode=production",
     "build-env-variables": "elm-constants"
   },
   "author": "balov_bohdan",
