@@ -32,5 +32,5 @@ jobs:
         env:
           REPO: self
           BRANCH: debug
-          FOLDER: dist-tmp
+          FOLDER: dist
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
