@@ -5,8 +5,8 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 const copyWebpackPlugin = new CopyWebpackPlugin({
   patterns: [
-    { from: 'src/assets', to: 'assets/[name].[ext]' },
-    { from: 'src/content', to: 'content/[name].[ext]' },
+    { from: 'src/assets', to: 'assets' },
+    { from: 'src/content', to: 'content' },
     { from: 'src/*.@(png|html|ico|css|webmanifest)', to: '[name].[ext]' },
   ],
 });
