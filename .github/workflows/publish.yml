@@ -28,21 +28,9 @@ jobs:
         run: npm run build-tmp
 
       - name: Publish 📨
+        uses: s0/git-publish-subdir-action@v2.5.0
         env:
-          SRC_FOLDER_PATH: 'dist-tmp'
-          TARGET_BRANCH: 'debug'
-        run: |
-          # https://stackoverflow.com/a/69578322/8097218
-          git add .
-          files=$(find $SRC_FOLDER_PATH -type f)
-          echo "------------------------------------"
-          echo $files
-          echo "------------------------------------"
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git fetch
-          git checkout $TARGET_BRANCH
-          git checkout ${GITHUB_REF##*/} -- $files # copy files from the source branch
-          git add .
-          git diff-index --quiet HEAD ||  git commit -am "publish"
-          git push origin $TARGET_BRANCH --force
+          REPO: self
+          BRANCH: debug
+          FOLDER: dist-tmp
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
