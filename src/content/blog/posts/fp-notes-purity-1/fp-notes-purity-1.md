@@ -2,7 +2,7 @@
 
 ### Notes about Functional Programming with JavaScript
 
-![Cover](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/main/dist/content/blog/posts/fp-notes-purity-1/cover.jpg)
+![Cover](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/fp-notes-purity-1/cover.jpg)
 <center>Photo by [Bannon Morrissy](https://unsplash.com/@bannon15) on [Unsplash](https://unsplash.com/photos/iK_3_4l1DB8)</center>
 
 Recently I decided to deepen my knowledge of Functional Programming (next: FP). To get better grasp of this paradigm I decided to make small notes. My everyday programming language is JavaScript, so examples are written in this awesome language. If you think about Haskell when you hear about FP, it is OK. But JavaScript has more friendly infrastructure for everyday coding, and we can freely use it for following either OOP and FP paradigms.

@@ -47,11 +47,11 @@ footer model =
         [ socialButton
             "GitHub"
             "https://github.com/balovbohdan"
-            "https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/main/dist/assets/github.svg"
+            "https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/assets/github.svg"
         , socialButton
             "Twitter"
             "https://twitter.com/balov_bohdan"
-            "https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/main/dist/assets/twitter.svg"
+            "https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/assets/twitter.svg"
         ]
     ]
 

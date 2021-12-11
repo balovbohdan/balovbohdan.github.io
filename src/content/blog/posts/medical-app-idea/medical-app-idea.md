@@ -2,7 +2,7 @@
 
 ## Formalization of my thoughts about medical pet project
 
-![Cover](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/main/dist/content/blog/posts/medical-app-idea/cover.jpg)
+![Cover](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/medical-app-idea/cover.jpg)
 <center>Photo by [Thought Catalog](https://unsplash.com/@thoughtcatalog) on [Unsplash](https://unsplash.com/photos/V4EbkXA2iw8)</center>
 
 Hola! I’m software developer who likes pet projects. Now I’m working at EPAM. When I have free time I learn modern techs and develop Wroom project (car aid app). But I feel I’m bored with Wroom. It’s not that field I want to work at. I’m very interested in medicine and ecology, so last week I was thinking about new app idea. As always my wife provided me with an awesome idea: app for medications taking control, dosage info and so forth.
