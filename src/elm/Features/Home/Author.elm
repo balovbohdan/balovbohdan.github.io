@@ -44,7 +44,7 @@ author : Model -> Html Message
 author model =
   pageSection
     { model = model
-    , title = "About Author"
+    , title = "About author"
     , body = body model
     , footer = Just (exploreMoreButton model)
     }
