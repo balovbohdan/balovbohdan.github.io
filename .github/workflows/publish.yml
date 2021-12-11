@@ -27,6 +27,9 @@ jobs:
       - name: Build 🏗️
         run: npm run build
 
+      - name: Remove Source Files 🔧
+        run: rm -rf !(docs)
+
       - name: Publish 📨
         run: |
           git config --global user.name 'balovbohdan'
