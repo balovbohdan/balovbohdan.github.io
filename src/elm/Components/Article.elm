@@ -7,7 +7,7 @@ import Html.Styled.Attributes exposing (css)
 
 import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message)
-import Utils.Html exposing (parseMarkdown)
+import Utils.Markdown.Markdown exposing (parseMarkdown)
 
 type alias Props = { model: Model, content: String, meta: Html Message }
 
