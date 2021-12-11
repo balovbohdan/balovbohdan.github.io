@@ -20,7 +20,7 @@ module.exports = (env, props) => ({
     path.resolve(__dirname, 'src/elm/Main.elm'),
   ],
   output: {
-    path: path.resolve(__dirname, 'docs'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
   },
   resolve:   {
