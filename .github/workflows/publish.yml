@@ -25,7 +25,9 @@ jobs:
           npm run build-env-variables
 
       - name: Build 🏗️
-        run: npm run build --o=./dist-tmp/index.js
+        run: |
+          mkdir dist-tmp
+          npm run build --output-path=dist-tmp
 
       - name: Publish 📨
         env:
@@ -33,14 +35,14 @@ jobs:
           TARGET_BRANCH: 'debug'
         run: |
           # https://stackoverflow.com/a/69578322/8097218
+          echo "------------------------------------"
+          echo $(git diff)
+          echo "------------------------------------"
           files=$(find $SRC_FOLDER_PATH -type f)
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git fetch
           git checkout $TARGET_BRANCH
-          echo "------------------------------------"
-          echo $files
-          echo "------------------------------------"
           git checkout ${GITHUB_REF##*/} -- $files # copy files from the source branch
           git add .
           git diff-index --quiet HEAD ||  git commit -am "publish"
