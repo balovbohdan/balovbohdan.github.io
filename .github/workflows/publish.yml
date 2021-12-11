@@ -27,14 +27,17 @@ jobs:
         run: npm run build
 
       - name: Publish 📨
+        env:
+          SRC_FOLDER_PATH: 'docs'
+          TARGET_BRANCH: 'github-page'
         run: |
           # https://stackoverflow.com/a/69578322/8097218
-          files=$(find docs -type f) # get the file list
-          git config --global user.name 'balovbohdan'
-          git config --global user.email 'balovbohdan@users.noreply.github.com'
-          git fetch
-          git checkout github-page
+          files=$(find $SRC_FOLDER_PATH -type f) # get the file list
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git fetch                         # fetch branches
+          git checkout $TARGET_BRANCH       # checkout to your branch
           git checkout ${GITHUB_REF##*/} -- $files # copy files from the source branch
-          git add .
+          git add -A
           git diff-index --quiet HEAD ||  git commit -am "deploy files"  # commit to the repository (ignore if no modification)
-          git push origin github-page
+          git push origin $TARGET_BRANCH # push to remote branch
