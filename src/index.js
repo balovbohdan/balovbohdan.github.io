@@ -1,3 +1,9 @@
+import { Elm } from './elm/Main.elm';
+
+console.log(Elm);
+
+// import '../codemirror-elm';
+
 const parseJson = (defaultResult, json) => {
   try {
     return JSON.parse(json);

@@ -1,6 +1,6 @@
-module Utils.Markdown.Middleware exposing (markdownMiddleware)
+module Utils.Markdown.CustomParser exposing (parseWithCustomElements)
 
-import Html exposing (Html)
+import Html exposing (div, node, Html)
 import Core.Message exposing (Message)
 
 import Html.Attributes exposing (..)
@@ -10,7 +10,7 @@ import Markdown.Inline exposing (Inline(..))
 customHtmlBlock : Block b i -> List (Html Message)
 customHtmlBlock block =
     case block of
-      -- CodeBlock b1 b2 -> [div [] []]
+      CodeBlock b1 b2 -> [node "code-mirror" [] []]
       _ ->
         Markdown.Block.defaultHtml
           (Just customHtmlBlock)
@@ -23,8 +23,8 @@ customHtmlInline inline =
       _ ->
         Markdown.Inline.defaultHtml (Just customHtmlInline) inline
 
-markdownMiddleware : String -> List (Html Message)
-markdownMiddleware markdown =
+parseWithCustomElements : String -> List (Html Message)
+parseWithCustomElements markdown =
   markdown
     |> Markdown.Block.parse Nothing
     |> List.map (customHtmlBlock)
