@@ -1,7 +1,0 @@
-docs
-elm-stuff
-node_modules
-workspace.code-workspace
-.DS_Store
-.env
-src/elm/Env.elm
