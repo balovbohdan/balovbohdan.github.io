@@ -16,7 +16,7 @@ module.exports = (env, props) => {
 
   return {
     mode,
-    watch: props.mode === 'development',
+    watch: mode === 'development',
     watchOptions: { aggregateTimeout: 200 },
     entry: [
       path.resolve(__dirname, 'src/index.js'),
