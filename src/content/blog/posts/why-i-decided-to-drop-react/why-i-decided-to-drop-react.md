@@ -2,7 +2,7 @@
 
 ### About Ramda, Haskell, TypeScript, and Elm
 
-![Tux, the Linux mascot](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/main/docs/content/blog/posts/why-i-decided-to-drop-react/cover.jpg)
+![Tux, the Linux mascot](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/main/dist/content/blog/posts/why-i-decided-to-drop-react/cover.jpg)
 <center>Photo by [Dominik Vanyi](https://unsplash.com/@dominik_photography) on [Unsplash](https://unsplash.com/photos/5Fxuo7x-eyg)</center>
 
 Hola! I want to be honest: I’m really bored with React and its ecosystem. How many times a day do you see an “Uncaught TypeError: Cannot read property of undefined” error? Have you ever thought that there are better ways of writing code that doesn’t crash in production? This is the topic I’ve been exploring for near a year, and here are my explorations.
@@ -42,7 +42,7 @@ I’m still on my way to understanding Haskell. I think there are a lot of usefu
 
 ## Elm
 
-I heard about it a lot. I wanted to try it. And I even started reading official docs several times, and then gave up because I thought it was wasting of time. But today I started reading docs again, and now it is a serious intention. After some Haskell experience, I see all the power of languages like Elm:
+I heard about it a lot. I wanted to try it. And I even started reading official dist several times, and then gave up because I thought it was wasting of time. But today I started reading docs again, and now it is a serious intention. After some Haskell experience, I see all the power of languages like Elm:
 
 - easy to learn and start building an app
 - implements basic FP concepts: currying, Hindley-Milner notation, composition, and so forth
