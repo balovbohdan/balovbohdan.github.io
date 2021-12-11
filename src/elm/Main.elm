@@ -5,7 +5,6 @@ import Browser
 import Browser.Hash
 import Browser.Navigation
 import Html.Styled exposing (toUnstyled)
-import Html exposing (p)
 
 import Core.App exposing (app)
 import Core.Model.Types exposing (Model)

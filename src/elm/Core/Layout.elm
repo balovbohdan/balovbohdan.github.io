@@ -2,7 +2,7 @@ module Core.Layout exposing (layout)
 
 import Css
 import Css.Global
-import Html.Styled exposing (a, div, img, span, text, node, Html)
+import Html.Styled exposing (a, div, img, span, text, Html)
 import Html.Styled.Attributes exposing (css, src, href, title)
 
 import Core.Model.Types exposing (Model)

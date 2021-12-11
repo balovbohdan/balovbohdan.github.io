@@ -4,4 +4,4 @@ node_modules
 workspace.code-workspace
 .DS_Store
 .env
-src/Env.elm
+src/elm/Env.elm
