@@ -4,6 +4,6 @@ type alias Constants = { postsSourceUrl: String, postSourceExtension: String }
 
 constants : Constants
 constants =
-  { postsSourceUrl = "https://github.com/balovbohdan/balovbohdan.github.io/tree/main/dist/content/blog/posts/"
+  { postsSourceUrl = "https://github.com/balovbohdan/balovbohdan.github.io/tree/github-page/content/blog/posts/"
   , postSourceExtension = ".md"
   }

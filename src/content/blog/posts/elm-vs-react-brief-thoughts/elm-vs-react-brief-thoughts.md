@@ -2,7 +2,7 @@
 
 ### What experienced React developer thinks about Elm
 
-![Cover](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/main/dist/content/blog/posts/elm-vs-react-brief-thoughts/cover.jpg)
+![Cover](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/elm-vs-react-brief-thoughts/cover.jpg)
 <center>Photo by [Sigmund](https://unsplash.com/@sigmund) on [Unsplash](https://unsplash.com/photos/jbwFv4chusE)</center>
 
 I've been playing around the Elm for near 4 months. And now I have some thoughts about this tech that may be useful for someone who is just thinking about whether to choose Elm for developing a project or not. To be short, I can say right now that my opinion changed a lot since I just started exploring the Elm world.
