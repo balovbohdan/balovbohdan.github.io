@@ -33,6 +33,7 @@ jobs:
           TARGET_BRANCH: 'debug'
         run: |
           # https://stackoverflow.com/a/69578322/8097218
+          git add .
           files=$(find $SRC_FOLDER_PATH -type f)
           echo "------------------------------------"
           echo $files
