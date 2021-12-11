@@ -10,7 +10,7 @@ queryPostMeta : Int -> Int -> String -> Cmd Message
 queryPostMeta step steps name =
   Http.request
     { method = "GET"
-    , url = config.url ++ name
+    , url = config.url ++ name ++ config.parameters
     , expect = Http.expectString (MessageFeatureContentReceived step steps)
     , headers = [ Http.header "Authorization" Env.tokenGithub ]
     , body = Http.emptyBody

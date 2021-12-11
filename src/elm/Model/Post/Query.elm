@@ -10,7 +10,7 @@ queryPost : Int -> Int -> String -> Cmd Message
 queryPost step steps id =
   Http.request
     { method = "GET"
-    , url = config.url ++ id ++ "/" ++ id ++ config.extension
+    , url = config.url ++ id ++ "/" ++ id ++ config.extension ++ config.parameters
     , expect = Http.expectString (MessageFeatureContentReceived step steps)
     , headers = [ Http.header "Authorization" Env.tokenGithub ]
     , body = Http.emptyBody
