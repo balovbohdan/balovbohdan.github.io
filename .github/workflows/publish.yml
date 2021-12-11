@@ -38,10 +38,10 @@ jobs:
           git config --global user.email 'action@github.com'
           git fetch
           git checkout $TARGET_BRANCH
-          git checkout ${GITHUB_REF##*/} -- $files # copy files from the source branch
           echo "------------------------------------"
           echo $files
           echo "------------------------------------"
+          git checkout ${GITHUB_REF##*/} -- $files # copy files from the source branch
           git add .
           git diff-index --quiet HEAD ||  git commit -am "publish"
           git push origin $TARGET_BRANCH --force
