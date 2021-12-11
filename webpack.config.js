@@ -67,8 +67,4 @@ module.exports = (env, props) => ({
     port: 8000,
     contentBase: path.join(__dirname, 'src'),
   },
-<<<<<<< HEAD
 });
-=======
-};
->>>>>>> main
