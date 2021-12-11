@@ -1,5 +1,5 @@
 {
-  "path": "src/elm",
+  "path": "src",
   "moduleName": "Env",
   "values": ["TOKEN_GITHUB"]
 }

@@ -1,6 +1,4 @@
-import { Elm } from './elm/Main.elm';
-
-console.log(Elm);
+import { Elm } from './Main.elm';
 
 // import '../codemirror-elm';
 
