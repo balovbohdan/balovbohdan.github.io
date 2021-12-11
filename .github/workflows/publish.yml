@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - develop
 
 jobs:
   publish:
@@ -31,6 +30,6 @@ jobs:
         uses: s0/git-publish-subdir-action@v2.5.0
         env:
           REPO: self
-          BRANCH: debug
+          BRANCH: github-page
           FOLDER: dist
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
