@@ -10,7 +10,7 @@ import Markdown.Inline exposing (Inline(..))
 customHtmlBlock : Block b i -> List (Html Message)
 customHtmlBlock block =
     case block of
-      CodeBlock b1 b2 -> [node "code-mirror" [] []]
+      -- CodeBlock b1 b2 -> [node "code-mirror" [] []]
       _ ->
         Markdown.Block.defaultHtml
           (Just customHtmlBlock)
