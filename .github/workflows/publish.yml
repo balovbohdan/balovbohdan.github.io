@@ -37,7 +37,9 @@ jobs:
           git config --global user.email 'action@github.com'
           git fetch                         # fetch branches
           git add -A
+          git stash
           git checkout $TARGET_BRANCH       # checkout to your branch
+          git stash pop
           git checkout ${GITHUB_REF##*/} -- $files # copy files from the source branch
           git add -A
           git diff-index --quiet HEAD ||  git commit -am "deploy files"  # commit to the repository (ignore if no modification)
