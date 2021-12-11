@@ -26,14 +26,15 @@ jobs:
       - name: Build 🏗️
         run: npm run build
 
-      - name: Remove Source Files 🔧
-        run: rm -rf !(docs)
-
       - name: Publish 📨
         run: |
+          # https://stackoverflow.com/a/69578322/8097218
+          files=$(find docs -type f) # get the file list
           git config --global user.name 'balovbohdan'
           git config --global user.email 'balovbohdan@users.noreply.github.com'
-          git add .
+          git fetch
           git checkout github-page
-          git commit -am "publish"
-          git push
+          git checkout ${GITHUB_REF##*/} -- $files # copy files from the source branch
+          git add .
+          git diff-index --quiet HEAD ||  git commit -am "deploy files"  # commit to the repository (ignore if no modification)
+          git push origin github-page
