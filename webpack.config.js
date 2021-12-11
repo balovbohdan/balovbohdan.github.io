@@ -11,12 +11,10 @@ const copyWebpackPlugin = new CopyWebpackPlugin({
   ],
 });
 
-module.exports = {
+module.exports = (env, props) => ({
   mode: 'development',
-  watch: true,
-  watchOptions: {
-    aggregateTimeout: 200,
-  },
+  watch: props.mode !== 'production',
+  watchOptions: { aggregateTimeout: 200 },
   entry: [
     path.resolve(__dirname, 'src/index.js'),
     path.resolve(__dirname, 'src/elm/Main.elm'),
@@ -69,4 +67,4 @@ module.exports = {
     port: 8000,
     contentBase: path.join(__dirname, 'src'),
   },
-};
+});
