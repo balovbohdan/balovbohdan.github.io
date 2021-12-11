@@ -25,11 +25,11 @@ jobs:
           npm run build-env-variables
 
       - name: Build 🏗️
-        run: npm run build
+        run: npm run build --output-path=dist-tmp
 
       - name: Publish 📨
         env:
-          SRC_FOLDER_PATH: 'docs'
+          SRC_FOLDER_PATH: 'dist-tmp'
           TARGET_BRANCH: 'debug'
         run: |
           # https://stackoverflow.com/a/69578322/8097218
