@@ -1,7 +1,6 @@
 module Utils.Markdown.CustomParser exposing (parseWithCustomElements)
 
-import Html exposing (div, node, Html)
-import Html.Attributes exposing (attribute)
+import Html exposing (Html)
 import Core.Message exposing (Message)
 
 import Html.Attributes exposing (..)
@@ -12,7 +11,7 @@ import Utils.Markdown.CustomCodeBlock exposing (customCodeBlock)
 customHtmlBlock : Block b i -> List (Html Message)
 customHtmlBlock block =
     case block of
-      -- CodeBlock meta value -> [customCodeBlock { meta = meta, value = value }]
+      CodeBlock meta value -> [ customCodeBlock { meta = meta, value = value } ]
       _ ->
         Markdown.Block.defaultHtml
           (Just customHtmlBlock)

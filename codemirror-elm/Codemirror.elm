@@ -8,6 +8,7 @@ type alias Config =
   , mode: String
   , lineNumbers: Bool
   , lineWrapping: Bool
+  , readOnly: String
   }
 
 type alias Props =
@@ -27,5 +28,6 @@ codemirror props =
     , attribute "mode" props.config.mode
     , attribute "lineNumbers" (boolToString props.config.lineNumbers)
     , attribute "lineWrapping" (boolToString props.config.lineWrapping)
+    , attribute "readOnly" props.config.readOnly
     ]
     []
