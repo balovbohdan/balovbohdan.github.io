@@ -1,7 +1,6 @@
 module Utils.Markdown.CustomParser exposing (parseWithCustomElements)
 
-import Html exposing (div, node, Html)
-import Html.Attributes exposing (attribute)
+import Html exposing (Html)
 import Core.Message exposing (Message)
 
 import Html.Attributes exposing (..)

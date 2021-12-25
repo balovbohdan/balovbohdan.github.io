@@ -1,9 +1,7 @@
 module Utils.Markdown.CustomCodeBlock exposing (customCodeBlock)
 
-import Html exposing (node, Html)
-import Html.Attributes exposing (attribute)
+import Html exposing (Html)
 import Core.Message exposing (Message)
--- import Markdown.Block exposing (Block(..))
 import Codemirror exposing (codemirror)
 import Markdown.Block exposing (CodeBlock(..))
 
@@ -27,16 +25,13 @@ getMode meta =
 
 customCodeBlock : Props -> Html Message
 customCodeBlock props =
-  let
-    foo = Debug.log "" props.value
-  in
-    codemirror
-      { value = props.value
-      , config =
-          { theme = "material"
-          , mode = getMode props.meta
-          , lineNumbers = True
-          , lineWrapping = True
-          , readOnly = "nocursor"
-          }
-      }
+  codemirror
+    { value = props.value
+    , config =
+        { theme = "material"
+        , mode = getMode props.meta
+        , lineNumbers = True
+        , lineWrapping = True
+        , readOnly = "nocursor"
+        }
+    }
