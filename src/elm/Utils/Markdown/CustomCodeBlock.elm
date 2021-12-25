@@ -27,15 +27,12 @@ getMode meta =
 
 customCodeBlock : Props -> Html Message
 customCodeBlock props =
-  let
-    foo = Debug.log "" props.value
-  in
-    codemirror
-      { value = props.value
-      , config =
-          { theme = "material"
-          , mode = getMode props.meta
-          , lineNumbers = False
-          , lineWrapping = True
-          }
-      }
+  codemirror
+    { value = props.value
+    , config =
+        { theme = "material"
+        , mode = getMode props.meta
+        , lineNumbers = False
+        , lineWrapping = True
+        }
+    }
