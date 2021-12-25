@@ -79,3 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 500;
 	color: rgb(33, 34, 39);
 }
+
+.CodeMirror-wrap {
+	height: auto !important;
+}

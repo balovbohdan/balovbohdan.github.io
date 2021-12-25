@@ -12,7 +12,12 @@ import Utils.Markdown.CustomCodeBlock exposing (customCodeBlock)
 customHtmlBlock : Block b i -> List (Html Message)
 customHtmlBlock block =
     case block of
-      -- CodeBlock meta value -> [customCodeBlock { meta = meta, value = value }]
+      CodeBlock meta value ->
+        [ customCodeBlock
+            { meta = meta
+            , value = String.replace "\n" "\r\n" value
+            }
+        ]
       _ ->
         Markdown.Block.defaultHtml
           (Just customHtmlBlock)
