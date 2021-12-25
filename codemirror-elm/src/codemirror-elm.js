@@ -1,8 +1,14 @@
-import 'codemirror';
+import Codemirror from 'codemirror';
+import { nanoid } from 'nanoid';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
 
 class CodemirrorElm extends HTMLElement {
+  #id = `code-${nanoid()}`;
+
   static get observedAttributes() {
-    return [];
+    return ['value', 'theme', 'mode', 'lineNumbers', 'lineWrapping'];
   }
 
   constructor() {
@@ -10,18 +16,25 @@ class CodemirrorElm extends HTMLElement {
   }
 
   connectedCallback() {
-    this.setHtml();
+    this.render();
   }
 
   attributeChangedCallback() {
-    this.setHtml();
+    this.render();
   }
 
-  setHtml() {
-    this.innerHTML = `
-      <div>FOO HTML INNER</div>
-    `;
+  render() {
+    this.innerHTML = `<div id="${this.#id}"></div>`;
+
+    const theme = this.getAttribute('theme');
+    const mode = this.getAttribute('mode');
+    const lineNumbers = this.getAttribute('lineNumbers') === 'True';
+    const lineWrapping = this.getAttribute('lineWrapping') === 'True';
+    const wrapper = document.getElementById(this.#id);
+    const codemirror = new Codemirror(wrapper, { theme, mode, lineNumbers, lineWrapping });
+
+    codemirror.setValue(this.getAttribute('value'));
   }
 }
 
-customElements.define('code-mirror', CodemirrorElm);
+customElements.define('codemirror-elm', CodemirrorElm);

@@ -1,25 +1,31 @@
 module Codemirror exposing (codemirror)
 
 import Html exposing (node, Html)
+import Html.Attributes exposing (attribute)
 
--- import Native.CodeMirror
+type alias Config =
+  { theme: String
+  , mode: String
+  , lineNumbers: Bool
+  , lineWrapping: Bool
+  }
 
--- type alias Config =
---   { value : String
---   , cmConfig : CmConfig
---   }
+type alias Props =
+  { value: String
+  , config: Config
+  }
 
--- type alias CmConfig =
---   { theme : String
---   , mode : String
---   , height : String
---   , lineNumbers : Bool
---   , lineWrapping : Bool
---   }
+boolToString : Bool -> String
+boolToString bool = if bool then "True" else "False"
 
--- codeMirrorNative : Config -> (String -> Signal.Message) -> Html
--- codeMirrorNative =
---   Native.CodeMirror.codeMirror
-
--- codemirror : CmConfig -> (String -> Signal.Message) -> String -> Html
-codemirror = node "codemirror-elm" [] []
+codemirror : Props -> Html message
+codemirror props =
+  node
+    "codemirror-elm"
+    [ attribute "value" props.value
+    , attribute "theme" props.config.theme
+    , attribute "mode" props.config.mode
+    , attribute "lineNumbers" (boolToString props.config.lineNumbers)
+    , attribute "lineWrapping" (boolToString props.config.lineWrapping)
+    ]
+    []

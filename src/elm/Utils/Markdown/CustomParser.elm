@@ -1,16 +1,18 @@
 module Utils.Markdown.CustomParser exposing (parseWithCustomElements)
 
 import Html exposing (div, node, Html)
+import Html.Attributes exposing (attribute)
 import Core.Message exposing (Message)
 
 import Html.Attributes exposing (..)
 import Markdown.Block exposing (Block(..))
 import Markdown.Inline exposing (Inline(..))
+import Utils.Markdown.CustomCodeBlock exposing (customCodeBlock)
 
 customHtmlBlock : Block b i -> List (Html Message)
 customHtmlBlock block =
     case block of
-      -- CodeBlock b1 b2 -> [node "code-mirror" [] []]
+      -- CodeBlock meta value -> [customCodeBlock { meta = meta, value = value }]
       _ ->
         Markdown.Block.defaultHtml
           (Just customHtmlBlock)
