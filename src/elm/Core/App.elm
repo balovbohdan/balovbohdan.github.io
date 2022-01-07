@@ -18,12 +18,21 @@ getOpacity model = if model.featureData.shouldShowUi then "1" else "0"
 feature : Model -> Html Message
 feature model = (getFeature <| Url.toString model.url) model
 
-app : Model -> Html Message
-app model =
+featureWithPreloader : Model -> Html Message
+featureWithPreloader model =
   div
     [ css
         [ Css.property "opacity" (getOpacity model)
-        , Css.Transitions.transition [ Css.Transitions.opacity (toFloat constants.uiOpacityTransitionDuration) ]
+        , Css.Transitions.transition
+            [ Css.Transitions.opacity (toFloat constants.uiOpacityTransitionDuration) ]
         ]
     ]
-    [ layout { model = model, feature = feature model } ]
+    [ feature model ]
+
+app : Model -> Html Message
+app model =
+  layout
+    { model = model
+    , feature = featureWithPreloader model
+    , visibleFooter = model.featureData.shouldShowUi
+    }

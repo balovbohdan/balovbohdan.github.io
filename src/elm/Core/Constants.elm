@@ -10,5 +10,5 @@ constants : Constants
 constants =
   { uiOpacityTransitionDuration = 200
   , toggleUiDelay = 400
-  , internalLinkNavigationDelay = 10
+  , internalLinkNavigationDelay = 100
   }
