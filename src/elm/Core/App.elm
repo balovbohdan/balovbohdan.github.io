@@ -13,7 +13,7 @@ import Core.Layout exposing (layout)
 import Core.Constants exposing (constants)
 
 getOpacity : Model -> String
-getOpacity model = if model.featureData.shouldShowUi then "1" else "0"
+getOpacity model = if model.featureData.visibleUi then "1" else "0"
 
 feature : Model -> Html Message
 feature model = (getFeature <| Url.toString model.url) model
@@ -34,5 +34,5 @@ app model =
   layout
     { model = model
     , feature = featureWithPreloader model
-    , visibleFooter = model.featureData.shouldShowUi
+    , visibleFooter = model.featureData.visibleUi
     }

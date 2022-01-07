@@ -38,7 +38,7 @@ updateModel message model =
       handleUrlChanged model url
     MessageColorSchemaToggled colorSchema ->
       handleColorSchemaToggled model colorSchema
-    MessageToggleUi shouldShowUi ->
-      handleToggleUi model shouldShowUi
+    MessageToggleUi visibleUi ->
+      handleToggleUi model visibleUi
     MessageFeatureContentReceived step steps result ->
       handleFeatureContentReceived model step steps result

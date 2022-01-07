@@ -4,10 +4,10 @@ import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message(..))
 
 handleToggleUi : Model -> Bool -> (Model, Cmd Message)
-handleToggleUi model shouldShowUi =
+handleToggleUi model visibleUi =
   let
     featureData = model.featureData
-    updatedFeatureData = { featureData | shouldShowUi = shouldShowUi }
+    updatedFeatureData = { featureData | visibleUi = visibleUi }
     updatedModel = { model | featureData = updatedFeatureData }
   in
     (updatedModel, Cmd.none)

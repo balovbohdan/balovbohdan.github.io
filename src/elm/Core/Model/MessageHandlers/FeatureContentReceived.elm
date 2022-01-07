@@ -23,7 +23,7 @@ updateModel model step steps featureContent =
     hasNextStep = getHasNextStep step steps
     updatedFeatureData =
       { loading = hasNextStep
-      , shouldShowUi = model.featureData.shouldShowUi
+      , visibleUi = model.featureData.visibleUi
       , step = step + 1
       , content = Array.push featureContent model.featureData.content
       }
