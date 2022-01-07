@@ -9,7 +9,7 @@ import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message)
 import Components.Header exposing (header)
 
-type alias Props = { model: Model, feature: Html Message }
+type alias Props = { model: Model, feature: Html Message, visibleFooter: Bool }
 
 globalCss : Model -> Html Message
 globalCss model =
@@ -59,7 +59,11 @@ layout : Props -> Html Message
 layout props =
   div
     [ css
-        [ Css.padding2 Css.zero (Css.px 10)
+        [ Css.displayFlex
+        , Css.flexDirection Css.column
+        , Css.justifyContent Css.spaceBetween
+        , Css.padding2 Css.zero (Css.px 10)
+        , Css.minHeight <| Css.vh 100
         , Css.maxWidth <| Css.px 1000
         , Css.margin2 Css.zero Css.auto
         ]
@@ -71,5 +75,5 @@ layout props =
         , css = [ Css.marginTop <| Css.px 50 ]
         }
     , div [ css [ Css.marginTop <| Css.px 50 ] ] [ props.feature ]
-    , footer props.model
+    , if props.visibleFooter then footer props.model else div [] []
     ]

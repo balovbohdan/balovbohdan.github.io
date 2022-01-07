@@ -1,27 +1,19 @@
 module Core.Model.Utils exposing (updateModel, getInitialModel)
 
 import Url
-import Array
-import Browser
 import Browser.Navigation
-import Json.Encode
 
 import Core.Model.Types exposing (Model)
 import Core.Flags exposing (Flags)
 import Core.Message exposing (Message(..))
 import Core.Theme exposing (getTheme)
-import Ports exposing (localStorageOutcomePort)
-import Core.FeatureData.Utils exposing (queryFeatureContent)
 import Core.FeatureData.FeatureData exposing (defaultFeatureData)
 
-getColorSchemaToggledPortEvent : String -> String
-getColorSchemaToggledPortEvent colorSchema =
-  Json.Encode.object
-    [ ("action", Json.Encode.string "set")
-    , ("key", Json.Encode.string "colorSchema")
-    , ("value", Json.Encode.string colorSchema)
-    ]
-    |> Json.Encode.encode 0
+import Core.Model.MessageHandlers.ColorSchemaToggled exposing (handleColorSchemaToggled)
+import Core.Model.MessageHandlers.FeatureContentReceived exposing (handleFeatureContentReceived)
+import Core.Model.MessageHandlers.LinkClicked exposing (handleLinkClicked)
+import Core.Model.MessageHandlers.ToggleUi exposing (handleToggleUi)
+import Core.Model.MessageHandlers.UrlChanged exposing (handleUrlChanged)
 
 getInitialModel : Flags -> Browser.Navigation.Key -> Url.Url -> Model
 getInitialModel flags key url =
@@ -32,50 +24,21 @@ getInitialModel flags key url =
   , featureData = defaultFeatureData
   }
 
-updateModel : Message -> Model -> ( Model, Cmd Message )
+updateModel : Message -> Model -> (Model, Cmd Message)
 updateModel message model =
   case message of
     MessageLinkClicked urlRequest ->
-      case urlRequest of
-        Browser.Internal url ->
-          ( model, Browser.Navigation.pushUrl model.key (Url.toString url) )
-        Browser.External href ->
-          ( model, Browser.Navigation.load href )
-
+      handleLinkClicked model urlRequest
+    MessageInternalLinkClicked url ->
+      let
+        m = Browser.Navigation.pushUrl model.key (Url.toString url)
+      in
+        (model, m)
     MessageUrlChanged url ->
-      let
-        updatedModel = { model | url = url, featureData = defaultFeatureData }
-      in
-        ( updatedModel
-        , queryFeatureContent updatedModel (Url.toString url)
-        )
-
+      handleUrlChanged model url
     MessageColorSchemaToggled colorSchema ->
-      ( { model | colorSchema = colorSchema, theme = getTheme colorSchema }
-      , localStorageOutcomePort (getColorSchemaToggledPortEvent colorSchema)
-      )
-
+      handleColorSchemaToggled model colorSchema
+    MessageToggleUi visibleUi ->
+      handleToggleUi model visibleUi
     MessageFeatureContentReceived step steps result ->
-      let
-        lastStep = steps - 1
-        hasNextStep = step < lastStep
-      in
-        case result of
-          Ok featureContent ->
-            let
-              updatedModel =
-                { model | featureData =
-                  { loading = hasNextStep
-                  , step = step + 1
-                  , content = Array.push featureContent model.featureData.content
-                  }
-                }
-            in
-              ( updatedModel
-              , if (hasNextStep) then
-                  queryFeatureContent updatedModel (Url.toString model.url)
-                else
-                  Cmd.none
-              )
-          Err _ ->
-            ( model, Cmd.none )
+      handleFeatureContentReceived model step steps result
