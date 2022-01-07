@@ -11,6 +11,7 @@ import Core.FeatureData.FeatureData exposing (defaultFeatureData)
 
 import Core.Model.MessageHandlers.ColorSchemaToggled exposing (handleColorSchemaToggled)
 import Core.Model.MessageHandlers.FeatureContentReceived exposing (handleFeatureContentReceived)
+import Core.Model.MessageHandlers.InternalLinkClicked exposing (handleInternalLinkClicked)
 import Core.Model.MessageHandlers.LinkClicked exposing (handleLinkClicked)
 import Core.Model.MessageHandlers.ToggleUi exposing (handleToggleUi)
 import Core.Model.MessageHandlers.UrlChanged exposing (handleUrlChanged)
@@ -30,10 +31,7 @@ updateModel message model =
     MessageLinkClicked urlRequest ->
       handleLinkClicked model urlRequest
     MessageInternalLinkClicked url ->
-      let
-        m = Browser.Navigation.pushUrl model.key (Url.toString url)
-      in
-        (model, m)
+      handleInternalLinkClicked model url
     MessageUrlChanged url ->
       handleUrlChanged model url
     MessageColorSchemaToggled colorSchema ->
