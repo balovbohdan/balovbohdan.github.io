@@ -18,7 +18,7 @@ content props =
         [ Css.borderBottom3 (Css.px 1) Css.solid props.model.theme.primary
         , Css.marginBottom <| Css.px 15
         , Css.Global.children
-            [ Css.Global.typeSelector "p a" [ Css.color props.model.theme.accent ]
+            [ Css.Global.typeSelector "p a, ul a" [ Css.color props.model.theme.accent ]
             , Css.Global.typeSelector "pre" [ Css.width <| Css.pct 100 ]
             , Css.Global.typeSelector "p strong, blockquote p strong" [ Css.color props.model.theme.textPrimary ]
             , Css.Global.typeSelector "blockquote"
@@ -26,7 +26,7 @@ content props =
               , Css.paddingLeft (Css.px <| 10)
               , Css.borderLeft3 (Css.px <| 2) Css.solid props.model.theme.accent
               ]
-            , Css.Global.typeSelector "p code"
+            , Css.Global.typeSelector "p code, ul code"
               [ Css.color props.model.theme.codeColor
               , Css.backgroundColor props.model.theme.codeBackground
               , Css.padding2 Css.zero (Css.px <| 5)
