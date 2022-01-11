@@ -35,5 +35,5 @@ jobs:
         env:
           REPO: self
           BRANCH: github-page
-          FOLDER: dist
+          FOLDER: client/dist
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
