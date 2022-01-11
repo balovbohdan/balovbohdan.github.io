@@ -5,3 +5,4 @@ workspace.code-workspace
 .DS_Store
 .env
 src/elm/Env.elm
+yarn-error.log

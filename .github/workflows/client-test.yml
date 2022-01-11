@@ -20,12 +20,12 @@ jobs:
           persist-credentials: true
         
       - name: Install Dependencies 🔧
-        run: npm install
+        run: yarn install --pure-lockfile
 
       - name: Build Env Variables ✂️
         run: |
           echo TOKEN_GITHUB=${{ secrets.TOKEN_GITHUB }} >> .env
-          npm run build-env-variables
+          yarn run build-env-variables
 
       - name: Build 🏗️
-        run: npm run build
+        run: yarn run build
