@@ -1,12 +1,16 @@
-name: test
+name: client-publish
 
 on:
   push:
-    branches-ignore:
+    branches:
       - main
 
+defaults:
+ run:
+  working-directory: client
+
 jobs:
-  test:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,3 +29,11 @@ jobs:
 
       - name: Build 🏗️
         run: npm run build
+
+      - name: Publish 📨
+        uses: s0/git-publish-subdir-action@v2.5.0
+        env:
+          REPO: self
+          BRANCH: github-page
+          FOLDER: dist
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

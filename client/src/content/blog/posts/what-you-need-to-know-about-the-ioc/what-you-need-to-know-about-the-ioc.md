@@ -1,4 +1,4 @@
-# What you need to know about the inversion of control
+# What You Need to Know about the Inversion of Control
 
 ## Inversion of Control principle applied to React projects
 
