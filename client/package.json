@@ -27,6 +27,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "codemirror-elm": "file:codemirror-elm",
-    "core-js": "^3.19.3"
+    "core-js": "^3.19.3",
+    "js-base64": "^3.7.2"
   }
 }

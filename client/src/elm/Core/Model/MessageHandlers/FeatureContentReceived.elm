@@ -5,6 +5,8 @@ import Http
 import Array
 import Delay
 
+import Ports exposing (metaChangePort)
+
 import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message(..))
 import Core.FeatureData.FeatureData exposing (FeatureContent)
@@ -38,7 +40,10 @@ getMessage model step steps =
     if (hasNextStep) then
       queryFeatureContent model (Url.toString model.url)
     else
-      Delay.after constants.toggleUiDelay (MessageToggleUi True)
+      Cmd.batch
+        [ metaChangePort model.featureData.content
+        , Delay.after constants.toggleUiDelay (MessageToggleUi True)
+        ]
 
 handleFeatureContent : Model -> Int -> Int -> FeatureContent -> (Model, Cmd Message)
 handleFeatureContent model step steps  featureContent =

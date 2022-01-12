@@ -4,12 +4,14 @@ import Array exposing (Array)
 
 import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message(..))
-import Features.Post.Model.Types exposing (PostFeatureContent)
-import Features.Post.Model.Config exposing (config)
+
 import Model.Post.Query exposing (queryPost)
-import Model.PostMeta.Query exposing (queryPostMeta)
 import Model.Post.Decoder exposing (decodePost)
+import Model.PostMeta.Query exposing (queryPostMeta)
 import Model.PostMeta.Decoder exposing (decodePostMeta)
+
+import Features.Post.Model.Config exposing (config)
+import Features.Post.Model.Types exposing (PostFeatureContent)
 
 queryPostFeatureContent : Model -> String -> Cmd Message
 queryPostFeatureContent model id =
