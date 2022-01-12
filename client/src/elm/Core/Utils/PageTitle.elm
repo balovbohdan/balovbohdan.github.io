@@ -20,7 +20,7 @@ getPageTitle model =
         let
           postMetaRaw = Array.get 1 model.featureData.content
           postMetaDecoded = decodePostMeta postMetaRaw
-          postTitle = if postMetaDecoded.title == "" then "Awesome Article..." else postMetaDecoded.title
+          postTitle = if postMetaDecoded.title == "" then "..." else postMetaDecoded.title
         in
           postTitle ++ " | Mr. Balov"
       "" -> defaultTitle

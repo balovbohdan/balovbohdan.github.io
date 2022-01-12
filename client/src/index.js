@@ -39,7 +39,6 @@ const decodePostMeta = (data) => {
 const setMeta = (meta) => {
   const head = document.querySelector('head');
 
-  head.querySelector('title').innerText = meta.title;
   head.querySelector('meta[name="description"]').setAttribute('content', meta.description);
   head.querySelector('meta[name="keywords"]').setAttribute('content', meta.keywords);
 
@@ -80,14 +79,12 @@ const handleMetaChangePort = (event) => {
     const postMeta = decodePostMeta(JSON.parse(event[1]));
 
     setMeta({
-      title: postMeta.title,
       description: `${postMeta.description} | Mr. Balov`,
       keywords: postMeta.keywords,
       image: postMeta.cover,
     });
   } else {
     setMeta({
-      title: 'Mr. Balov | Personal Blog',
       description: 'Software Development Blog by Mr. Balov',
       keywords: 'javascript, frontend, software development, react',
       image: 'https://balovbohdan.github.io/assets/author-2.jpg',
