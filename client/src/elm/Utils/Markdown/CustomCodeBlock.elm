@@ -2,7 +2,7 @@ module Utils.Markdown.CustomCodeBlock exposing (customCodeBlock)
 
 import Html exposing (Html)
 import Core.Message exposing (Message)
-import Codemirror exposing (codemirror)
+import CodeMirror exposing (codemirror)
 import Markdown.Block exposing (CodeBlock(..))
 
 type alias Props =

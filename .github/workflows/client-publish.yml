@@ -6,8 +6,8 @@ on:
       - main
 
 defaults:
- run:
-  working-directory: client
+  run:
+    working-directory: client
 
 jobs:
   publish:

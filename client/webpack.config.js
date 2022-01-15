@@ -21,7 +21,7 @@ module.exports = (env, props) => {
     entry: [
       path.resolve(__dirname, 'src/index.js'),
       path.resolve(__dirname, 'src/elm/Main.elm'),
-      path.resolve(__dirname, 'codemirror-elm'),
+      path.resolve(__dirname, '../node_modules/codemirror-elm'),
     ],
     output: {
       path: path.resolve(__dirname, 'dist'),
