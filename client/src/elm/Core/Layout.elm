@@ -2,6 +2,7 @@ module Core.Layout exposing (layout)
 
 import Css
 import Css.Global
+import Css.Transitions
 import Html.Styled exposing (a, div, img, span, text, Html)
 import Html.Styled.Attributes exposing (css, src, href, title)
 
@@ -18,13 +19,21 @@ globalCss model =
     , Css.Global.selector "p, a, ol, ul, li, span, h1, h2, h3, h4, h5, h6" [ Css.color model.theme.textPrimary ]
     ]
 
-socialButton : String -> String -> String -> Html Message
-socialButton name socialHref imageUrl =
+socialButton : Model -> String -> String -> String -> Html Message
+socialButton model name socialHref imageUrl =
   a
-    [ title name, href socialHref ]
+    [ title name
+    , href socialHref
+    , css
+        [ Css.padding <| Css.px 3
+        , Css.borderRadius <| Css.px 5
+        , Css.hover [ Css.backgroundColor model.theme.secondaryStrong ]
+        , Css.Transitions.transition [ Css.Transitions.backgroundColor 200 ]
+        ]
+    ]
     [ img
         [ src imageUrl
-        , css [ Css.width <| Css.px 30, Css.marginLeft <| Css.px 10 ]
+        , css [ Css.height <| Css.px 30 ]
         ]
         []
     ]
@@ -43,15 +52,22 @@ footer model =
     ]
     [ span [ css [ Css.color model.theme.primaryLight ] ] [ text "All rights reserved" ]
     , div
-        [ css [ Css.displayFlex ] ]
+        [ css [ Css.displayFlex, Css.property "gap" "10px" ] ]
         [ socialButton
+            model
             "GitHub"
             "https://github.com/balovbohdan"
-            "https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/assets/github.svg"
+            "/assets/github.svg"
         , socialButton
+            model
             "Twitter"
             "https://twitter.com/balov_bohdan"
-            "https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/assets/twitter.svg"
+            "/assets/twitter.svg"
+        , socialButton
+            model
+            "Medium"
+            "https://medium.com/@balovbohdan"
+            "/assets/medium.svg"
         ]
     ]
 
