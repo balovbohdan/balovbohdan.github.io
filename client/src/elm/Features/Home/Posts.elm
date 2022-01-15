@@ -1,7 +1,6 @@
 module Features.Home.Posts exposing (posts)
 
 import Css
-import Browser
 import Html.Styled exposing (div, Html)
 import Html.Styled.Attributes exposing (css)
 
@@ -22,7 +21,8 @@ goToBlogButton model =
   button
     { text = "Go to blog"
     , model = model
-    , onClick = MessageLinkClicked (Browser.External "/#/blog")
+    , to = Just "/#/blog"
+    , onClick = Nothing
     }
 
 footer : Model -> List PostMeta -> Html Message

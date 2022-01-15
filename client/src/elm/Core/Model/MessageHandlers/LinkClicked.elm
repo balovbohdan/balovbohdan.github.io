@@ -15,7 +15,8 @@ handleInternalLinkClicked model url =
     message =
       Delay.sequence
         [ (constants.internalLinkNavigationDelay, MessageToggleUi False)
-        , (constants.uiOpacityTransitionDuration, MessageInternalLinkClicked url)
+        , (constants.uiOpacityTransitionDuration, MessageScrollToTop)
+        , (constants.internalLinkNavigationDelay, MessageInternalLinkClicked url)
         ]
   in
     (model, message)
