@@ -1790,8 +1790,10 @@ cliui@^5.0.0:
     strip-ansi "^5.2.0"
     wrap-ansi "^5.1.0"
 
-"codemirror-elm@file:client/codemirror-elm":
-  version "1.0.0"
+codemirror-elm@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/codemirror-elm/-/codemirror-elm-1.0.4.tgz#53f5f265ee4728092d0c1e0beda6bf5942dfe89d"
+  integrity sha512-f9wnSQaXWVevfR55sep4+Kdq3bgRHXuGo9nvb0+yTFSCb5E0BmnZVljzBTBTt/ixuLZv9NBtlSaE5zfK9/q71w==
   dependencies:
     "@babel/polyfill" "^7.12.1"
     codemirror "^5.64.0"
