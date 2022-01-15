@@ -8,7 +8,7 @@ type alias Constants =
 
 constants : Constants
 constants =
-  { uiOpacityTransitionDuration = 200
-  , toggleUiDelay = 400
-  , internalLinkNavigationDelay = 200
+  { uiOpacityTransitionDuration = 100
+  , toggleUiDelay = 50
+  , internalLinkNavigationDelay = 50
   }

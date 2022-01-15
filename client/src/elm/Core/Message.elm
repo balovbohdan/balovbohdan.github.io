@@ -13,3 +13,4 @@ type Message =
   | MessageColorSchemaToggled String
   | MessageToggleUi Bool
   | MessageFeatureContentReceived Int Int (Result Http.Error FeatureContent)
+  | MessageScrollToTop

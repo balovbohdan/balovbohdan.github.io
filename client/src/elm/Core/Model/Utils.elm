@@ -3,6 +3,8 @@ module Core.Model.Utils exposing (updateModel, getInitialModel)
 import Url
 import Browser.Navigation
 
+import Ports exposing (scrollToPort)
+
 import Core.Model.Types exposing (Model)
 import Core.Flags exposing (Flags)
 import Core.Message exposing (Message(..))
@@ -40,3 +42,5 @@ updateModel message model =
       handleToggleUi model visibleUi
     MessageFeatureContentReceived step steps result ->
       handleFeatureContentReceived model step steps result
+    MessageScrollToTop ->
+      (model, scrollToPort 0)

@@ -92,5 +92,10 @@ const handleMetaChangePort = (event) => {
   }
 };
 
+const handleScrollToPort = (event) => {
+  window.scrollTo(0, event);
+};
+
 app.ports.localStorageOutcomePort.subscribe(handleLocalStorageOutcomePort);
 app.ports.metaChangePort.subscribe(handleMetaChangePort);
+app.ports.scrollToPort.subscribe(handleScrollToPort);

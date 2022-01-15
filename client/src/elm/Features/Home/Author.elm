@@ -1,7 +1,6 @@
 module Features.Home.Author exposing (author)
 
 import Css
-import Browser
 import Html.Styled.Attributes exposing (css)
 import Html.Styled exposing (p, text, Html)
 
@@ -16,7 +15,8 @@ exploreMoreButton model =
   button
     { text = "Explore more"
     , model = model
-    , onClick = MessageLinkClicked (Browser.External "/#/author")
+    , to = Just "/#/author"
+    , onClick = Nothing
     }
 
 description : List (Html Message)
