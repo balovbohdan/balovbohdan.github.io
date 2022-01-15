@@ -24,7 +24,11 @@ featureWithPreloader model =
     [ css
         [ Css.property "opacity" (getOpacity model)
         , Css.Transitions.transition
-            [ Css.Transitions.opacity (toFloat constants.uiOpacityTransitionDuration) ]
+            [ Css.Transitions.opacity3
+                (toFloat constants.uiOpacityTransitionDuration) 
+                (toFloat constants.uiOpacityTransitionDelay)
+                Css.Transitions.easeIn
+            ]
         ]
     ]
     [ feature model ]
