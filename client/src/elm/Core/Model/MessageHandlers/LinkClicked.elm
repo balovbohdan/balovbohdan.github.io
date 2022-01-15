@@ -12,10 +12,11 @@ import Core.Constants exposing (constants)
 handleInternalLinkClicked : Model -> Url.Url -> (Model, Cmd Message)
 handleInternalLinkClicked model url =
   let
+    scrollToTopDelay = constants.uiOpacityTransitionDuration + 2 * constants.uiOpacityTransitionDelay
     message =
       Delay.sequence
         [ (constants.internalLinkNavigationDelay, MessageToggleUi False)
-        , (constants.uiOpacityTransitionDuration, MessageScrollToTop)
+        , (scrollToTopDelay, MessageScrollToTop)
         , (constants.internalLinkNavigationDelay, MessageInternalLinkClicked url)
         ]
   in
