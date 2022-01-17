@@ -1,8 +1,8 @@
-# Coupling & Cohesion
+# Organizing Modules in React Project — Low Coupling and High Cohesion
 
-## How to organize modules in React project
+## Design robust applications
 
-![Cover](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/coupling-and-cohesion/cover.jpg)
+![Cover](/content/blog/posts/coupling-and-cohesion/cover.jpg)
 <center>Photo by [XPS](https://unsplash.com/@xps) on [Unsplash](https://unsplash.com/photos/7ZWVnVSaafY)</center>
 
 How do you organize modules in a React project you are working on? I hope you place elements related to each other together (module) and then set up connections between these groups of elements. Right?
