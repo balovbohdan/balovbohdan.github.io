@@ -37,7 +37,7 @@ avatar props =
 sign : Html Message
 sign =
   div
-    [ css [ Css.marginLeft (Css.px 20) ] ]
+    []
     [ p [] [ text "Software Development Blog" ]
     , p [] [ text "By Mr. Balov" ]
     ]
@@ -46,6 +46,8 @@ getAuthorCss : Props -> List Css.Style
 getAuthorCss props =
   mixCss
     [ Css.displayFlex
+    , Css.flexWrap Css.wrap
+    , Css.property "gap" "20px"
     , Css.flexDirection Css.row
     , Css.alignItems Css.center
     ]
