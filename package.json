@@ -1,5 +1,0 @@
-{
-  "private": true,
-  "name": "mr-balov-blog",
-  "workspaces": ["client", "server"]
-}
