@@ -2,7 +2,7 @@
 
 ### Thoughts about mental and physical health
 
-![Cover](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/why-you-need-to-care-about-your-health/cover.jpg)
+![Cover](/content/blog/posts/why-you-need-to-care-about-your-health/cover.jpg)
 <center>Photo by [Sporlab](https://unsplash.com/@sporlab) on [Unsplash](https://unsplash.com/photos/XiZ7pRvCzro)</center>
 
 Hi! I’m a Software Engineer at EPAM. I have a lot of everyday stuff related to my engineering career: coding and team leadership, intensive learning, and different activities related to setting up a passive income. If you started reading this post, I believe that you are also a hardworking and purposeful person.

@@ -19,7 +19,7 @@ Coupling is something like connections between system elements. High coupling is
 
 Technically, we can measure the value of coupling — this is just a number of connections between system elements (functions, objects, modules, etc.). The rule states that the system should have the lowest possible number of connections. In this case, we can be sure that there are only expected connections, and we are able to manage them effectively.
 
-![Coupling](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/coupling-and-cohesion/coupling.png)
+![Coupling](/content/blog/posts/coupling-and-cohesion/coupling.png)
 <center>Pic. 1. Coupling</center>
 
 Actually, not sure that there is an easy way to calculate the number of connections. I even don’t think that this number could be really useful!
@@ -41,7 +41,7 @@ There are a lot of things we can call a “group”:
 - service
 - and so on…
 
-![Cohesion](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/coupling-and-cohesion/cohesion.png)
+![Cohesion](/content/blog/posts/coupling-and-cohesion/cohesion.png)
 <center>Pic. 2. Cohesion</center>
 
 But why is it useful? Because in a cohesive system there are much fewer connections between elements. And this leads to better management of these connections and we may be more sure that they are expected.
@@ -52,7 +52,7 @@ As you can see, “coupling” and “cohesion” terms always go together. In t
 
 Let’s explore different cases. Below you can find a diagram that describes connections between “coupling” and “cohesion”. This may be useful for analyzing your application and creating an improvement plan.
 
-![Coupling and Cohesion](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/coupling-and-cohesion/coupling-cohesion.png)
+![Coupling and Cohesion](/content/blog/posts/coupling-and-cohesion/coupling-cohesion.png)
 <center>Pic. 3. Coupling & Cohesion</center>
 
 ### 1 - Ideal: low coupling, high cohesion
@@ -62,7 +62,7 @@ This is a case we need to support. Such a system is manageable and extensible. I
 Below you can see how connections between elements may look like in this case.
 
 
-![Ideal: low coupling, high cohesion](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/coupling-and-cohesion/connections-1.png)
+![Ideal: low coupling, high cohesion](/content/blog/posts/coupling-and-cohesion/connections-1.png)
 <center>Pic. 4. Ideal: low coupling, high cohesion</center>
 
 How to follow this rule? Not a complex one: organize related elements in groups (see above) and set up connections between groups.
@@ -125,7 +125,7 @@ const App = () => {
 
 For me, this is the worst case, and every team should avoid it. Such a system is hardly manageable and cannot be extended in an adequate manner.
 
-![God module: high coupling, high cohesion](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/coupling-and-cohesion/connections-2.png)
+![God module: high coupling, high cohesion](/content/blog/posts/coupling-and-cohesion/connections-2.png)
 <center>Pic. 5. God module: high coupling, high cohesion</center>
 
 In this situation, there is a mess of system elements. Let’s imagine how this may look in code structure.
@@ -191,7 +191,7 @@ The problem here is that there is data logic embedded into a shared component. T
 
 Let’s explore the diagram and examples w/o any additional words.
 
-![Wrong boundaries: high coupling, low cohesion](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/coupling-and-cohesion/connections-3.png)
+![Wrong boundaries: high coupling, low cohesion](/content/blog/posts/coupling-and-cohesion/connections-3.png)
 <center>Pic. 6. Wrong boundaries: high coupling, low cohesion</center>
 
 Contrived project structure.
@@ -255,7 +255,7 @@ Hope it is clear to you that boundaries are wrong in this example. Such an app s
 
 Let’s explore the diagram and examples w/o verbose explanations.
 
-![Destructive Decoupling: low coupling, low cohesion](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/coupling-and-cohesion/connections-4.png)
+![Destructive Decoupling: low coupling, low cohesion](/content/blog/posts/coupling-and-cohesion/connections-4.png)
 <center>Pic. 7. Destructive Decoupling: low coupling, low cohesion</center>
 
 Contrived code structure.
