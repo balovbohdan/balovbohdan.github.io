@@ -2,7 +2,7 @@
 
 ## Inversion of Control principle applied to React projects
 
-![STAR Technique](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/what-you-need-to-know-about-the-ioc/cover.jpg)
+![STAR Technique](/content/blog/posts/what-you-need-to-know-about-the-ioc/cover.jpg)
 <center>Photo by [Martin Sanchez](https://unsplash.com/@martinsanchez) on [Unsplash](https://unsplash.com/photos/SL1co_Etck8)</center>
 
 ## TL;DR
@@ -43,7 +43,7 @@ And this is how we can use this “Section” component that follows the IoC pri
 
 Let’s imagine that you are building a big application with React. One day business asks you to develop a common solution for the dropdown UI element — the “Dropdown” React component. I assume it may look something like the following (pic. 1).
 
-![Dropdown React Component](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/what-you-need-to-know-about-the-ioc/dropdown-v1.jpg)
+![Dropdown React Component](/content/blog/posts/what-you-need-to-know-about-the-ioc/dropdown-v1.jpg)
 <center>Pic.1 Dropdown v1 [source](https://www.carbondesignsystem.com/components/dropdown/usage/)</center>
 
 You may think now it looks rather good and definitely should be proud of your work!
@@ -119,7 +119,7 @@ E.g., it’s required to add two UI elements to dropdown options:
 
 See pic. 1. Please, don’t blame me for this not-beautiful picture. I aim to develop useful content oftener, so for now, I prefer neglecting such details. Hope you understand.
 
-![Dropdown React Component](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/what-you-need-to-know-about-the-ioc/dropdown-v2.jpg)
+![Dropdown React Component](/content/blog/posts/what-you-need-to-know-about-the-ioc/dropdown-v2.jpg)
 <center>Pic.2 Dropdown v2 [source](https://www.carbondesignsystem.com/components/dropdown/usage/)</center>
 
 We can follow a naive approach to develop the initial solution. This solution assumes adding props for controlling these new UI elements — a rather popular solution. But not very good, as we will see later.

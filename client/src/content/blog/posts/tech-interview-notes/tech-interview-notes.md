@@ -2,7 +2,7 @@
 
 ## Notes about my tech interview experience
 
-![STAR Technique](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/tech-interview-notes/cover.jpg)
+![STAR Technique](/content/blog/posts/tech-interview-notes/cover.jpg)
 <center>Photo by [Bannon Morrissy](https://unsplash.com/@dylandgillis) on [Unsplash](https://unsplash.com/photos/KdeqA3aTnBY)</center>
 
 Be careful! This is not a tutorial for handling technical interviews. This article aims to formalize my knowledge and experience.
@@ -56,7 +56,7 @@ This is an easy but useful technique for telling something. Applicable for small
 
 [Here](https://biosciencecareers.org/2018/01/how-to-be-a-star-performer-at-interview.html) you can find a better description of this technique.
 
-![STAR Technique](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/tech-interview-notes/start-technique.jpg)
+![STAR Technique](/content/blog/posts/tech-interview-notes/start-technique.jpg)
 <center>[Bioscience Careers](https://biosciencecareers.org/2018/01/how-to-be-a-star-performer-at-interview.html)</center>
 
 ## Clear and useful feedback
