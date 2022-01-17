@@ -1,6 +1,6 @@
-# Coupling & Cohesion
+# Organizing Modules in React Project — Low Coupling and High Cohesion
 
-## How to organize modules in React project
+## Design robust applications
 
 ![Cover](https://raw.githubusercontent.com/balovbohdan/balovbohdan.github.io/github-page/content/blog/posts/coupling-and-cohesion/cover.jpg)
 <center>Photo by [XPS](https://unsplash.com/@xps) on [Unsplash](https://unsplash.com/photos/7ZWVnVSaafY)</center>
