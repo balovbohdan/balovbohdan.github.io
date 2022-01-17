@@ -17,6 +17,7 @@ getHeaderCss : Props -> List Css.Style
 getHeaderCss props =
   mixCss
     [ Css.displayFlex
+    , Css.property "gap" "10px"
     , Css.justifyContent Css.spaceBetween
     , Css.alignItems Css.center
     , Css.padding2 (Css.px 10) Css.zero

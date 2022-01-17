@@ -5,7 +5,7 @@ import Css.Transitions
 import Css.Global
 import Html.Styled.Events exposing (onCheck)
 import Html.Styled.Attributes exposing (type_, checked)
-import Html.Styled exposing (label, input, span, Html)
+import Html.Styled exposing (div, label, input, span, Html)
 import Html.Styled.Attributes exposing (css)
 
 import Core.Message exposing (Message)
@@ -78,12 +78,15 @@ track props =
 
 toggler : Props -> Html Message
 toggler props =
-  label
-    [ css
-        [ Css.display Css.inlineBlock
-        , Css.position Css.relative
-        , Css.width <| Css.px constants.width
-        , Css.height <| Css.px constants.height
+  div
+    []
+    [ label
+        [ css
+            [ Css.display Css.inlineBlock
+            , Css.position Css.relative
+            , Css.width <| Css.px constants.width
+            , Css.height <| Css.px constants.height
+            ]
         ]
+        [ checkboxInput props, track props ]
     ]
-    [ checkboxInput props, track props ]
