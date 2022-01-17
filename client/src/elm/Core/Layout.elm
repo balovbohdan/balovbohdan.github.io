@@ -50,7 +50,9 @@ footer model =
         , Css.borderTop3 (Css.px 1) Css.solid model.theme.primaryLight
         ]
     ]
-    [ span [ css [ Css.color model.theme.primaryLight ] ] [ text "All rights reserved" ]
+    [ span
+        [ css [ Css.color model.theme.primaryLight ] ]
+        [ text "All rights reserved © Bohdan Balov 2022" ]
     , div
         [ css [ Css.displayFlex, Css.property "gap" "10px" ] ]
         [ socialButton
