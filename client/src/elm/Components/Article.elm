@@ -15,8 +15,7 @@ content : Props -> Html Message
 content props =
   div
     [ css
-        [ Css.borderBottom3 (Css.px 1) Css.solid props.model.theme.primary
-        , Css.marginBottom <| Css.px 15
+        [ Css.marginBottom <| Css.px 15
         , Css.Global.children
             [ Css.Global.typeSelector "p a, ul a" [ Css.color props.model.theme.accent ]
             , Css.Global.typeSelector "pre" [ Css.width <| Css.pct 100 ]
