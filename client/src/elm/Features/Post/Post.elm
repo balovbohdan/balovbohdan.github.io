@@ -4,7 +4,7 @@ import Css
 import Array
 import Html.Styled.Attributes exposing (css, href, target)
 import Html.Styled exposing (a, div, text, Html)
-import Url.Parser exposing ((</>), parse)
+import Url.Parser exposing (parse)
 
 import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message)
@@ -56,21 +56,12 @@ sourceButton model url name =
     ]
     [ text name ]
 
-sourceDelimiter : Model -> Html Message
-sourceDelimiter model =
-  a
-    [ css
-        [ Css.pointerEvents Css.none
-        , Css.color model.theme.accent
-        ]
-    ]
-    [ text "•" ]
-
 source : Model -> PostFeatureContent -> Html Message
 source model content =
   div
     [ css
         [ Css.displayFlex
+        , Css.flexWrap Css.wrap
         , Css.property "gap" "10px"
         ]
     ]
@@ -78,7 +69,6 @@ source model content =
         model
         (getDiscussOnTwitterUrl content)
         "Discuss on Twitter"
-    , sourceDelimiter model
     , sourceButton
         model
         (getPostSourceUrl model.url.path)
