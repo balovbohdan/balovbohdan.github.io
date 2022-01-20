@@ -38,6 +38,7 @@ keywords props =
   div
     [ css
         [ Css.displayFlex
+        , Css.flexWrap Css.wrap
         , Css.property "gap" "10px"
         ]
     ]

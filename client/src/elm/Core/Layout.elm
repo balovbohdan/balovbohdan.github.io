@@ -43,6 +43,7 @@ footer model =
   div
     [ css
         [ Css.displayFlex
+        , Css.property "gap" "10px"
         , Css.alignItems Css.center
         , Css.justifyContent Css.spaceBetween
         , Css.height <| Css.px 100
@@ -50,9 +51,20 @@ footer model =
         , Css.borderTop3 (Css.px 1) Css.solid model.theme.primaryLight
         ]
     ]
-    [ span
-        [ css [ Css.color model.theme.primaryLight ] ]
-        [ text "All rights reserved © Bohdan Balov 2022" ]
+    [ div
+        [ css
+            [ Css.displayFlex
+            , Css.flexWrap Css.wrap
+            , Css.property "gap" "10px"
+            ]
+        ]
+        [ span
+            [ css [ Css.color model.theme.primaryLight ] ]
+            [ text "All rights reserved" ]
+        , span
+            [ css [ Css.color model.theme.primaryLight ] ]
+            [ text "© Bohdan Balov 2022" ]
+        ]
     , div
         [ css [ Css.displayFlex, Css.property "gap" "10px" ] ]
         [ socialButton
