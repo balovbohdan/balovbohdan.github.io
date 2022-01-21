@@ -94,9 +94,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .CodeMirror-wrap pre.CodeMirror-line {
-	padding: 0 10px !important;
+	padding: 0 20px !important;
 	word-wrap: unset !important;
 	white-space: pre !important;
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.CodeMirror-wrap pre.CodeMirror-line > span {
 	color: rgba(255, 255, 255, 0.8);
 }
 
