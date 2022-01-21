@@ -84,7 +84,22 @@ h1, h2, h3, h4, h5, h6 {
 	height: auto !important;
 }
 
+.CodeMirror-code {
+	overflow-y: auto;
+}
+
 .CodeMirror-code div {
 	font-family: monospace;
 	font-size: 1.1rem;
+}
+
+.CodeMirror-wrap pre.CodeMirror-line {
+	padding: 0 10px !important;
+	word-wrap: unset !important;
+	white-space: pre !important;
+}
+
+.CodeMirror-gutters,
+.CodeMirror-gutter-wrapper {
+	display: none;
 }
