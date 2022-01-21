@@ -20,7 +20,7 @@ mark, audio, video, input, textarea {
 	font-size: 1.1rem;
 	font-family: "Ubuntu", sans-serif;
 	font-weight: 300;
-	color: rgb(33, 34, 39);
+	/* color: rgb(33, 34, 39); */
 }
 
 html {
@@ -46,7 +46,7 @@ pre, code {
 ol, ul, li {
 	font-family: "Ubuntu", sans-serif;
 	font-weight: 300;
-	color: rgb(33, 34, 39);
+	/* color: rgb(33, 34, 39); */
 	line-height: 1.6rem;
 }
 
@@ -55,7 +55,7 @@ a {
 	cursor: pointer;
 	font-family: "Ubuntu", sans-serif;
 	font-weight: 300;
-	color: rgb(33, 34, 39);
+	/* color: rgb(33, 34, 39); */
 	line-height: 1.6rem;
 }
 
@@ -66,7 +66,7 @@ a:hover {
 p {
 	font-family: "Ubuntu", sans-serif;
 	font-weight: 300;
-	color: rgb(33, 34, 39);
+	/* color: rgb(33, 34, 39); */
 	line-height: 1.6rem;
 }
 
@@ -77,7 +77,7 @@ img {
 h1, h2, h3, h4, h5, h6 {
 	font-family: "Ubuntu", sans-serif;
 	font-weight: 500;
-	color: rgb(33, 34, 39);
+	/* color: rgb(33, 34, 39); */
 }
 
 .CodeMirror-wrap {
@@ -97,6 +97,7 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 0 10px !important;
 	word-wrap: unset !important;
 	white-space: pre !important;
+	color: rgba(255, 255, 255, 0.8);
 }
 
 .CodeMirror-gutters,
