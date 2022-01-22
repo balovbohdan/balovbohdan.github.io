@@ -1,6 +1,7 @@
-| Key           | Value                                                     |
-| ------------- | --------------------------------------------------------- |
-| Title         | Why I decided to learn Elm and drop React                 |
-| Description   | About Ramda, Haskell, TypeScript, and Elm                 |
-| Keywords      | javascript, elm, react, frontend                          |
-| Cover         | /content/blog/posts/why-i-decided-to-drop-react/cover.jpg |
+| Key         | Value                                                     |
+| ----------- | --------------------------------------------------------- |
+| title       | Why I decided to learn Elm and drop React                 |
+| description | About Ramda, Haskell, TypeScript, and Elm                 |
+| keywords    | javascript, elm, react, frontend                          |
+| cover       | /content/blog/posts/why-i-decided-to-drop-react/cover.jpg |
+| publishedOn | 1631534400000                                             |

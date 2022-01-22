@@ -9,7 +9,12 @@ import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message)
 import Utils.Markdown.Markdown exposing (parseMarkdown)
 
-type alias Props = { model: Model, content: String, meta: Html Message }
+type alias Props =
+  { model: Model
+  , content: String
+  , meta: Html Message
+  , header: Html Message
+  }
 
 content : Props -> Html Message
 content props =
@@ -58,4 +63,4 @@ article props =
         , Css.margin2 Css.zero Css.auto
         ]
     ]
-    [ content props, props.meta ]
+    [ props.header, content props, props.meta ]
