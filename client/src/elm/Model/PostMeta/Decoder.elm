@@ -7,7 +7,14 @@ import Array exposing (Array)
 import Model.PostMeta.Types exposing (PostMeta, PostMetaRaw)
 
 defaultPostMeta : PostMeta
-defaultPostMeta = { name = "", title = "", description = "", keywords = "", cover = "" }
+defaultPostMeta =
+  { name = ""
+  , title = ""
+  , description = ""
+  , keywords = ""
+  , cover = ""
+  , publishedOn = ""
+  }
 
 getIsNotEmptyString : String -> Bool
 getIsNotEmptyString string = (String.length string) > 0
@@ -56,4 +63,5 @@ decodePostMeta input =
                   , description = getMetaItem 3 lines
                   , keywords = getMetaItem 5 lines
                   , cover = getMetaItem 7 lines
+                  , publishedOn = getMetaItem 9 lines
                   }

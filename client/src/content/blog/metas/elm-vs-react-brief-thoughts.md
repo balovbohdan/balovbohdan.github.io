@@ -1,6 +1,7 @@
-| Key           | Value                                                     |
-| ------------- | --------------------------------------------------------- |
-| Title         | Elm vs React - Brief Thoughts                             |
-| Description   | What experienced React developer thinks about Elm         |
-| Keywords      | javascript, elm, react, frontend                          |
-| Cover         | /content/blog/posts/elm-vs-react-brief-thoughts/cover.jpg |
+| Key         | Value                                                     |
+| ----------- | --------------------------------------------------------- |
+| title       | Elm vs React - Brief Thoughts                             |
+| description | What experienced React developer thinks about Elm         |
+| keywords    | javascript, elm, react, frontend                          |
+| cover       | /content/blog/posts/elm-vs-react-brief-thoughts/cover.jpg |
+| publishedOn | 1669118400000                                             |

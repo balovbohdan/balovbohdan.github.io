@@ -2,9 +2,12 @@ module Features.Post.Post exposing (post)
 
 import Css
 import Array
+import Url
 import Html.Styled.Attributes exposing (css, href, target)
-import Html.Styled exposing (a, div, text, Html)
+import Html.Styled exposing (a, div, span, text, Html)
 import Url.Parser exposing (parse)
+
+import Utils.Date exposing (parseTimestamp)
 
 import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message)
@@ -16,7 +19,6 @@ import Features.Post.Model.Types exposing (PostFeatureContent)
 
 import Components.Article exposing (article)
 import Components.Keywords exposing (keywords)
-import Url
 
 getPostId : String -> String
 getPostId =
@@ -46,6 +48,42 @@ parseKeywords words =
   words
     |> String.split ","
     |> List.map String.trim
+
+getTimeToRead : PostFeatureContent -> String
+getTimeToRead content =
+  let
+    koefficient = 0.0008
+    textLength = toFloat <| String.length <| content.post.text
+    timeToRead = String.fromInt <| ceiling <| (textLength * koefficient)
+  in
+    timeToRead ++ " mins to read"
+
+header : Model -> PostFeatureContent -> Html Message
+header model content =
+  let
+    publishedOnDirty = String.toInt content.postMeta.publishedOn
+    publishedOn =
+      case (publishedOnDirty) of
+        Nothing -> "unknown"
+        Just value -> parseTimestamp value
+  in
+    div
+      [ css
+          [ Css.displayFlex
+          , Css.property "gap" "5px"
+          , Css.fontSize <| Css.rem 0.8
+          ]
+      ]
+      [ span
+          [ css [ Css.color model.theme.textSecondary ] ]
+          [ text ("Published on " ++ publishedOn) ]
+      , span
+          [ css [ Css.color model.theme.textSecondary ] ]
+          [ text "•" ]
+      , span
+          [ css [ Css.color model.theme.textSecondary ] ]
+          [ text (getTimeToRead content) ]
+      ]
 
 sourceButton : Model -> String -> String -> Html Message
 sourceButton model url name =
@@ -108,6 +146,10 @@ post model =
       in
         div
           []
-          [ article { model = model, content = content.post.text
-          , meta = meta model content }
+          [ article
+              { model = model
+              , content = content.post.text
+              , header = header model content
+              , meta = meta model content
+              }
           ]
