@@ -1,6 +1,7 @@
-| Key           | Value                                                  |
-| ------------- | ------------------------------------------------------ |
-| Title         | Medical app idea                                       |
-| Description   | Formalization of my thoughts about medical pet project |
-| Keywords      | javascript, frontend, capacitor, ionic, react          |
-| Cover         | /content/blog/posts/medical-app-idea/cover.jpg         |
+| Key         | Value                                                  |
+| ----------- | ------------------------------------------------------ |
+| title       | Medical app idea                                       |
+| description | Formalization of my thoughts about medical pet project |
+| keywords    | javascript, frontend, capacitor, ionic, react          |
+| cover       | /content/blog/posts/medical-app-idea/cover.jpg         |
+| publishedOn | 1599048000000                                          |
