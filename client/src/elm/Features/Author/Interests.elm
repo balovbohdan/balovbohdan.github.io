@@ -118,6 +118,13 @@ tiles model =
         , iconSrc = "/assets/typewriter.svg"
         , href = "https://medium.com/@balovbohdan"
         }
+    , tile
+        { model = model
+        , title = "Aeromodeling"
+        , description = "This is my passion. But it is currently on pause because software engineer career."
+        , iconSrc = "/assets/plane.svg"
+        , href = "/#/aeromodeling"
+        }
     ]
 
 interests : Model -> Html Message

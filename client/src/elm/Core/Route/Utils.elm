@@ -9,6 +9,8 @@ import Features.NotFound.NotFound exposing (notFound)
 import Features.Post.Post exposing (post)
 import Features.Blog.Blog exposing (blog)
 import Features.Author.Author exposing (author)
+import Features.Aeromodeling.Aeromodeling exposing (aeromodeling)
+
 import Core.Message exposing (Message)
 import Core.Model.Types exposing (Model)
 import Core.Route.Route exposing (Route(..))
@@ -20,6 +22,7 @@ parseUrl =
     [ map RouteHome top
     , map RouteBlog (s "blog")
     , map RouteAuthor (s "author")
+    , map RouteAeromodeling (s "aeromodeling")
     , map RoutePost postUrlParser
     , map RouteNotFound (s "404")
     ]
@@ -39,3 +42,4 @@ getFeature path =
     RouteBlog -> blog
     RoutePost _ -> post
     RouteAuthor -> author
+    RouteAeromodeling -> aeromodeling
