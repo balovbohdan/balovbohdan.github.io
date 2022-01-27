@@ -9,6 +9,7 @@ import Features.Home.Model.Query exposing (queryHomeFeatureContent)
 import Features.Blog.Model.Query exposing (queryPostsFeatureContent)
 import Features.Post.Model.Query exposing (queryPostFeatureContent)
 import Features.Author.Model.Query exposing (queryAuthorFeatureContent)
+import Features.Aeromodeling.Model.Query exposing (queryAeromodelingFeatureContent)
 
 queryFeatureContent : Model -> String -> Cmd Message
 queryFeatureContent model path =
@@ -18,3 +19,4 @@ queryFeatureContent model path =
     RouteBlog -> queryPostsFeatureContent model
     RoutePost id -> queryPostFeatureContent model id
     RouteAuthor -> queryAuthorFeatureContent model
+    RouteAeromodeling -> queryAeromodelingFeatureContent model

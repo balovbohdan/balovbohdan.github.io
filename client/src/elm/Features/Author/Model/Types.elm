@@ -1,4 +1,4 @@
-module Features.Author.Model.Types exposing (..)
+module Features.Author.Model.Types exposing (AuthorFeatureContent)
 
 type alias Item = { content: String }
 
