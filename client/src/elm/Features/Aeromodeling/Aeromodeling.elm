@@ -4,7 +4,7 @@ import Css
 import Css.Media
 import Json.Encode
 import Html.Styled.Attributes exposing (css, href, src, alt, title, target, property)
-import Html.Styled exposing (p, a, div, text, iframe, Html)
+import Html.Styled exposing (p, a, div, text, video, source, Html)
 
 import Core.Model.Types exposing (Model)
 import Core.Message exposing (Message(..))
@@ -59,17 +59,20 @@ freeFlightVideo =
             [ Css.flexBasis <| Css.pct 100, Css.height <| Css.vh 70 ]
         ]
     ]
-    [
-      -- iframe
-      --   [ src "https://www.youtube.com/embed/AAHrMaOCd1c"
-      --   , property "allow" (Json.Encode.string "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture")
-      --   , css
-      --       [ Css.width <| Css.pct 100
-      --       , Css.height <| Css.pct 100
-      --       , Css.maxHeight <| Css.px 400
-      --       ]
-      --   ]
-      --   []
+    [ video
+        [ property "controls" (Json.Encode.string "true")
+        , css
+            [ Css.width <| Css.pct 100
+            , Css.height <| Css.pct 100
+            , Css.maxHeight <| Css.px 400
+            ]
+        ]
+        [ source
+            [ property "type" (Json.Encode.string "video/mp4")
+            , src "/assets/f1b-free-flight.mp4"
+            ]
+            []
+        ]
     ]
 
 freeFlightVideoDescription : Html Message
