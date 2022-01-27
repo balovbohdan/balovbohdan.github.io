@@ -44,7 +44,7 @@ description model =
     ]
     [ p [ css [ Css.marginTop Css.zero ] ] [ text "This is my passion. But this activity is currently on hold because of my Software Engineer career — it takes really too much time." ]
     , p [] [ text "I have plans for the future to proceed with this sport. It gives big pleasure to me. Maybe because I feel free and relaxed on an aerodrome with an expensive flying toy. 🛩️" ]
-    , p [ css [ Css.marginBottom Css.zero ] ] [ text "You may ask, how did I start it? Well... I was interested in inventing things from childhood. So, I started rather early with this hobby. Big thangs to trainers who suppored me during my path!" ]
+    , p [ css [ Css.marginBottom Css.zero ] ] [ text "You may ask, how did I start it? Well... I was interested in inventing things from childhood. So, I started rather early with this hobby. Big thanks to trainers who supported me during my path!" ]
     ]
 
 freeFlightVideo : Html Message
@@ -81,7 +81,7 @@ freeFlightVideoDescription =
             [ Css.flexBasis <| Css.pct 100 ]
         ]
     ]
-    [ p [] [ text "I don't have a lot of content about this hobby. Maybe because when I was involved in it, I even did't think about taking photos or videos. For this reason, the photo above I found on the web." ]
+    [ p [] [ text "I don't have a lot of content about this hobby. Maybe because when I was involved in it, I even didn't think about taking photos or videos. For this reason, the photo above I found on the web." ]
     , p [] [ text "But thanks to Gods, I recently found an old video of my F-1-B free flight! I'm near 18 years old on that video. And the flight, actually, was not very good. But this is everything I have from that awesome times! Hope you will enjoy it." ]
     ]
 
