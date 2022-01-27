@@ -121,7 +121,7 @@ tiles model =
     , tile
         { model = model
         , title = "Aeromodeling"
-        , description = "This is my passion. But it is currently on pause because of Software Engineer career."
+        , description = "This is my passion. But it is currently on pause because of the Software Engineer career."
         , iconSrc = "/assets/plane.svg"
         , href = "/#/aeromodeling"
         }
