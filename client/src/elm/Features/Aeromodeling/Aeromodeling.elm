@@ -11,8 +11,6 @@ import Core.Message exposing (Message(..))
 
 import Components.PageSection exposing (pageSection)
 
--- <iframe width="560" height="315" src="https://www.youtube.com/embed/AAHrMaOCd1c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 picture : Model -> Html Message
 picture model =
   a
@@ -63,7 +61,6 @@ freeFlightVideo =
     ]
     [ iframe
         [ src "https://www.youtube.com/embed/AAHrMaOCd1c"
-        , property "allowfullscreen" (Json.Encode.string "True")
         , property "allow" (Json.Encode.string "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture")
         , css
             [ Css.width <| Css.pct 100
