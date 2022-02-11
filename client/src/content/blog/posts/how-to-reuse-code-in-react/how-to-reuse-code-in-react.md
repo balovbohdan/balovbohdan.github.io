@@ -126,3 +126,7 @@ That’s it!
 I started this article during two days in a hospital. It looks more like a set of thesis you can use for diving deeper and adjusting to your needs. Hope this was helpful for you.
 
 Let’s keep in touch.
+
+## ...
+
+You can find this article in [my Medium blog](https://betterprogramming.pub/how-to-reuse-code-in-react-40637747125f).
