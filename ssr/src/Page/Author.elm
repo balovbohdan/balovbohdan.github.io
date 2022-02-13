@@ -17,7 +17,7 @@ import Html.Styled exposing (p, a, h3, div, img, text, toUnstyled, Html)
 import Html.Styled.Attributes exposing (css, src, href)
 
 import Shared
-import Core.Constants exposing (constants)
+import Core.Constants exposing (coreConstants)
 import Components.PageSection exposing (pageSection)
 
 type alias Model = ()
@@ -233,12 +233,12 @@ head static =
   Head.Seo.summary
     { canonicalUrlOverride = Nothing
     , siteName = "Mr. Balov"
-    , description = "Mr. Balov | About Author"
+    , description = "About Mr. Balov"
     , locale = Just "en"
-    , title = "Mr. Balov | About Author"
+    , title = "About Mr. Balov"
     , image =
-        { url = Pages.Url.external (constants.url ++ "assets/author-2.jpg")
-        , alt = "Mr. Balov | About Author"
+        { url = Pages.Url.external (coreConstants.url ++ "assets/author-2.jpg")
+        , alt = "About Mr. Balov"
         , dimensions = Nothing
         , mimeType = Nothing
         }

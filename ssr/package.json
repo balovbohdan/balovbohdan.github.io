@@ -1,15 +1,19 @@
 {
   "name": "elm-pages-app",
   "scripts": {
-    "start": "elm-pages dev",
+    "start": "cross-env TOKEN_GITHUB=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 elm-pages dev",
     "build": "elm-pages build",
     "postinstall": "elm-tooling install",
     "eolToLf": "find . -type f -exec dos2unix {} \\;"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "elm-optimize-level-2": "^0.2.3",
     "elm-pages": "^2.1.11",
     "elm-review": "^2.5.5",
     "elm-tooling": "^1.4.0"
+  },
+  "dependencies": {
+    "codemirror-elm": "^1.0.4"
   }
 }

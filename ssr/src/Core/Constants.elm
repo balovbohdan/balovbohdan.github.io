@@ -1,6 +1,6 @@
-module Core.Constants exposing (constants)
+module Core.Constants exposing (coreConstants)
 
 type alias Constants = { url: String }
 
-constants: Constants
-constants = { url = "https://balovbohdan.github.io/" }
+coreConstants: Constants
+coreConstants = { url = "https://balovbohdan.github.io/" }

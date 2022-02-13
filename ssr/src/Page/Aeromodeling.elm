@@ -16,7 +16,7 @@ import Html.Styled.Attributes exposing (css, href, src, alt, title, target, prop
 import Html.Styled exposing (p, a, div, text, video, source, toUnstyled, Html)
 
 import Shared
-import Core.Constants exposing (constants)
+import Core.Constants exposing (coreConstants)
 import Components.PageSection exposing (pageSection)
 
 type alias Model = ()
@@ -148,7 +148,7 @@ aeromodeling sharedModel =
 
 view : Maybe PageUrl -> Shared.Model -> Model -> StaticPayload Data RouteParams -> View Msg
 view maybeUrl sharedModel templateModel static =
-  { title = "Mr. Balov | Aeromodeling"
+  { title = "Aeromodeling | Mr. Balov"
   , body = [ toUnstyled (aeromodeling sharedModel) ]
   }
 
@@ -160,12 +160,12 @@ head static =
   Head.Seo.summary
     { canonicalUrlOverride = Nothing
     , siteName = "Mr. Balov"
-    , description = "Mr. Balov | Aeromodeling"
+    , description = "Aeromodeling | Mr. Balov"
     , locale = Just "en"
-    , title = "Mr. Balov | Aeromodeling"
+    , title = "Aeromodeling | Mr. Balov"
     , image =
-        { url = Pages.Url.external (constants.url ++ "assets/f1b-free-flight.jpg")
-        , alt = "Mr. Balov | Aeromodeling"
+        { url = Pages.Url.external (coreConstants.url ++ "assets/f1b-free-flight.jpg")
+        , alt = "Aeromodeling | Mr. Balov"
         , dimensions = Nothing
         , mimeType = Nothing
         }
