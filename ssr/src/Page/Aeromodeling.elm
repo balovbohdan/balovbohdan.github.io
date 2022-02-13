@@ -16,6 +16,7 @@ import Html.Styled.Attributes exposing (css, href, src, alt, title, target, prop
 import Html.Styled exposing (p, a, div, text, video, source, toUnstyled, Html)
 
 import Shared
+import Core.Constants exposing (constants)
 import Components.PageSection exposing (pageSection)
 
 type alias Model = ()
@@ -26,48 +27,7 @@ type alias RouteParams = {}
 
 type alias Data = ()
 
-data : DataSource Data
-data = DataSource.succeed ()
-
-head : StaticPayload Data RouteParams -> List Head.Tag
-head static =
-  Head.Seo.summary
-    { canonicalUrlOverride = Nothing
-    , siteName = "Mr. Balov"
-    , description = "Mr. Balov | Aeromodeling"
-    , locale = Just "en"
-    , title = "Mr. Balov | Aeromodeling"
-    , image =
-        { url = Pages.Url.external "/assets/f1b-free-flight.jpg"
-        , alt = "Mr. Balov | Aeromodeling"
-        , dimensions = Nothing
-        , mimeType = Nothing
-        }
-    }
-    |> Head.Seo.website
-
-init : Maybe PageUrl -> Shared.Model -> StaticPayload Data RouteParams -> (Model, Cmd Msg)
-init pageUrl sharedModel static = ((), Cmd.none)
-
-update:
-  PageUrl
-  -> Maybe Browser.Navigation.Key
-  -> Shared.Model
-  -> StaticPayload Data RouteParams
-  -> Msg
-  -> Model
-  -> (Model, Cmd templateMsg, Maybe Shared.Msg)
-update pageUrl navigationKey sharedModel static templateMessage templateModel =
-  (templateModel, Cmd.none, Nothing)
-
-subscriptions:
-  Maybe PageUrl
-  -> RouteParams
-  -> Path.Path
-  -> Model
-  -> Shared.Model
-  -> Sub templateMsg
-subscriptions pageUrl routeParams path model sharedModel = Sub.none
+-- feature
 
 picture : Shared.Model -> Html Msg
 picture sharedModel =
@@ -184,11 +144,56 @@ aeromodeling sharedModel =
     , footer = Nothing
     }
 
+-- meta
+
 view : Maybe PageUrl -> Shared.Model -> Model -> StaticPayload Data RouteParams -> View Msg
 view maybeUrl sharedModel templateModel static =
   { title = "Mr. Balov | Aeromodeling"
   , body = [ toUnstyled (aeromodeling sharedModel) ]
   }
+
+data : DataSource Data
+data = DataSource.succeed ()
+
+head : StaticPayload Data RouteParams -> List Head.Tag
+head static =
+  Head.Seo.summary
+    { canonicalUrlOverride = Nothing
+    , siteName = "Mr. Balov"
+    , description = "Mr. Balov | Aeromodeling"
+    , locale = Just "en"
+    , title = "Mr. Balov | Aeromodeling"
+    , image =
+        { url = Pages.Url.external (constants.url ++ "assets/f1b-free-flight.jpg")
+        , alt = "Mr. Balov | Aeromodeling"
+        , dimensions = Nothing
+        , mimeType = Nothing
+        }
+    }
+    |> Head.Seo.website
+
+init : Maybe PageUrl -> Shared.Model -> StaticPayload Data RouteParams -> (Model, Cmd Msg)
+init pageUrl sharedModel static = ((), Cmd.none)
+
+update:
+  PageUrl
+  -> Maybe Browser.Navigation.Key
+  -> Shared.Model
+  -> StaticPayload Data RouteParams
+  -> Msg
+  -> Model
+  -> (Model, Cmd templateMsg, Maybe Shared.Msg)
+update pageUrl navigationKey sharedModel static templateMessage templateModel =
+  (templateModel, Cmd.none, Nothing)
+
+subscriptions:
+  Maybe PageUrl
+  -> RouteParams
+  -> Path.Path
+  -> Model
+  -> Shared.Model
+  -> Sub templateMsg
+subscriptions pageUrl routeParams path model sharedModel = Sub.none
 
 page : Page RouteParams Data
 page =
