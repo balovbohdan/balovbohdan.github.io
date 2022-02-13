@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <link rel="stylesheet" href="/style.css">
+    
+    <link rel="preload" href="/elm.js" as="script">
+    <link rel="modulepreload" href="/index.js">
+    
+    <script defer="defer" src="/elm.js" type="text/javascript"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script type="module">
+import userInit from"/index.js";
+let prefetchedPages=[window.location.pathname],initialLocationHash=document.location.hash.replace(/^#/,"");function loadContentAndInitializeApp(){let a=window.location.pathname.replace(/(w)$/,"$1/");a.endsWith("/")||(a+="/");const b=Elm.TemplateModulesBeta.init({flags:{secrets:null,baseUrl:document.baseURI,isPrerendering:!1,isDevServer:!1,isElmDebugMode:!1,contentJson:JSON.parse(document.getElementById("__ELM_PAGES_DATA__").innerHTML),userFlags:userInit.flags()}});return b.ports.toJsPort.subscribe(()=>{loadNamedAnchor()}),b}function loadNamedAnchor(){if(""!==initialLocationHash){const a=document.querySelector(`[name=${initialLocationHash}]`);a&&a.scrollIntoView()}}function prefetchIfNeeded(a){if(a.host===window.location.host&&!prefetchedPages.includes(a.pathname)){prefetchedPages.push(a.pathname),console.log("Preloading...",a.pathname);const b=document.createElement("link");b.setAttribute("as","fetch"),b.setAttribute("rel","prefetch"),b.setAttribute("href",origin+a.pathname+"/content.json"),document.head.appendChild(b)}}const appPromise=new Promise(function(a){document.addEventListener("DOMContentLoaded",()=>{a(loadContentAndInitializeApp())})});userInit.load(appPromise),"function"==typeof connect&&connect(function(a){appPromise.then(b=>{b.ports.fromJsPort.send({contentJson:a})})});const trigger_prefetch=b=>{const c=find_anchor(b.target);c&&c.href&&c.hasAttribute("elm-pages:prefetch")&&prefetchIfNeeded(c)};let mousemove_timeout;const handle_mousemove=a=>{clearTimeout(mousemove_timeout),mousemove_timeout=setTimeout(()=>{trigger_prefetch(a)},20)};addEventListener("touchstart",trigger_prefetch),addEventListener("mousemove",handle_mousemove);function find_anchor(a){for(;a&&"A"!==a.nodeName.toUpperCase();)a=a.parentNode;return a}
+    </script>
+    <title>Mr. Balov | Aeromodeling</title>
+    <meta name="generator" content="elm-pages v2.1.11">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <link rel="canonical" href="https://balovbohdan.github.io/aeromodeling" />    <meta name="description" content="Mr. Balov | Aeromodeling" />    <meta property="og:image" content="/assets/f1b-free-flight.jpg" />    <meta property="og:image:secure_url" content="/assets/f1b-free-flight.jpg" />    <meta property="og:image:alt" content="Mr. Balov | Aeromodeling" />    <meta property="og:title" content="Mr. Balov | Aeromodeling" />    <meta property="og:url" content="https://balovbohdan.github.io/aeromodeling" />    <meta property="og:description" content="Mr. Balov | Aeromodeling" />    <meta property="og:site_name" content="Mr. Balov" />    <meta property="og:locale" content="en" />    <meta property="twitter:card" content="summary" />    <meta property="twitter:title" content="Mr. Balov | Aeromodeling" />    <meta property="twitter:description" content="Mr. Balov | Aeromodeling" />    <meta property="twitter:image" content="/assets/f1b-free-flight.jpg" />    <meta property="twitter:image:alt" content="Mr. Balov | Aeromodeling" />    <meta property="og:type" content="website" />    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <script id="__ELM_PAGES_DATA__" type="application/json">{"staticData":{},"is404":false,"path":"aeromodeling"}</script>
+    </head>
+    <body>
+      <div data-url="" display="none"></div>
+      <div class="_c98812e1"><span class="elm-css-style-wrapper" style="display: none;"><style>
+._2aee8f3b{color:rgb(93,100,116);}
+._c98812e1{display:flex;flex-direction:column;justify-content:space-between;padding:0 10px;min-height:100vh;max-width:1000px;margin:0 auto;}
+._78f2c7cc{display:flex;flex-wrap:wrap;gap:10px;}
+._eb5dd788{display:flex;flex-wrap:wrap;gap:20px;flex-direction:row;align-items:center;}
+._cb8fe55{display:flex;gap:10px;align-items:center;justify-content:space-between;height:100px;margin-top:100px;border-top:1px solid rgb(93,100,116);}
+._e133735c{display:flex;gap:10px;justify-content:space-between;align-items:center;padding:10px 0;margin-top:50px;}
+@media only screen and (max-width: 400px){._e133735c{justify-content:center;}}
+._785a7f55{display:flex;gap:10px;}
+._d4fe358a{display:inline-block;position:relative;width:60px;height:34px;}
+._5abf412d{height:30px;}
+._2af70349{margin-top:50px;}
+._bd6dd386{opacity:0;width:0;height:0;}
+._bd6dd386:checked + span{background-color:rgb(111,125,195);}
+._bd6dd386:checked + span::before{transform:translateX(26px);}
+._bd6dd386:focus + span{box-shadow:0 0 1px #2196F3;}
+._f4f9d9cd{padding:3px;border-radius:5px;transition:background-color 200ms  ;}
+._f4f9d9cd:hover{background-color:rgb(216,212,213);}
+._ab601871{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;border-radius:34px;background-color:rgb(216,212,213);transition:transform 400ms  ;}
+._ab601871::before{position:absolute;content:'';width:26px;height:26px;left:4px;bottom:4px;background-color:rgb(249,249,249);transition:transform 400ms  ;}
+._ab601871::before{border-radius:50%;}
+._627dc1d4{width:100px;height:100px;border-radius:50%;background-color:rgb(249,249,249);background-image:url(/assets/avatar.jpg);background-size:cover;background-position:center;}
+@media only screen and (max-width: 400px){._627dc1d4{width:70px;height:70px;}}</style></span><span class="elm-css-style-wrapper" style="display: none;"><style>body{background-color:rgb(255,255,255);}
+p, a, ol, ul, li, span, h1, h2, h3, h4, h5, h6{color:rgb(33,34,39);}</style></span><div class="_e133735c"><div class="_eb5dd788"><a class="_627dc1d4" href="/"></a><div><p>Software Development Blog</p><p>By Mr. Balov</p></div></div><div><label class="_d4fe358a"><input class="_bd6dd386" type="checkbox" checked=false><span class="_ab601871"></span></label></div></div><div class="_2af70349"><div><div class="_6af67ebb"><span class="elm-css-style-wrapper" style="display: none;"><style>
+._6af67ebb{color:rgb(33,34,39);margin-top:70px;}
+._37438a46{display:block;flex-basis:50%;background-color:rgb(93,100,116);background-image:url(/assets/f1b-free-flight.jpg);background-size:cover;background-position:top;}
+@media only screen and (max-width: 600px){._37438a46{flex-basis:100%;height:70vh;}}
+._229fbd99{display:flex;align-items:center;flex-basis:50%;}
+@media only screen and (max-width: 600px){._229fbd99{flex-basis:100%;height:70vh;}}
+._db5f30f6{display:flex;gap:20px;align-items:center;margin-top:60px;}
+@media only screen and (max-width: 600px){._db5f30f6{flex-wrap:wrap;}}
+._41f94ce2{display:flex;gap:20px;}
+@media only screen and (max-width: 600px){._41f94ce2{flex-wrap:wrap;}}
+._f6a19b43{flex-basis:50%;}
+@media only screen and (max-width: 600px){._f6a19b43{flex-basis:100%;}}
+._3a322133{margin-bottom:0;}
+._dfcc9b77{margin-bottom:50px;}
+._40535602{margin-top:0;}
+._ef922ed2{width:100%;height:100%;max-height:400px;}</style></span><h2 class="_dfcc9b77">Aeromodeling</h2><div><div class="_41f94ce2"><a class="_37438a46" alt="F-1-B Free Flight" href="https://www.flickr.com/photos/michal-dvorak/36133257921/in/pool-free-flight-models/" target="__blank" title="F-1-B Free Flight"></a><div class="_f6a19b43"><p class="_40535602">This is my passion. But this activity is currently on hold because of my Software Engineer career — it takes really too much time.</p><p>I have plans for the future to proceed with this sport. It gives big pleasure to me. Maybe because I feel free and relaxed on an aerodrome with an expensive flying toy. 🛩️</p><p class="_3a322133">You may ask, how did I start it? Well... I was interested in inventing things from childhood. So, I started rather early with this hobby. Big thanks to trainers who supported me during my path!</p></div></div><div class="_db5f30f6"><div class="_f6a19b43"><p>I don&#039;t have a lot of content about this hobby. Maybe because when I was involved in it, I even didn&#039;t think about taking photos or videos. For this reason, the photo above I found on the web.</p><p>But thanks to Gods, I recently found an old video of my F-1-B free flight! I&#039;m near 18 years old on that video. And the flight, actually, was not very good. But this is everything I have from that awesome times! Hope you will enjoy it.</p></div><div class="_229fbd99"><video class="_ef922ed2" controls="true"><source src="/assets/f1b-free-flight.mp4" type="video/mp4"></video></div></div></div><div></div></div></div></div><div class="_cb8fe55"><div class="_78f2c7cc"><span class="_2aee8f3b">All rights reserved</span><span class="_2aee8f3b">© Bohdan Balov 2022</span></div><div class="_785a7f55"><a class="_f4f9d9cd" href="https://github.com/balovbohdan" title="GitHub"><img class="_5abf412d" src="/assets/github.svg"></a><a class="_f4f9d9cd" href="https://twitter.com/balov_bohdan" title="Twitter"><img class="_5abf412d" src="/assets/twitter.svg"></a><a class="_f4f9d9cd" href="https://medium.com/@balovbohdan" title="Medium"><img class="_5abf412d" src="/assets/medium.svg"></a></div></div></div>
+    </body>
+  </html>
+  
