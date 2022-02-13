@@ -3,7 +3,8 @@
   "scripts": {
     "start": "elm-pages dev",
     "build": "elm-pages build",
-    "postinstall": "elm-tooling install"
+    "postinstall": "elm-tooling install",
+    "eolToLf": "find . -type f -exec dos2unix {} \\;"
   },
   "devDependencies": {
     "elm-optimize-level-2": "^0.2.3",
