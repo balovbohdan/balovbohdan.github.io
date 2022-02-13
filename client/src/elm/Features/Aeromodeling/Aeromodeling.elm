@@ -120,7 +120,7 @@ aeromodeling : Model -> Html Message
 aeromodeling model =
   pageSection
     { model = model
-    , title = "Aeromodelling"
+    , title = "Aeromodeling"
     , body = body model
     , footer = Nothing
     }
